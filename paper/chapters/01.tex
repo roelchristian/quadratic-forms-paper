@@ -1,0 +1,431 @@
+\chapter{Quadratic forms.}
+\label{chap:quadratic-forms}
+
+\section{Fundamental notions.}
+
+{\scshape We begin} by presenting four definitions of a quadratic form and show that they are equivalent. This allows us to freely switch between these definitions as needed. The classical results on quadratic forms presented in this chapter have been adapted from \cite{clarkquadratic,lam1973quadratic,ormsbynotes,szymiczek2017bilinear}.
+
+\subsection{}\label{sec:quadratic-forms}~Let \(\field\) be a field with characteristic not equal to \(2\) (we maintain this assumption throughout this paper, unless otherwise stated). A(n) (\(n\)-ary) \emph{quadratic form} over \(\field\) is an element \(q \in \field[x_1, \dots, x_n]\) of the polynomial ring in \(n\) variables with coefficients in \(\field\) such that \(q\) can be written as
+\[
+  q(x_1, \dots, x_n) = \sum_{i, j} a_{ij}x_ix_j,
+\]
+for some \(a_{ij} \in \field\). That is, \(q\) is a homogeneous (i.e., all terms have the same degree) polynomial of degree \(2\). For example, the polynomial \(x^2 + 2xy + 3y^2\) is a binary quadratic form over \(\field = \Rationals\), while \(x^2 + 2x + 3y\) is not. We shall often abbreviate the column vector \((x_1, \dots, x_n)\) as \(x\) (and \(q(x_1, \dots, x_n)\) as \(q(x)\) or simply \(q\)). We shall also follow convention and call an \(n\)-ary quadratic form binary, ternary, or quaternary if \(n = 2, 3, 4\), respectively.
+
+Observe that our definition of a quadratic form allows for some redundancies. That is, for example, the forms \(3x^2 + 4xy - yx + 2y^2\) and \(3x^2 + xy + 2yx + 2y^2\) are presentations of the same quadratic form. It is therefore customary  to ``symmetrize'' the form \cite{lam1973quadratic} by replacing the coefficients \(a_{ij}\) with \(a'_{ij} = \frac{1}{2}(a_{ij} + a_{ji})\) (we are able to do so as \(\charx \field \neq 2\) by assumption) so that given a quadratic form \(q\) over \(\field\), we have
+\[
+  q = \sum_{i, j} a_{ij} x_i x_j = \sum_{i, j} a'_{ij} x_i x_j
+\]
+where \(a'_{ij} = a'_{ji}\) for all \(i, j\). Thus the forms \(3x^2 + 4xy - yx + 2y^2\) and \(3x^2 + xy + 2yx + 2y^2\) can be symmetrized to \[3x^2 +\frac{3}{2}xy + \frac{3}{2}yx + 2y^2.\] (And, since \(\field\) is a field, this ultimately simplifies to \(3x^2 + 3xy + 2y^2\).)
+
+This symmetrization allows us to associate a symmetric matrix \(M = (m_{ij})\) to a quadratic form \(q\) over \(\field\) by letting \(m_{ij} = a'_{ij}\). The matrix \(M\) is unique because it is uniquely determined by the coefficients of \(q\) and is called the \emph{symmetric matrix associated with \(q\)}. Conversely, from any nonzero \(n \times n\) matrix \(M\) we can define a quadratic form \(q\) by
+\[
+  q(x) = x^{\transp}Mx
+\]
+where \(x\) is a column vector in \(\field^n\). The reader may verify that this is indeed a quadratic form. We shall write \(\discr q\) to denote the determinant of the symmetric matrix associated with \(q\) and call it the discriminant of \(q\).\label{sec:quadratic-forms-matrix-representation}
+
+\subsection{Another perspective.}~Evaluating the polynomial \(q\) at a vector \(x \in \field^n\) can be seen as a map from \(\field^n\) to \(\field\). Thus any quadratic form \(q\) over \(\field\) naturally induces a map \(\field^n \to \field\), which with some abuse of notation we shall also denote by \(q\). This map is called a \emph{quadratic map} and is ``quadratic'' in the sense that\label{sec:quadratic-maps}
+\[q(\lambda x) = \lambda^2q(x)\]
+for all \(\lambda \in \field\) and \(x \in \field^n\). Indeed, we have \(q(\lambda x) = (\lambda x)^{\transp}M(\lambda x)  = \lambda^2 x^{\transp}Mx = \lambda^2 q(x).\) In addition, the map \(q\) has the property that if we define a map \(B : \field^n \times \field^n \to \field\) by
+\[
+  B(x, y) = \frac{1}{2}\left(q(x+y) - q(x) - q(y)\right),
+\]
+then \(B\) is a \emph{symmetric bilinear form} over \(\field\). That is, \(B\) is a bilinear map (i.e., linear in each argument) that satisfies
+\[
+  B(x, y) = B(y, x)
+\]
+for all \(x, y \in \field^n\). We call \(B\) the \emph{polarization} of (the map) \(q\). That \(B\) is bilinear can be proved as follows:
+\begin{align*}
+  B(x,y) &= \frac{1}{2}\left(q(x+y) - q(x) - q(y)\right)\\
+  &= \frac{1}{2}\left( (x+y)^{\transp}M(x+y) - x^{\transp}Mx - y^{\transp}My \right) = x^{\transp}My.
+\end{align*}
+
+Conversely, given a symmetric bilinear form \(B\) over \(\field\), we can define a quadratic form \(q\) by
+\[B(x, x) = \frac{1}{2}\left(q(x+x) - q(x) - q(x)\right)
+=\frac{1}{2}\left(q(2x) - 2q(x)\right) = q(x).\]
+Thus each of \(q\) and \(B\) uniquely determines the other.
+
+Our definitions have thus far been restricted to quadratic maps defined on \(\field^n\) (and consequently symmetric bilinear forms on \(\field^n\)). If, however, we define for any \(n\)-dimensional \(\field\)-vector space \(V\) the symmetric bilinear form \(B: V \times V \to \field\) and associate it with the quadratic map \(q:= q_B: V \to \field\) defined by \(q(x) = B(x,x)\), then we have, for all \(x, y \in V\) and \(\lambda \in \field\),
+\[
+    q(\lambda x) = B(\lambda x, \lambda x) = \lambda^2 B(x, x) = \lambda^2 q(x),
+\]
+and
+\begin{align*}
+    q(x + y ) - q(x) - q(y) &= B(x+y, x+y) - B(x, x) - B(y, y)\\
+    &=B(x,y) + B(y,x) = 2B(x,y).
+\end{align*}
+And thus we see that \(q\) is indeed a quadratic map and that each of \(q\) and \(B\) uniquely determines the other. We shall call the pair \((V, B)\) a \emph{quadratic space}.\footnote{The notation \((V, q)\) also appears in the literature; cf., e.g., \cite[p.~4]{lam1973quadratic}.} Throughout this book, all vector spaces will be understood to be finite.
+
+Working with quadratic spaces allow us to deal with quadratic forms without regard to a specific basis. Consider the quadratic space \((V, B)\) and let \(\Basis = \{b_1, \dots, b_n\}\) be a basis of \(V\). This gives rise to the quadratic form
+\[
+  q(x_1, \dots, x_n) = \sum_{i, j} B(b_i, b_j) x_i x_j,  
+\]
+and if we use the fact that \(V\) is isomorphic to \(\field^n\), then we can identify \(q\) with the quadratic form \(q(x) = x^{\transp}Mx\) where \(M\) is the matrix whose \(ij\)-th entry is \(B(b_i, b_j)\). Thus the map \(q_B : V \to \field\) is precisely the quadratic map \(\field^n \to \field\) induced by \(q\). We call \(M\) the \emph{Gram matrix} of \((V, B)\) with respect to the basis \(\Basis\).\label{sec:quadratic-forms-basis}
+
+If we let \((V, B)\) be a quadratic space and \(M\) and \(q\) be the Gram matrix and quadratic map associated with \((V, B)\), in that order, with respect to the basis \(\Basis =\{b_1, \dots, b_n\}\), then if we let \(\Basis' = \{b'_1, \dots, b'_n\}\) be another basis of \(V\) and let \(M'\) and \(q'\) be the Gram matrix and quadratic map associated with \((V, B)\), in that order, with respect to \(\Basis'\), then we can express the basis vectors \(b'_i\) in terms of the basis vectors \(b_i\), \emph{viz.,}\label{sec:quadratic-space-change-of-basis}
+\begin{align*}
+    b'_1 &= p_{11}b_1 + \cdots + p_{n1}b_n\\
+    &\vdots\\
+    b'_n &= p_{1n}b_1 + \cdots + p_{nn}b_n,
+\end{align*}
+so that the matrix \(P = (p_{ij})\) is the change of basis matrix from \(\Basis\) to \(\Basis'\). Since \(\Basis\) and \(\Basis'\) are bases of the same vector space, we know that \(P \in \genlin{n}{\field}\). We then have
+\begin{align*}
+  M' &= B(b'_i, b'_j) = B\left(\sum_{s} p_{si}b_s, \sum_t p_{tj}b_t\right)\\
+  &= \sum_t \sum_s p_{si}B(b_s, b_t)p_{tj}.
+\end{align*}
+The term \(B(b_s, b_t)\) is the \(st\)-th entry of \(M\), \(m_{st}\), so that \(c_{it} := \sum_s p^{\transp}_{si}m_{st}\) is the \(it\)-th entry of \(P_{\transp}M\). Finally, \(\sum_t c_{it}p_{tj}\) is exactly the \(ij\)-th entry of the matrix product \(P^{\transp}MP\). Thus the quadratic space \((V, B)\) determines uniquely the equivalence class of the quadratic form \(q\).
+
+\subsection{An illustration.}~It will be instructive to see how these four definitions of a quadratic form are related. Consider the quadratic form \[q(x, y) = x^2 + 4xy + 3y^2\] over \(\field = \Rationals\). We can symmetrize this to \[q(x, y) = x^2 + 2xy + 2yx + 3y^2,\] which we can then associate to the symmetric matrix \(M = \begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix}\) so that
+\[
+  q(x, y) = \begin{pmatrix}
+    x & y
+  \end{pmatrix} \begin{pmatrix}
+    1 & 2 \\
+    2 & 3
+  \end{pmatrix} \begin{pmatrix}
+    x \\ y
+  \end{pmatrix}= x^2 + 4xy + 3y^2,
+\]
+as expected. If \(\{e_1, e_2\}\) is the standard basis of \(\Rationals^2\), then the associated quadratic map is given by \(xe_1 + ye_2 \mapsto x^2 + 4xy + 3y^2\). The polarization of this map is given by
+\begin{align*}
+  B((x,y), (x', y')) &= \frac{1}{2}\left(q((x,y) + (x', y')) - q((x,y)) - q((x', y'))\right)\\
+  &= \frac{1}{2}\left(q(x+x', y+y') - q(x, y) - q(x', y')\right)\\
+  &= xx' + 2xy' + 2x'y + 3yy',
+\end{align*}
+which when evaluated at a pair of standard basis vectors gives us the Gram matrix \(B = \begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix}\), as before. Finally, depolarizing \(B\) gives us
+\[
+  B((x, y), (x, y)) = x^2 + 2xy + 2xy + 3y^2 = x^2 + 4xy + 3y^2.
+\]
+
+\section{Equivalence of forms.}
+
+\subsection{Equivalence of forms.}\label{sec:mat-equiv}~Let \(\mathfrak{M}\) be the set of all \(n \times n\) matrices over an arbitrary field \(\field\) of characteristic not equal to \(2\). Given a matrix \(M \in \mathfrak{M}\) and an \(n\)-ary quadratic form \(q\) over the same field \(\field\), we can define a new quadratic form \(q'\) by
+\begin{equation}\label{eq:mat-action}
+  q'(x) := q(Mx) = q\left(\sum_{1 \leq i \leq n} m_{1i}x_i, \dots, \sum_{1 \leq i \leq n} m_{ni}x_i\right).
+\end{equation}
+so that the change from \(q\) to \(q'\) is merely that of linearly changing the variables from \(x\) to \(Mx\). If we let \(N\) and \(N'\) be the matrices associated with \(q\) and \(q'\), respectively, then we have
+\[
+  q'(x) = x^{\transp}N'x = (Mx)^{\transp}N(Mx) = x^{\transp} M^{\transp}NMx,
+\]
+and therefore
+\begin{equation}\label{eq:mat-equiv}
+  N' = M^{\transp}NM.
+\end{equation}
+Matrices \(N\) and \(N'\) satisfying Equation (\ref{eq:mat-equiv}) are said to be \emph{congruent}.
+
+Observe that if \(I\) is the identity matrix in \(\mathfrak{M}\) then \(q(Ix) = q(x)\). Moreover, if \(M_1\) and \(M_2\) are matrices in \(\mathfrak{M}\) then \(q((M_1M_2)x) = q(M_1(M_2x))\). If we restrict our consideration to only those matrices in \(\frak{M}\) which are invertible (i.e., the general linear group \(\genlin{n}{\field}\)), then we can observe that (\ref{eq:mat-action}) defines a group action of \(\genlin{n}{\field}\) on the set of quadratic forms over \(\field\).
+
+This group action allows us to define an equivalence relation \cite[p.~89]{hungerford2012algebra} on the set of quadratic forms over \(\field\) as follows: we say that two quadratic forms \(q\) and \(r\) are \emph{equivalent} (or more precisely, \emph{\(\genlin{n}{\field}\)-equivalent}) if there exists a matrix \(P \in \genlin{n}{\field}\) such that \(q(x) = r(Px)\). In such a case, we write \(q \sim r\).
+
+We claim, for example, that the forms \(q(x, y) = xy\) and \(r(x, y) = x^2 - y^2\) are equivalent. Indeed, we have
+\[
+  q(x+y, x-y) = (x+y)(x-y) = x^2 - y^2 = r(x, y),
+\]
+or, in matrix form,
+\[
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & \frac{1}{2} \\
+    \frac{1}{2} & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+  \end{pmatrix}.
+\]
+
+Now if \(q\) and \(r\) are equivalent quadratic forms over \(\field\), with \(q(x) = r(Px)\) for some \(P \in \genlin{n}{\field}\), then the associated symmetric matrices \(N\) and \(N'\) are congruent. Nonetheless, they are not necessarily similar, i.e., \(P^{\transp}NP\) does not always equal \(P^{-1}NP\) so that equivalence of forms is a different \(\genlin{n}{k}\) action from conjugation. Indeed, we have
+\begin{equation}
+    \label{eq:det-of-equiv-forms}
+    \det(N') = \det(P^{\transp}NP) = \det(N)\det(P)^2.
+\end{equation}
+Thus two equivalent forms do not necessarily have the same determinant. The question naturally arises: when do two quadratic forms have the same determinant? Equation (\ref{eq:det-of-equiv-forms}) is trivially satisfied whenever \(\det(N) = 0\), so that having a zero determinant is an equivalence invariant. We call a quadratic form \(q\) \emph{degenerate} if \(\det(N) = 0\), where \(N\) is the symmetric matrix associated with \(q\); otherwise, we say that \(q\) is \emph{nondegenerate}.
+
+We therefore want to limit our investigation on nondegenerate quadratic forms. If a quadratic form \(q\) over a field \(\field\) is nondegenerate, then \(\det(N) \in \field^{\times} = \field \setminus \{0\}\), where \(N\) is the symmetric matrix associated with \(q\). From \eqref{eq:det-of-equiv-forms}, we therefore have \(\det(N) \in \field^{\times} / \field^{\times 2}\). We call the quotient group \(\field^{\times} / \field^{\times 2}\) the \emph{square class} of \(\field\).
+\label{sec:square-classes}
+
+\subsection{Representation}.~We conclude by introducing another fundamental definition. Let \(q\) be a quadratic form over \(\field\) and \(\lambda \in \field^{\times}\). We say that \(q\) represents \(\lambda\) if there exists a vector \(x \in \field^n\) such that \(q(x) = \lambda\). One can see that such a vector \(x\) is necessarily nonzero since \(q(0) = 0\), where \(0\) denotes the zero vector in \(\field^n\) and the zero element of \(\field\) with some abuse of notation. We shall denote by \(D(q)\) the set of all elements of \(\field^{\times}\) represented by \(q\), i.e.,\label{sec:representation}
+\[
+  D(q) = \{q(x) : x \in \field^n\} \setminus \{0\}.
+\]
+
+An alternative way to view the discussion in \S\,\ref{sec:square-classes} is to observe that if \(q\) represents \(\lambda \in \field^{\times}\) then \(q\) represents \(\mu^2\lambda\) for all \(m \in \field^{\times}\) so that \(q\) can be seen to represent not individual elements of \(\field^{\times}\) but cosets in the quotient group \(\field^{\times} / \field^{\times 2}\). Furthermore, this implies that \(D(q)\) is the union of cosets in \(\field^{\times} / \field^{\times 2}\). Moreover, if \(\lambda \in D(q)\), we can verify that \(\lambda^{-1} \in D(q)\).
+
+\section{Quadratic spaces.}
+
+%section introducing the notion of a quadratic space
+In the first part of this chapter we have established the equivalence of our definitions for quadratic forms and symmetric bilinear forms; we have also introduced the notion of a quadratic space. Recall in elementary linear algebra how matrices can be used to represent linear transformations with respect to a given basis. In a similar manner, quadratic spaces allows us to work with the structure induced by a quadratic form without regards to a specific basis; a quadratic form is therefore a quadratic space with chosen coordinates. The coordinate-free approach that is afforded us by quadratic spaces is, however, often more illustrative and easier to work with, as we shall see in the sequel.
+
+\subsection{Isometry.}~Given two quadratic spaces \((V, B)\) and \((V', B')\), we define an \emph{isometry} from \((V, B)\) to \((V', B')\) as a linear transformation \(\tau : V \to V'\) between the underlying vector spaces such that
+\[
+  B'(\tau(x), \tau(y)) = B(x, y),
+\]
+for all \(x, y \in V\). In other words, isometries are linear isomorphisms that ``respect the bilinear form structure.'' \cite{clarkquadratic} If there exists an isometry from \((V, B)\) to \((V', B')\), then we say that \((V, B)\) and \((V', B')\) are \emph{isometric}.\label{sec:isometry}
+
+We can establish that our definition of isometric quadratic spaces correspond to our definition of equivalence of forms. Let \(\Basis = \{b_1, \dots, b_n\}\) be a basis of \(V\). Then because \(\tau\) is an isomorphism, it follows that \(\{\tau(b_1), \dots, \tau(b_n)\}\) is a basis of \(V'\). Then by choosing \(f\)-compatible bases, the Gram matrices of \(B\) and \(B'\) are congruent. Thus there is a bijection between the set of isometry classes of quadratic spaces and the set of equivalence classes of quadratic forms. This bijection allows to freely switch between the two notions as needed. See also \cite[p.~39--40]{szymiczek2017bilinear}.
+
+\subsection{}~In \S\,\ref{sec:quadratic-space-change-of-basis} we have established that a quadratic space \((V, B)\) determines uniquely the equivalence class of the quadratic form \(q\) associated with it. We now ask whether this equivalence class in turn determines the set \(D(q)\) of elements represented by \(q\). We shall see that this is indeed the case, as in the following theorem:\label{sec:equivalence-implies-same-representation}
+
+\begin{theorem}
+  If \(q\) and \(r\) are equivalent quadratic forms over \(\field\), then they represent the same set of elements of \(\field^{\times}\).
+\end{theorem}
+
+\begin{proof}
+  Let \((V, B)\) and \((V', B')\) be the quadratic spaces associated with \(q\) and \(r\), respectively. By \S\,\ref{sec:isometry}, these spaces are isometric so that there exists a bijective linear map \(\tau: V \to V'\). Let \(\lambda \in D(q)\). Then \(q(x) = \lambda\) for some \(x \in V\) and therefore \(r(\tau(x)) = q(x) = \lambda\). Thus \(\lambda \in D(r)\). Similarly, if \(\mu \in D(r)\), then \(r(y) = \mu\) for some \(y \in U\) and therefore \(q(\tau^{-1}(y)) = r(y) = \mu\). Thus \(\mu \in D(q)\). Therefore \(D(q) = D(r)\).
+\end{proof}
+
+In other words, equivalent quadratic forms represent the same set of elements of \(\field^{\times}\).
+
+\subsection{Nondegenerate forms.}~If \(q\) is a quadratic form and \(N\) is its associated matrix, recall that \(q\) is said to be \emph{nondegenerate} if \(\det(N) \neq 0\). We expand this definition by providing equivalent conditions for nondegeneracy.\label{sec:nondegenerate} The reader may refer to \cite[p.~6]{lam1973quadratic} for a proof.
+
+\begin{theorem}\label{thm:nondegenerate}
+    The following statements are equivalent:
+
+    \smallskip
+
+    \begin{enumerate}[nosep, label=(\alph*)]
+        \item the form \(q\) is nondegenerate;
+        \item the map \(x \mapsto B(w, x)\) is an isomorphism from \(V\) to \(V^*\) for all \(w \in V\);
+        \item for all \(x \in V\), if \(B(x, y) = 0\) for all \(y \in V\), then \(x = 0\).
+    \end{enumerate}
+\end{theorem}
+
+A quadratic space \((V, B)\) satisfying any (and hence all) of the above conditions is said to be \emph{regular}.\footnote{The choice between the terms ``nondegenerate'' and ``regular'' is a matter of convention. We follow the usage in \cite{lam1973quadratic} and speak of nondegenerate forms and regular quadratic spaces.}
+
+% We review some examples. The forms \(xy\) and \(x^2 + y^2\) are nondegenerate over \(\Rationals\). Their associated matrices are \(\begin{pmatrix} 0 & 1/2 \\ 1/2 & 0 \end{pmatrix}\) and \(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\), respectively, with corresponding determinants \(-1/4\) and \(1\). The form \(x^2 + 2xy + y^2\) is degenerate over \(\Rationals\) with associated matrix \(\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\) and determinant \(0\).
+
+\section{Diagonalization of forms.}
+
+The theory of equivalences we have thus far developed allows us to work with a smaller class of quadratic forms; because every quadratic form determines uniquely an equivalence class of quadratic forms, we can restrict our attention to a single representative of each equivalence class. Nevertheless, we often want to work with forms that behave ``nicely,'' so to speak. In elementary linear algebra, this often means working with diagonal matrices, i.e., matrices of the form \(M = (m_{ij})\) where \(m_{ij} = 0\) for all \(i \neq j\).
+
+Now if \(q\) is a quadratic form over \(\field\) whose associated matrix \(M\) is diagonal, then we shall extend this definition and say that \(q\) itself is a \emph{diagonal} form. Observe that this implies that \(q\) is of the form
+\[
+  q(x_1, \dots, x_n) = \sum a_i x_i^2,
+\]
+i.e., it is a sum of squares. Moreover, we see that \(q\) is nondegenerate if and only if \(a_i \neq 0\) for all \(i\). If a form \(q\) is equivalent to some diagonal form \(\delta\) then we say that \(q\) is \emph{diagonalizable}. The question then arises whether every quadratic form is diagonalizable. We shall later prove that this is indeed the case, but first we need to develop some definitions and results.
+
+\subsection{Orthogonality.}~In linear algebra, we have defined the notion of orthogonality as follows: two vectors \(x\) and \(y\) in a Euclidean space \(V\) are orthogonal if their inner product is zero. We can extend this definition to quadratic spaces by defining orthogonality in terms of the associated bilinear form. We say that two vectors \(x\) and \(y\) in a quadratic space \((V, B)\) are \emph{orthogonal} if \(B(x, y) = 0\). This is true because the inner product, by definition, is a positive-definite symmetric bilinear form.\label{sec:orthogonality}
+
+If \((V, B)\) is a quadratic space and \(W \subseteq V\), we define the orthogonal complement of \(W\) as the set
+\[
+  W^{\perp} = \{x \in V : B(x, y) = 0 \text{ for all } y \in W\}.
+\]
+Because \(B\) is symmetric, it immediately follows that \(x \in W^{\perp}\) if and only if \(B(y, x) = 0\) for all \(y \in W\). Moreover, from the theorem of \S\,\ref{sec:nondegenerate}, it follows that \((V,B)\) is regular if and only if \(V^{\perp} = \{0\}\). We call the orthogonal complement of the whole space \(V\) the \emph{radical} of \(V\) and denote it by \(\Radical V\).
+
+\begin{theorem}\label{thm:orthogonal-complement}
+    {\normalfont \cite[p.~7]{lam1973quadratic}}
+    Let \((V, B)\) be a regular quadratic space and \(W\) a subspace of \(V\). Then {\normalfont (a)} \(\dim W + \dim W^{\perp} = \dim V\) and {\normalfont (b)} \((W^{\perp})^{\perp} = W\).
+\end{theorem}
+
+\emph{Proof.} (a) Because \((V, B)\) is regular, the map \(\phi: V \to V^*\) defined by \(x \mapsto B(w, x)\) for all \(w \in V\) is an isomorphism by the theorem of \S\,\ref{sec:nondegenerate}. Then \(W^{\perp}\) is precisely the subspace of \(V\) annihilated by \(\phi(W)\). Thus
+\[
+    \dim W^{\perp} = \dim V^* - \dim \phi(W) = \dim V - \dim W.
+\]
+Thus \(\dim W + \dim W^{\perp} = \dim V\). (b) Observe that \(W \subseteq (W^{\perp})^{\perp}\). Now applying the identity in (a) twice, we obtain
+\[
+  \dim (W^{\perp})^{\perp} = \dim V - (\dim V - \dim W) = \dim W,
+\]
+so that \(W = (W^{\perp})^{\perp}\). {\scshape q.e.d.}
+
+Observe that the above theorem does not necessarily imply that given a subspace \(W\) of \(V\), we have \(W \oplus W^{\perp} = V\). This is false in general. Consider for example the quadratic form \(x^2 - y^2\) and let \(U\) be the span of \((1, 1)\); here we have \(U = U^{\perp}\). See also \cite{ormsbynotes}.
+
+Given two quadratic spaces \((V, B)\) and \((V', B')\) we define their \emph{orthogonal sum} \(V \perp V'\) to be vector space \(V \oplus V'\) equipped with the map\label{sec:orthogonal-sum}
+\[ 
+  (B \perp B')((x_1, y_1), (x_2, y_2)) = B(x_1, x_2) + B'(y_1, y_2).
+\]
+The map \(B \perp B'\) is itself a symmetric bilinear form over \(V \oplus V'\) so that \(V \perp V' := (V \oplus V', B \perp B')\) is itself a quadratic space. Observe further that if we associate the quadratic map \(q_{B \perp B'}\) with \(V \perp V'\), then we have
+\begin{align*}
+  q_{B \perp B'}((x, y)) &= (B \perp B')((x, y), (x, y))\\
+  &= B(x, x) + B'(y, y)\\
+  &= q_B(x) + q_{B'}(y),
+\end{align*}
+so that the notion of orthogonal sums we have just introduced naturally extends to quadratic maps and quadratic forms. For example, suppose \(q(x, y) = x^2 + y^2\) and \(r(x, y, z) = 5xy - z^2\) are quadratic forms over \(\Rationals\); then the orthogonal sum \(q \perp r\) is the quadratic form
+\[
+  q \perp r = x^2 + y^2 + 5uw - z^2.
+\]
+Moreover, if \(M\) and \(M'\) are the Gram matrices of \(B\) and \(B'\), respectively, then the Gram matrix of \(B \perp B'\) is exactly the block sum
+\begin{equation}\label{eq:orthogonal-sum-as-block-sum}
+  M \perp M' =
+  \begin{pmatrix}
+    M & 0 \\
+    0 & M'
+  \end{pmatrix}
+  = M \oplus M'.
+\end{equation}
+The above descriptions allow us to observe that the orthogonal sum of two quadratic spaces is regular if and only if both summands are regular.
+
+Now consider the case where \(M\) in \eqref{eq:orthogonal-sum-as-block-sum} is the \(1 \times 1\) matrix \((\lambda)\) for some \(\lambda \in \field\). This matrix corresponds to the quadratic form \(\lambda x^2\) and will prove useful in the sequel. We shall denote the isometry class of this quadratic form by \(\langle \lambda \rangle\). Observe that \(\langle \lambda \rangle\) is nondegenerate if and only if \(\lambda \in \field^{\times}\).
+
+\subsection{}~We now prove a lemma whose immediate consequence is the main result of this section.\label{sec:diagonalization-of-forms}
+
+\begin{lemma}[Representation criterion]
+    {\normalfont \cite[p.~9]{lam1973quadratic}}
+    Let \((V, B)\) be a quadratic space and \(\lambda \in \field^{\times}\). Then \(\lambda \in D(B)\) if and only if \(B \cong \langle \lambda \rangle \perp B'\) for some quadratic space \((V', B')\).
+\end{lemma}
+
+\begin{proof}
+  Suppose \(B \cong \langle \lambda \rangle \perp B'\) and let \(q'\) be the quadratic map associated with \(B'\). Then
+  \[
+    (\langle \lambda \rangle \perp B') (1, 0) = \lambda + B'(0,0) = \lambda,
+  \]
+  and therefore by the theorem of \S\,\ref{sec:equivalence-implies-same-representation}, \(B\) also represents \(\lambda\). Conversely, suppose \(\lambda \in D(B)\) with \(q(x) = \lambda\) for some vector \(x \in V\) where \(q\) is the form associated with \(B\). Take any subspace \(W\) of \(V\) such that
+  \[
+    V = \Radical V \oplus W = \Radical V \perp W,
+  \]
+  so that \(D(V) = D(W)\) and we can assume that \(V\) is regular. Now let \(U = \Span x\); then \(U \cong \langle \lambda \rangle\) and \(U \cap U^{\perp} = \{0\}\). Moreover,
+  \[
+    \dim U + \dim U^{\perp} = \dim V,
+  \]
+  and thus \(V \cong \langle \lambda \rangle \perp B_{|U^{\perp}}\).
+\end{proof}
+
+\begin{theorem}
+    Every quadratic form over \(\field\) is diagonalizable.
+\end{theorem}
+
+Before we provide the proof of this theorem, let us first restate it in the language of quadratic spaces, as follows: Let \((V, B)\) be a quadratic space over \(\field\); then there exists scalars \(\lambda_1, \dots, \lambda_n \in \field\) such that
+\[
+  B \cong \langle \lambda_1 \rangle \perp \cdots \perp \langle \lambda_n \rangle.  
+\]
+Equivalently, there exists a basis \(\Basis\) of \(V\) such that \(B(b_i, b_j) = 0\) for all \(i \neq j\), i.e., the Gram matrix of \(B\) with respect to \(\Basis\) is diagonal. We shall call such a basis \(\Basis\) an \emph{orthogonal basis} of \(V\). To simplify our notation, we shall follow \cite{lam1973quadratic} and abbreviate \(\langle \lambda_1 \rangle \perp \cdots \perp \langle \lambda_n \rangle\) as \(\langle \lambda_1, \dots, \lambda_n \rangle\).\label{sec:lambda-class}
+
+\smallskip
+
+\begin{proof}
+  If \(D(B)\) is empty then \(B\) is the zero form \(\langle 0 \rangle \perp \dots \perp \langle 0 \rangle\), where there are \(\dim V\) many zeroes. Otherwise, if \(\lambda \in D(B)\) for some \(\lambda \in \field^{\times}\) then by the representation criterion, \(B \cong \langle \lambda \rangle \perp B'\) for some quadratic space \((V', B')\). The result then follows by induction on \(\dim V\).
+\end{proof}
+
+\subsection{}~The central question in the theory of quadratic forms, as in most of algebra, is to determine when two quadratic forms are equivalent. We have previously established that equivalence in the language of quadratic spaces is equivalent to isometry. Therefore, we can rephrase our question as determining when two quadratic spaces are isometric. The theorem of the previous section posits that every quadratic space admits an orthogonal basis; thus, having chosen the appropriate bases \(\Basis\) and \(\Basis'\) for two quadratic spaces \((V, B)\) and \((V', B')\), respectively, we can now think of the notion of equivalence of forms as a linear map from \(\field^n\) to \(\field^n\), and therefore the problem at hand can further be simplified as a question of finding a change of basis matrix from \(\Basis\) to \(\Basis'\).\label{sec:contiguous-bases}
+
+Now suppose \(q = \quadform{\alpha_1, \dots \alpha_n}\) and \(r = \quadform{\beta_1, \dots, \beta_n}\) are equivalent quadratic forms over \(\field\) with each of the \(\alpha_i\) and \(\beta_i\) nonzero (so that \(q\) and \(r\) are nondegenerate). The next theorem provides us with a process of moving from \(q\) to \(r\) by a series of equivalence transformations. But first we introduce a definition: we say that two bases \(\Basis = \{b_1, \dots, b_n\}\) and \(\Basis' = \{b_1', \dots, b_n'\}\) of a quadratic space \((V, B)\) are \emph{contiguous} if there exists indices \(i\) and \(j\) such that \(b_i = b'_j\). We now have the following theorem:
+
+\begin{theorem}
+  Let \((V, B)\) be a regular quadratic space over \(\field\) of dimension \(n \geq 3\) and let \(\Basis = \{b_1, \dots, b_n\}\) and \(\Basis' = \{b_1', \dots, b_n'\}\) be two orthogonal bases of \(V\). There exists a finite sequence of orthogonal bases \(\Basis = \Basis_0, \Basis_1, \dots, \Basis_r = \Basis'\) such that \(\Basis_i\) and \(\Basis_{i+1}\) are contiguous for all \(0 \leq i < r\).
+\end{theorem}
+
+See \cite[pp.~30--31]{serre2012course} for a proof.
+
+\section{Integral forms and reduction.}
+
+\subsection{}~Our main interest in this paper is on integral quadratic forms. In the literature, however, the term ``integral'' as it relates to quadratic forms has developed two distinct meanings \cite{conway1999universal, conway1997sensual}. The first, after Gauss's work, refers to quadratic forms whose associated symmetric matrices have integer entries. The second, following the alternative notion introduced by Legendre \cite{legendre1808essai}, considers as integral quadratic forms whose coefficients are integers. Following the terminology introduced by Conway in \cite{conway1997sensual}, we shall call the former ``matrix-integral'' forms and the latter ``integer-valued'' forms. Unless otherwise stated, we shall use the term ``integral'' to refer to matrix-integral forms in this paper. \label{sec:integral-forms-def}
+
+Observe that by restricting our interest on quadratic forms whose associated forms are integer-valued, we are reducing our inquiry to matrices whose determinant is \(\pm 1\). Indeed if \(q\) is an integral quadratic form, then its associated symmetric matrix \(N\) has integer entries and therefore \(\det(N) \in \Integers\). But because \(q\) is also nondegenerate, \(N\) is invertible and \(NN^{-1} = I\), which implies that the product of \(\det(N)\) and \(\det(N^{-1})\) is \(1\), whereas both values are integers. Thus \(\det(N) = \pm 1\). If \(\det(N) = 1\), then \(q\) is said to be \emph{unimodular}; moreover if there exists a vector \(x\) such that \(q(x) = \lambda\) for some integer \(\lambda\), then we say that \(q\) \emph{properly represents} \(\lambda\).\footnote{Cf. the addition of the qualifier ``properly'' against \S\,\ref{sec:representation}.}
+
+We shall study integral quadratic forms in greater detail and using the language of lattice theory in Chapter \ref{chap:integral-quadratic-forms}. For the meantime, we shall review a few results, due to Hermite, concerning the ``reduction'' of integral quadratic forms. In the previous section, we have established that every quadratic form is equivalent to a diagonal form. The problem of reduction is to find for a given quadratic form \(q\) an equivalent diagonal form \(q'\) such that the coefficients of \(q'\) are as small as possible while remaining nonzero. We shall shortly define what we mean by this in more precise terms, but first, we shall prove some results regarding the coefficients of integral quadratic forms. The results in this section follow \cite{cassels2008rational,jones1950arithmetic, watson1960integral}.\label{sec:reduction}
+
+\begin{theorem}{\normalfont\cite[p.~6]{watson1960integral}}
+    Let \(x = (x_1, \dots, x_n)\) be primitive, i.e., \(\gcd(x_1, \dots, x_n)\) \(= 1\). Then there exists an \(n \times n\) matrix \(M\) with integer entries and determinant \(\pm 1\) whose first column is \(x\).
+\end{theorem}
+
+\begin{proof}
+    For \(n = 1\), \(x = (x_1)\) and because \(x\) is primitive, \(x_1 = \pm 1\). Thus, the matrix \(M = (x_1)\) satisfies the conditions of the theorem. For \(n = 2\), choose integers \(y_1, y_2\) such that \(x_1y_2 - x_2, y_2 = 1\) and let \(y = (y_1, y_2)\). Define the matrix \(M = (x, y)\) so that \(M\) has the desired properties. For \(n > 2\), we shall proceed by induction on \(n\).
+    
+    Write \(x = (x_1, x_2, \dots, x_k) = (x_1, hz)\) with \((x_1, h)\) and \(z\) primitive. By the inductive hypothesis, there exists a \(2 \times 2\) integral matrix \(V\) and an \((n - 1) \times (n - 1)\) integral matrix \(W\), whose first columns are \((x_1, h)\) and \(z\), respectively, and whose determinants are \(\pm 1\). Now define the matrix
+    \[
+      T = (1 \oplus Z)(W \oplus I_{n - 2}),
+    \]
+    where for any \(\mu \times \mu\) matrix \(A\) and \(\nu \times \nu\) matrix \(B\), we have
+    \[
+      A \oplus B = \begin{pmatrix}
+        A & 0_{\mu \times \nu} \\
+        0_{\nu \times \mu} & B
+      \end{pmatrix},
+    \]
+    and thus \(\det(T) = \det(Z)\det(W) = \pm 1\). Moreover, the first column of \(T\) is
+    \begin{align*}
+      M(1\ 0\ \cdots\ 0)^{\transp} &= ((1) \oplus Z)(W \oplus I_{n - 2})(1\ 0\ \cdots\ 0)^{\transp}\\
+      &= (1 \oplus Z)(x_1\ h\ 0\ \cdots\ 0)^{\transp}\\
+      &= (x_1\ hz)^{\transp} = x.
+    \end{align*}
+\end{proof}
+
+\begin{corollary}{\normalfont\cite[p.~6]{watson1960integral}}
+  \label{cor:leading-coefficient}
+    Every form \(q\) that properly represents an integer \(\alpha\) is equivalent to a form \(q'\) whose leading coefficient is \(\alpha\).
+\end{corollary}
+
+\begin{proof}
+  Since \(q\) represents \(\alpha\) properly, there exists a primitive vector \(x\) such that \(q(x) = \alpha\). By the previous theorem, there exists an \(n \times n\) matrix \(M\) with integer entries and determinant \(\pm 1\) whose first column is \(x\). Let \(q'\) be the form associated with \(M\). Then \(q'(x) = q(Mx)\) and
+  \[
+    q'(e_1) = q'(Me_1) = q(x) = \alpha,
+  \]
+  where \(e_1\) is the first standard basis vector. Thus \(q'\) is equivalent to \(q\) and has leading coefficient \(\alpha\), as desired.
+\end{proof}
+
+\subsection{Equivalence to a Hermite-reduced form.}~We shall regard the problem of reduction as choosing from the equivalence class of a given quadratic form \(q\) a form \(q'\) such that the coefficients of \(q'\) are as small as possible. It should also be useful to frame this problem in a way that ensures there is only one such form \(q'\) in the equivalence class of \(q\). Moreover, because we are interested in integral quadratic forms, the coefficients of \(q'\) cannot be infinitely made smaller, so any reduction algorithm must terminate after a finite number of steps. First, we shall begin by minimizing the leading coefficient of \(q\). This leads us to define the \emph{minimum} of an integer-valued quadratic form \(q\), which we write as \(\min q\), as the integer \(\lambda \neq 0\) whose absolute value is the smallest among the integers represented by \(q\), i.e.,
+  \[
+    \min q = \min \{|q(x)| > 0 : x \in \Integers^n\}.
+  \]\label{sec:minimum}
+By the well-ordering principle, this definition is well-defined except in the trivial case \(q(0) = 0\), which we exclude. Moreover, we can see that \(q\) represents at least one  of \(\pm \min q\) properly; indeed if \(|q(hz)| = \min q\) for some \(h > 1\) and \(z\) integral, then
+\[
+  \min q = |q(hz)| = h^2|q(z)|,
+\]
+so that \(|q(z)| = h^{-2} \min q\). Thus \(q\) represents \(h^{-2} \min q < \min q\), contradicting the minimality of \(\min q\). By the corollary of the theorem of \S\,\ref{cor:leading-coefficient}, we can transform every form \(q\) that properly represents an integer \(\alpha\) to a form \(q'\) whose leading coefficient is \(\min q\). Thus, without loss of generality, we can assume that the leading coefficient of \(q\) is \(\min q\).
+
+We wish now to relate our definition of the minimum to the problem of reduction. Here we recall some elementary facts. The process of completing the square involves for any quadratic polynomial \(ax^2 + bx + c\) finding a number \(h\) such that \(ax^2 + bx + c = a(x + h)^2 + k\) for some \(k\). We can generalize this process to quadratic forms as follows: given a quadratic form \(q\) whose leading coefficient \(a_{11}\) is nonzero, we wish to find another form \(r\) such that
+\begin{equation}
+  \label{eq:completing-the-square}
+  4a_{11}q = (2a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n)^2 + r(x_2, \dots, x_n).
+\end{equation}
+The \(n\)-ary form \(q\) is said to be \emph{Hermite-reduced} if
+\[
+  \min q = |a_{11}|,
+\]
+and
+\[
+  2|a_{1j}| \leq |a_{11}| \quad \text{for all } j > 1,
+\]
+and the \((n-1)\)-ary form \(r\) defined in \eqref{eq:completing-the-square} is also, \emph{mutatis mutandis}, a Hermite-reduced form.
+
+\begin{theoremx}
+  {\normalfont \cite[p.~18ff]{watson1960integral}}
+  Every integral quadratic form is equivalent to a Hermite-reduced form.
+\end{theoremx}
+
+\begin{proof}
+  Let \(q\) be an \(n\)-ary quadratic form. We begin by transforming \(q\) as in \S\,\ref{sec:reduction} (i.e., by minimizing the leading its leading coefficient). If \(n = 1\), this is the only condition; thus we assume \(n \geq 2\) and prove the theorem by induction on \(n\).
+
+  Assume \(n = k - 1\) holds. For \(n = k\) we know that \(q\) must be equivalent to some form \(q'\) whose leading coefficient is \(\pm \min q\) and whose associated matrix is \(B = (b_{ij})\). We can find a suitable matrix of the form \(C = (1 \oplus T)\) where \(T\) is an \((n - 1) \times (n-1)\) matrix which takes \(q'\) to a form \(r = \sum_{i,j} a_{ij} x_i x_j\) with
+  \[(a_{ij}) = A = C^{\transp}BC.\]
+  This leaves the leading coefficient of \(r\) unaltered, so that \(a_{11} = b_{11} = \pm \min q\), and
+  \[
+    a_{11}r = (a_{11}x_1 + \cdots + a_{1n}x_n)^2 + r'(x_2, \dots, x_n),
+  \]
+\end{proof}
+
+We shall call the resulting Hermite-reduced form the \emph{canonical form} of \(q\). The next result provides use with a bound for the value of \(\min q\).
+
+\begin{theoremx}
+  {\normalfont \cite[p.~59ff]{jones1950arithmetic}}
+  Let \(q\) be an integral quadratic form and \(r\) a Hermite-reduced form such that \(q \sim r\). If \(A = (a_{ij})\) be the symmetric matrix associated with \(r\) then
+  \[
+    0 < |a_{11}| \leq (4/3)^{(n-1)/2} ({\discr q})^{1/n}
+  \]
+\end{theoremx}
+
+\begin{proof}
+  The theorem trivially holds for \(n = 1\); to prove by induction we assume that the theorem holds for \(n = k - 1\) and deduce the result for \(n = k\). Let \(q\) be an integral quadratic form equivalent to the Hermite reduced form
+  \[
+    a_{11} r = (a_{11}x_1 + \cdots + a_{1n}x_n)^2 + r'(x_2, \dots, x_n).
+  \]
+  Then if \(b\) is the leading coefficient of \(r'\), we have by the inductive hypothesis,
+  \[
+    |b| = |a_{11}a_{22} - a_{12}^2| \leq (4/3)^{(k-2)/2} ({\discr r'})^{1/(k-1)}.
+  \]
+  Since the determinant of \(a_{11} r\) is \(a_{11}^k \discr q\), it follows that \(a_{11}^k \discr q = a_{11}^2 \discr r'\), so that \[\discr r' = a_{11}^{k-2} \discr q.\] Thus \(a_{22}\) cannot be zero because then \(q\) would be a zero form, and since \(\min q = |a_{11}|\) it follows that \(|a_{11}| \leq |a_{22}|\). Moreover, because \(|2a_{12}| \leq |a_{11}|\), it follows that
+  \[
+    a_{11}^2 \leq a_{11}^2/4 + b,
+  \]
+  or, equivalently,
+  \[
+    3a_{11}^2/4 \leq |b| \leq (4/3)^{(k-2)/2} (|a^{k-2}_{11}| \discr q)^{1/(k-1)}.
+  \]
+  This implies the desired inequality.
+\end{proof}

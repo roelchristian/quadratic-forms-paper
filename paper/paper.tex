@@ -1,0 +1,122 @@
+\documentclass[12pt
+]{amsbook}
+
+% \RequirePackage{geometry}
+% \geometry{
+%     headheight=4ex,
+%     includehead,
+%     includefoot
+% }
+% \raggedbottom
+% \geometry{
+%     paper=b5paper,
+%     inner=30mm,         % Inner margin
+%     outer=30mm,         % Outer margin
+%     bindingoffset=10mm, % Binding offset
+%     top=20mm,           % Top margin
+%     bottom=28mm,        % Bottom margin
+%     %showframe,         % show how the type block is set on the page
+% }
+
+\raggedbottom
+
+\title{A universality criterion for integral quadratic forms}
+\author{Roel Christian G. Yambao}
+\date{November 2023}
+
+\input{../pkgs}
+\addbibresource{../ref.bib}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+% \titleformat{\chapter}[display]
+%     {\normalfont\centering}
+%     {Chapter\,\thechapter.}{.5em}{\Large\scshape}
+\makeatletter
+\newcommand\lsstylehelp[1]{\edef\MT@letterspace@{#1}\lsstyle}
+\makeatother
+
+\titleformat{\chapter}[display]
+{\normalsize\scshape\centering\lsstylehelp{500}}
+{\centering\MakeLowercase{\chaptertitlename\:\thechapter.}\lsstylehelp{300}}
+{0.5em}{\large\MakeUppercase}
+
+\titleformat{\section}[block]
+    {\normalfont\itshape\centering}
+    {}
+    {.5em} %
+    {} 
+    []
+
+\titleformat{\subsection}[runin]
+    {\bfseries}
+    {\thesubsection.}{.5em}
+    {}
+    []
+    
+% Renew
+
+\titlespacing*{\section}
+{0pt}%
+{6ex plus 1ex minus .2ex}
+{4pt}
+
+\titlespacing{\subsection}
+    {\parindent}{1.5ex plus .1ex minus .2ex}{0pt}
+
+\usepackage{chngcntr}
+\counterwithout{equation}{chapter}
+\counterwithout*{section}{chapter}
+\counterwithout*{subsection}{section}
+\counterwithout{theoremx}{chapter}
+\counterwithout{corollaryx}{chapter}
+\counterwithout{lemmax}{chapter}
+\counterwithout{corollaryb}{chapter}
+\counterwithout{figure}{chapter}
+% do not reset theorem counter at each section
+\renewcommand{\thetheoremx}{\scshape\roman{theoremx}}
+\renewcommand{\thecorollaryx}{\scshape\alph{corollaryx}}
+\renewcommand{\thelemmax}{\scshape\alph{lemmax}}
+
+\renewcommand{\thecorollaryb}{\scshape\alph{corollaryb}} % additional corollary counter
+
+\RequirePackage{etoolbox}
+\renewcommand*{\bibfont}{\footnotesize}
+
+\begin{document}
+
+\include{titlepage}
+
+\frontmatter
+\cleardoublepage
+
+\tableofcontents
+\let\origaddvspace\addvspace
+\renewcommand{\addvspace}[1]{}
+\listoffigures
+\renewcommand{\addvspace}[1]{\origaddvspace{#1}}
+
+\cleardoublepage
+
+\input{chapters/preface.tex}
+\input{chapters/notation.tex}
+
+\cleardoublepage
+
+\mainmatter
+
+%\include{chapters/01}
+\include{chapters/02}
+\include{chapters/ch02.draft}
+\include{chapters/03gen}
+\include{chapters/05}
+
+
+
+\chapter*{Bibliography.}
+\nocite{*}
+\printbibliography[heading=none]
+\cleardoublepage
+
+\end{document}
