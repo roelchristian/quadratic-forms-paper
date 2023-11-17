@@ -1,4 +1,4 @@
-\documentclass[12pt
+\documentclass[11pt
 ]{amsbook}
 
 % \RequirePackage{geometry}
@@ -20,6 +20,9 @@
 
 \raggedbottom
 
+\RequirePackage{setspace}
+\linespread{1.5}
+
 \title{A universality criterion for integral quadratic forms}
 \author{Roel Christian G. Yambao}
 \date{November 2023}
@@ -38,9 +41,9 @@
 \makeatother
 
 \titleformat{\chapter}[display]
-{\normalsize\scshape\centering\lsstylehelp{500}}
-{\centering\MakeLowercase{\chaptertitlename\:\thechapter.}\lsstylehelp{300}}
-{0.5em}{\large\MakeUppercase}
+{\normalsize\centering}
+{\centering{\chaptertitlename\:\thechapter.}}
+{0.5em}{\bfseries\large\MakeUppercase}
 
 \titleformat{\section}[block]
     {\normalfont\itshape\centering}
@@ -82,7 +85,7 @@
 \renewcommand{\thecorollaryb}{\scshape\alph{corollaryb}} % additional corollary counter
 
 \RequirePackage{etoolbox}
-\renewcommand*{\bibfont}{\footnotesize}
+% \renewcommand*{\bibfont}{\footnotesize}
 
 \begin{document}
 
@@ -106,7 +109,7 @@
 
 \mainmatter
 
-%\include{chapters/01}
+\include{chapters/00}
 \include{chapters/01}
 \include{chapters/02}
 \include{chapters/03}

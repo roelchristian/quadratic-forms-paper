@@ -95,28 +95,27 @@
 
 
 
-\usepackage[math-style=ISO]{unicode-math}
-\defaultfontfeatures{Mapping=tex-text}
-\DisableLigatures{encoding = *, shape = sc*}
-\setmainfont[Ligatures={Common,TeX},
-SmallCapsFeatures={
-  LetterSpace=7.5
-}
-]{Linux Libertine O}
-\setmathfont[Scale=0.97,Ligatures=TeX,
-math-style=TeX
-]{Libertinus Math}
-\setmathfont[range=it/{Latin,latin}]{Linux Libertine O Italic}
-% \setmathfont[range=up]{Junicode}
-% \setmathfont[range=it/{Greek, greek}]{Linux Libertine O Italic}
-\setmathfont[range=up/{Greek, greek}]{Linux Libertine O}
-\setmathfont[range=it/{Greek, greek}]{Linux Libertine O Italic}
-\setmathfont[range=frak/{latin,Latin},
-                   Scale=MatchUppercase,
-                   StylisticSet=1,
-                   script-features={},
-                   sscript-features={}
-            ]{Unifraktur Maguntia}
+% \usepackage[math-style=ISO]{unicode-math}
+% \defaultfontfeatures{Mapping=tex-text}
+% \DisableLigatures{encoding = *, shape = sc*}
+% \setmainfont[Ligatures={Common,TeX},
+% SmallCapsFeatures={
+%   LetterSpace=7.5
+% }]{Latin Modern}
+% \setmathfont[Scale=0.97,Ligatures=TeX,
+% math-style=TeX
+% ]{Latin Modern Math}
+% % \setmathfont[range=it/{Latin,latin}]{Linux Libertine O Italic}
+% % % \setmathfont[range=up]{Junicode}
+% % % \setmathfont[range=it/{Greek, greek}]{Linux Libertine O Italic}
+% % \setmathfont[range=up/{Greek, greek}]{Linux Libertine O}
+% % \setmathfont[range=it/{Greek, greek}]{Linux Libertine O Italic}
+% \setmathfont[range=frak/{latin,Latin},
+%                    Scale=MatchUppercase,
+%                    StylisticSet=1,
+%                    script-features={},
+%                    sscript-features={}
+%             ]{Unifraktur Maguntia}
 
 % Theorem environments
 \theoremstyle{plain}
@@ -142,6 +141,7 @@ math-style=TeX
 \newcommand{\Rationals}{\mathbb{Q}}
 \DeclareRobustCommand{\RationalsHead}{\mathbb{Q}}
 \DeclareRobustCommand{\FiniteHead}{\mathbb{F}}
+\DeclareRobustCommand{\IntegersHead}{\mathbb{Z}}
 
 \newcommand{\transp}{\mathsf{T}}
 \newcommand{\genlin}[2]{\mathrm{GL}_{#1}(#2)}
