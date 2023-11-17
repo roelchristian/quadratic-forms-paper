@@ -1,0 +1,15 @@
+# Gitignore file
+
+*.pdf
+*.log
+*.aux
+*.out
+*.toc
+*.aux
+*.bbl
+*.blg
+*.bcf
+*.lof
+*.synctex.gz
+*.xml
+
