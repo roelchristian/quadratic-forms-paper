@@ -258,7 +258,7 @@ We conclude this section by providing the following approximation theorem. See \
 
 \begin{lemmax}\label{lemma:theta-inequality}
     {\normalfont\cite[p.\,136]{cassels2008rational}}
-    For all pairs of integers \(r \geq 1\) and \(s \geq 0\) there is a constant \(\theta := \theta(r, s)\) such that if \(q\) is a \(n\)-ary quadratic form that is \(\Reals\)-equivalent to the form
+    For all pairs of integers \(r \geq 1\) and \(s \geq 0\) there is a constant \(\theta := \theta(r, s)\) such that if \(q\) is a quadratic form of rank \(n\) that is \(\Reals\)-equivalent to the form
     \[
         \xi_1^2 + \dots + \xi_r^2 - \xi_{r+1}^2 - \dots - \xi_{r+s}^2,
     \]
@@ -330,7 +330,7 @@ Finally, \eqref{eq:theta-inequality} follows from induction on the value of \(\t
 A corollary to Lemma\,\ref{lemma:theta-inequality} is a generalization of the Hermite bound we have introduced in \S\,\ref{sec:minimum}.\footnote{The results in this section are indeed mainly due to Hermite, as originally published in his letters to Jacobi. \cite{hermite1850extraits}}
 
 \begin{corollary}
-    Let \(q\) be a real-valued nondegenerate \(n\)-ary quadratic form. Then there is a nonzero integral vector \(a\) such that
+    Let \(q\) be a real-valued nondegenerate quadratic form of rank \(n\). Then there is a nonzero integral vector \(a\) such that
     \[
         |q(a)| \leq (4/3)^{n(n-1)/2} |\discr q|^{1/n}.
     \]
@@ -402,7 +402,7 @@ The following theorem will be used in \S\,\ref{sec:genus-existence} but involves
 
 \begin{theoremx}\label{thm:genus-existence}
     {\normalfont \cite[p.\,129, 141--143]{cassels2008rational}}
-    Let \(n \geq 1\) and \(\discr \neq 0\) be integers. For each prime \(p \neq \infty\), let \(q_p\) be an \(n\)-ary quadratic form over \(\Integers_p\) with determinant \(\discr\). Suppose that there exists a rational form \(r\) that is \(\Rationals_p\)-equivalent to \(q_p\) for all \(p\). Then there is a form \(q\) that is \(\Integers_p\)-equivalent to \(q_p\) for all \(p\) and \(\Rationals\)-equivalent to \(r\).
+    Let \(n \geq 1\) and \(\discr \neq 0\) be integers. For each prime \(p \neq \infty\), let \(q_p\) be a quadratic form of rank \(n\) over \(\Integers_p\) with determinant \(\discr\). Suppose that there exists a rational form \(r\) that is \(\Rationals_p\)-equivalent to \(q_p\) for all \(p\). Then there is a form \(q\) that is \(\Integers_p\)-equivalent to \(q_p\) for all \(p\) and \(\Rationals\)-equivalent to \(r\).
 \end{theoremx}
 
 If \(n = 1\), then \(q_p(x) = \discr \cdot x_1^2\)\footnote{We write \(\discr \cdot x\) to indicate that \(\discr\) is not being used here as an operator but rather as a scalar.} for all \(p\). Thus we can simply let \(q(x) = \discr \cdot x_1^2\) and the theorem holds. We may therefore suppose that \(n \geq 2\) and proceed by induction on \(n\). The following lemma will be useful:

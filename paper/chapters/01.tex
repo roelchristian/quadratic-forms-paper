@@ -5,11 +5,11 @@
 
 {\scshape We begin} by presenting four definitions of a quadratic form and show that they are equivalent. This allows us to freely switch between these definitions as needed. The classical results on quadratic forms presented in this chapter have been adapted from \cite{clarkquadratic,lam1973quadratic,ormsbynotes,szymiczek2017bilinear}.
 
-\subsection{}\label{sec:quadratic-forms}~Let \(\field\) be a field with characteristic not equal to \(2\) (we maintain this assumption throughout this paper, unless otherwise stated). A(n) (\(n\)-ary) \emph{quadratic form} over \(\field\) is an element \(q \in \field[x_1, \dots, x_n]\) of the polynomial ring in \(n\) variables with coefficients in \(\field\) such that \(q\) can be written as
+\subsection{}\label{sec:quadratic-forms}~Let \(\field\) be a field with characteristic not equal to \(2\) (we maintain this assumption throughout this paper, unless otherwise stated). A \emph{quadratic form} over \(\field\) is an element \(q \in \field[x_1, \dots, x_n]\) of the polynomial ring in \(n\) variables with coefficients in \(\field\) such that \(q\) can be written as
 \[
   q(x_1, \dots, x_n) = \sum_{i, j} a_{ij}x_ix_j,
 \]
-for some \(a_{ij} \in \field\). That is, \(q\) is a homogeneous (i.e., all terms have the same degree) polynomial of degree \(2\). For example, the polynomial \(x^2 + 2xy + 3y^2\) is a binary quadratic form over \(\field = \Rationals\), while \(x^2 + 2x + 3y\) is not. We shall often abbreviate the column vector \((x_1, \dots, x_n)\) as \(x\) (and \(q(x_1, \dots, x_n)\) as \(q(x)\) or simply \(q\)). We shall also follow convention and call an \(n\)-ary quadratic form binary, ternary, or quaternary if \(n = 2, 3, 4\), respectively.
+for some \(a_{ij} \in \field\). That is, \(q\) is a homogeneous (i.e., all terms have the same degree) polynomial of degree \(2\). For example, the polynomial \(x^2 + 2xy + 3y^2\) is a binary quadratic form over \(\field = \Rationals\), while \(x^2 + 2x + 3y\) is not. We call \(n\) the \emph{rank} of the quadratic form \(q\). We shall often abbreviate the column vector \((x_1, \dots, x_n)\) as \(x\) (and \(q(x_1, \dots, x_n)\) as \(q(x)\) or simply \(q\)). We shall also follow convention and call quadratic form of rank \(n\) binary, ternary, or quaternary if \(n = 2, 3, 4\), respectively.
 
 Observe that our definition of a quadratic form allows for some redundancies. That is, for example, the forms \(3x^2 + 4xy - yx + 2y^2\) and \(3x^2 + xy + 2yx + 2y^2\) are presentations of the same quadratic form. It is therefore customary  to ``symmetrize'' the form \cite{lam1973quadratic} by replacing the coefficients \(a_{ij}\) with \(a'_{ij} = \frac{1}{2}(a_{ij} + a_{ji})\) (we are able to do so as \(\charx \field \neq 2\) by assumption) so that given a quadratic form \(q\) over \(\field\), we have
 \[
@@ -36,7 +36,8 @@ then \(B\) is a \emph{symmetric bilinear form} over \(\field\). That is, \(B\) i
 for all \(x, y \in \field^n\). We call \(B\) the \emph{polarization} of (the map) \(q\). That \(B\) is bilinear can be proved as follows:
 \begin{align*}
   B(x,y) &= \frac{1}{2}\left(q(x+y) - q(x) - q(y)\right)\\
-  &= \frac{1}{2}\left( (x+y)^{\transp}M(x+y) - x^{\transp}Mx - y^{\transp}My \right) = x^{\transp}My.
+  &= \frac{1}{2}\left( (x+y)^{\transp}M(x+y) - x^{\transp}Mx - y^{\transp}My \right)\\
+  &= x^{\transp}My.
 \end{align*}
 
 Conversely, given a symmetric bilinear form \(B\) over \(\field\), we can define a quadratic form \(q\) by
@@ -98,7 +99,7 @@ which when evaluated at a pair of standard basis vectors gives us the Gram matri
 
 \section{Equivalence of forms.}
 
-\subsection{Equivalence of forms.}\label{sec:mat-equiv}~Let \(\mathfrak{M}\) be the set of all \(n \times n\) matrices over an arbitrary field \(\field\) of characteristic not equal to \(2\). Given a matrix \(M \in \mathfrak{M}\) and an \(n\)-ary quadratic form \(q\) over the same field \(\field\), we can define a new quadratic form \(q'\) by
+\subsection{Equivalence of forms.}\label{sec:mat-equiv}~Let \(\mathfrak{M}\) be the set of all \(n \times n\) matrices over an arbitrary field \(\field\) of characteristic not equal to \(2\). Given a matrix \(M \in \mathfrak{M}\) and a quadratic form \(q\) of rank \(n\) over the same field \(\field\), we can define a new quadratic form \(q'\) by
 \begin{equation}\label{eq:mat-action}
   q'(x) := q(Mx) = q\left(\sum_{1 \leq i \leq n} m_{1i}x_i, \dots, \sum_{1 \leq i \leq n} m_{ni}x_i\right).
 \end{equation}
@@ -374,7 +375,7 @@ We wish now to relate our definition of the minimum to the problem of reduction.
   \label{eq:completing-the-square}
   4a_{11}q = (2a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n)^2 + r(x_2, \dots, x_n).
 \end{equation}
-The \(n\)-ary form \(q\) is said to be \emph{Hermite-reduced} if
+The rank \(n\) form \(q\) is said to be \emph{Hermite-reduced} if
 \[
   \min q = |a_{11}|,
 \]
@@ -390,7 +391,7 @@ and the \((n-1)\)-ary form \(r\) defined in \eqref{eq:completing-the-square} is 
 \end{theoremx}
 
 \begin{proof}
-  Let \(q\) be an \(n\)-ary quadratic form. We begin by transforming \(q\) as in \S\,\ref{sec:reduction} (i.e., by minimizing the leading its leading coefficient). If \(n = 1\), this is the only condition; thus we assume \(n \geq 2\) and prove the theorem by induction on \(n\).
+  Let \(q\) be a quadratic form of rank \(n\). We begin by transforming \(q\) as in \S\,\ref{sec:reduction} (i.e., by minimizing the leading its leading coefficient). If \(n = 1\), this is the only condition; thus we assume \(n \geq 2\) and prove the theorem by induction on \(n\).
 
   Assume \(n = k - 1\) holds. For \(n = k\) we know that \(q\) must be equivalent to some form \(q'\) whose leading coefficient is \(\pm \min q\) and whose associated matrix is \(B = (b_{ij})\). We can find a suitable matrix of the form \(C = (1 \oplus T)\) where \(T\) is an \((n - 1) \times (n-1)\) matrix which takes \(q'\) to a form \(r = \sum_{i,j} a_{ij} x_i x_j\) with
   \[(a_{ij}) = A = C^{\transp}BC.\]
