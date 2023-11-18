@@ -222,8 +222,8 @@ We shall now quickly review the norm-residue symbol introduced by Hilbert in \ci
 \subsection{Definition and properties.} Throughout this section we take \(\field\) to be the field \(\Rationals_p\) or \(\Reals.\) For any \(a\) and \(b\) in \(\fieldU\) we define the Hilbert norm-residue symbol (or more simply, the Hilbert symbol) \((a, b)\) by
 \[
     (a, b) = \begin{cases}
-        1 & \text{if } z^2 - ax^2 - by^2 = 0 \text{ has a nontrivial solution in } \field^3, \\
-        -1 & \text{otherwise}.
+        \ \ 1 & \text{if } z^2 - ax^2 - by^2 = 0 \text{ has a nontrivial solution in } \field^3, \\
+        \ \ -1 & \text{otherwise}.
     \end{cases}
 \]
 Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any non-zero square we see that the Hilbert symbol defines a map \(\SquareClass \times \SquareClass \to \{1, -1\}\). We now show some elementary properties of the Hilbert symbol.
@@ -500,7 +500,7 @@ This result is Sylvester's law of inertia from linear algebra. See also \cite[pp
 The numbers \(\discr_v q\), \(\epsilon_v(q)\) and \((r, s)\) all called the \emph{local invariants} of \(q\) with respect to the place \(v\). With our notation fixed, we can now state the Hasse-Minkowski theorem.
 
 \begin{theoremx}\label{thm:hasse-minkowski}
-    In order that a quadratic form over \(\Rationals\) represent zero, it is necessary and sufficient that for every place \(v\) of \(\Rationals\) the form \(q_v\) represents zero.
+    In order that a quadratic form over \(\Rationals\) represent zero, it is necessary and sufficient that for every place \(v\) of \(\Rationals\) the form \(q_v\) represents \(0\).
 \end{theoremx}
 
 Before proceeding with the proof, recall that in \S\,\ref{sec:polynomials-over-zp} we have remarked that, while the polynomial \(x^2 - 2\) has a solution in \(\Rationals_7\), we know for a fact that it does not have a solution in \(\Rationals\). We see that this is the case because, as the Hasse-Minkowski theorem tells us, a quadratic form has a solution in \(\Rationals\) if and only if it has a solution in \(\Rationals_v\) for all \(v \in \Places\). Indeed we see by routine verification that \(x^2 - 2\) has no solutions in \(\Rationals_3\).
