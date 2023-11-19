@@ -407,13 +407,25 @@ question then arises whether every quadratic form is diagonalizable. We shall
 later prove that this is indeed the case, but first we need to develop some
 definitions and results.
 
-\subsection{Orthogonality.}~Recall that two vectors \(x\) and \(y\) in a
-Euclidean space \(V\) are orthogonal if their inner product is zero. We can
-extend this definition to quadratic spaces by defining orthogonality in terms of
-the associated bilinear form. We say that two vectors \(x\) and \(y\) in a
-quadratic space \((V, B)\) are \emph{orthogonal} if \(B(x, y) = 0\). (Since this
-is a generalization, one can observe that the Euclidean inner product is indeed
-a symmetric bilinear form.)\label{sec:orthogonality}
+\subsection{Orthogonality.}~Recall that two vectors \(x\) and \(y\) in an inner
+product space\footnote{ An \emph{inner product space} is a vector space \(V\)
+equipped with an inner product \((\cdot, \cdot): V \times V \to \field\) that
+satisfies the following properties for all vectors \(x\), \(y\) and \(z\) and
+scalar \(\lambda\) and \(\mu \in \field\):
+\begin{enumerate}
+  \item \((x, y) = \overline{(y, x)}\) (where \(\overline{z}\) denotes the
+  complex conjugate of \(z\));
+  \item \((x, x) \geq 0\), with \((x, x) = 0\) if and only if \(x = 0\); and
+  \item \((\lambda x + \mu y, z) = \lambda(x, z) + \mu(y, z)\).
+\end{enumerate}
+Observe that if \(\field = \Reals\) then the conjugate \(\overline{(y, x)}\) in
+condition (1) is simply \((y, x)\), so that the inner product is a symmetric
+bilinear map over \(\Reals\).} \(V\) are orthogonal if their inner product is
+zero. We can extend this definition to quadratic spaces by defining
+orthogonality in terms of the associated bilinear form. We say that two vectors
+\(x\) and \(y\) in a quadratic space \((V, B)\) are \emph{orthogonal} if \(B(x,
+y) = 0\). (These definitions are equivalent in \(\field = \Reals\) as the inner
+product is a symmetric bilinear map over \(\Reals\).)\label{sec:orthogonality}
 
 If \((V, B)\) is a quadratic space and \(W \subseteq V\), we define the
 orthogonal complement of \(W\) as the set
@@ -569,9 +581,9 @@ therefore the problem at hand can further be simplified as a question of finding
 a change of basis matrix from \(\Basis\) to
 \(\Basis'\).\label{sec:contiguous-bases}
 
-Now suppose \(q = \quadform{\alpha_1, \dots \alpha_n}\) and \(r =
-\quadform{\beta_1, \dots, \beta_n}\) are equivalent quadratic forms over
-\(\field\) with each of the \(\alpha_i\) and \(\beta_i\) nonzero (so that \(q\)
+Now suppose \(q = \quadform{\lambda_1, \dots \lambda_n}\) and \(r =
+\quadform{\mu_1, \dots, \mu_n}\) are equivalent quadratic forms over
+\(\field\) with each of the \(\lambda_i\) and \(\mu_i\) nonzero (so that \(q\)
 and \(r\) are nondegenerate). The next theorem provides us with a process of
 moving from \(q\) to \(r\) by a series of equivalence transformations. But first
 we introduce a definition: we say that two bases \(\Basis = \{b_1, \dots,
@@ -665,7 +677,7 @@ watson1960integral}.\label{sec:reduction}
     \begin{align*}
       M(1\ 0\ \cdots\ 0)^{\transp} &= ((1) \oplus Z)(W \oplus I_{n - 2})(1\ 0\ \cdots\ 0)^{\transp}\\
       &= (1 \oplus Z)(x_1\ h\ 0\ \cdots\ 0)^{\transp}\\
-      &= (x_1\ hz)^{\transp} = x.
+      &= (x_1\ hz)^{\transp} = x.\qedhere
     \end{align*}
 \end{proof}
 
