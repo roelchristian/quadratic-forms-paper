@@ -562,24 +562,28 @@ The next theorem relates the Hasse-Minkowski theorem with our notion of equivale
     Let \(q\) and \(r\) be equivalent quadratic forms over \(\Rationals\). Necessity follows directly from the definitions. We prove sufficiency by induction on the rank \(n\) of \(q\) and \(r\). The case \(n = 0\) is trivial. We thus suppose \(n > 0\), and by the corollary of Theorem\,\ref{thm:hasse-minkowski} above, we can assume that \(q\) and \(r\) represent the same element \(\lambda \in \Rationals^{\times}\). By the representation criterion of \S\,\ref{sec:diagonalization-of-forms}, \(q \sim \quadform{\lambda} \perp q'\) and \(r \sim \quadform{\lambda} \perp r'\) where \(q'\) and \(r'\) are quadratic forms of rank \(n - 1\) over \(\Rationals\). This implies \(r \sim r'\) over \(\Rationals_v\) since \(q \sim q'\) and \(\quadform{\lambda} \sim \quadform{\lambda}\) for every \(\Rationals_v\). From our induction hypothesis \(r \sim r'\) over \(\Rationals\) and hence, similarly, \(q \sim q'\) over \(\Rationals\).
 \end{proof}
 
-% \subsection{Sum of squares.}~We now begin to move from the rational theory of quadratic forms towards an initial result involving integral results. We shall discuss integral results in more detail in the next chapter. We now use the results of this chapter to prove some classical results, due to Gauss and Lagrange, on the representation of integers as sums of squares. We follow the treatment in \cite[pp.~45--47]{serre2012course} and \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
+\subsection{Sum of squares.}~We now begin to move from the rational theory of quadratic forms towards an initial result involving integral results, which we shall have more time to study in detail in the next chapter. We now use the results of this chapter to prove some classical results, due to Gauss and Lagrange, on the representation of integers as sums of squares. We follow the treatment in \cite[pp.~45--47]{serre2012course} and \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
 
-% \begin{lemmax}
-%     If \(\lambda \in \Rationals^{\times}\), then \(\lambda\) is a sum of three rational squares if and only if \(\lambda > 0\) and \(-\lambda\) is not a square in \(\Rationals_2\).
-% \end{lemmax}
+\begin{lemmax}
+    If \(\lambda \in \Rationals^{\times}\), then \(\lambda\) is a sum of three rational squares if and only if \(\lambda > 0\) and \(-\lambda\) is not a square in \(\Rationals_2\).
+\end{lemmax}
 
-% \begin{lemmax}
+\begin{proof}
+    By the corollary to the Hasse-Minkowski theorem, we need to show that \(\lambda\) is represented in \(\Rationals_{\infty} = \Reals\) and in \(\Rationals_p\) for all prime \(p\).
+\end{proof}
+
+\begin{lemmax}
     
-% \end{lemmax}
+\end{lemmax}
 
-% We now arrive to the main result of this section, which is due to Gauss.
-% \begin{theorem}
-%     A positive integer \(n\) is a sum of three squares if and only if \(n\) is not of the form \(4^a k\) for some integer \(a\), where \(k \equiv 7 \pmod{8}\).
-% \end{theorem}
+We now arrive to the main result of this section, which is due to Gauss.
+\begin{theorem}
+    A positive integer \(n\) is a sum of three squares if and only if \(n\) is not of the form \(4^a k\) for some integer \(a\), where \(k \equiv 7 \pmod{8}\).
+\end{theorem}
 
-% We can deduce the following corollary, due to Lagrange and commonly known as the four-square theorem, as mentioned in the Preface.
+We can deduce the following corollary, due to Lagrange and commonly known as the four-square theorem, as mentioned in the Preface.
 
-% \begin{corollary}
-%     Every positive integer is a sum of four squares.
-% \end{corollary}
+\begin{corollary}
+    Every positive integer is a sum of four squares.
+\end{corollary}
 
