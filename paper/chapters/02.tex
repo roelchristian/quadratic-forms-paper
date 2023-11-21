@@ -220,7 +220,7 @@ Thus we were able to ``lift'' solutions modulo \(7^2\) given solutions modulo \(
 
 \section{The Hilbert symbol}\label{sec:hilbert-symbol}
 
-We shall now review the norm-residue symbol introduced by Hilbert in \cite[pp.~286--287]{hilbert1932theorie}. Our treatment in \S\,ref{sec:hilbert-symbol-intro} shall be mainly cursory as our goal is to use the properties we shall develop here to simplify some of the arguments in our proof of the Hasse-Minkowski theorem, which is the main result of this chapter. After \S\,ref with the{sec:hilbert-symbol-intro}, we shall then continue with the development of the theory in keeping with the rigor of the rest of this paper.  We refer the reader to \cite{serre2012course} and to \cite{sutherland2013introduction} for the details of the omitted proofs.
+We shall now review the norm-residue symbol introduced by Hilbert in \cite[pp.~286--287]{hilbert1932theorie}. Our treatment in \S\,\ref{sec:hilbert-symbol-intro} shall be mainly cursory as our goal is to use the properties we shall develop here to simplify some of the arguments in our proof of the Hasse-Minkowski theorem, which is the main result of this chapter. After \S\,\ref{sec:hilbert-symbol-intro}, we shall then continue with the development of the theory in keeping with the rigor of the rest of this paper.  We refer the reader to \cite{serre2012course} and to \cite{sutherland2013introduction} for the details of the omitted proofs.
 
 \subsection{Definition and properties.}~Throughout this section we take \(\field\) to be the field \(\Rationals_p\) or \(\Reals.\) For any \(a\) and \(b\) in \(\fieldU\) we define the Hilbert norm-residue symbol (or more simply, the Hilbert symbol) \((a, b)\) by
 \[
@@ -264,7 +264,7 @@ See \cite[pp.~17--18]{serre2012course} or \cite[p.~1]{sutherland2013introduction
 
 See \cite[pp.~19--21]{serre2012course} for a proof.
 
-\subsection{Computation of the Hilbert symbol.}~We will now study how to explicitly compute the Hilbert symbol and show that it is bilinear and nondegenerate. Before that, we first define the \emph{Legendre symbol}. Let \(p\) be an odd prime. An integer \(a\) is said to be a \emph{quadratic residue} modulo \(p\) if there exists an integer \(x\) such that \(x^2 \equiv a \pmod{p}\). If no such \(x\) exists, then \(a\) is said to be a \emph{quadratic nonresidue} modulo \(p\). The \emph{Legendre symbol} \(\left(\frac{a}{p}\right)\) is defined to be \(1\) if \(a\) is a quadratic residue modulo \(p\) and \(-1\) if \(a\) is a quadratic nonresidue modulo \(p\). Legendre has provided the following explicit formula for the symbol:\label{sec:computing-hilbert-symbol}
+\subsection{Computation of the Hilbert symbol.}~We will now study how to explicitly compute the Hilbert symbol and show that it is bilinear and nondegenerate. Before that, we first define the {Legendre symbol}. Let \(p\) be an odd prime. An integer \(a\) is said to be a \emph{quadratic residue} modulo \(p\) if there exists an integer \(x\) such that \(x^2 \equiv a \pmod{p}\). If no such \(x\) exists, then \(a\) is said to be a \emph{quadratic nonresidue} modulo \(p\). The \emph{Legendre symbol} \(\left(\frac{a}{p}\right)\) is defined to be \(1\) if \(a\) is a quadratic residue modulo \(p\) and \(-1\) if \(a\) is a quadratic nonresidue modulo \(p\). Legendre has provided the following explicit formula for the symbol:\label{sec:computing-hilbert-symbol}
 \[
        \left(\frac{a}{p}\right) = a^{(p-1)/2} \pmod{p}.  
 \]
@@ -371,7 +371,7 @@ This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, 
 
 
 
-\subsection{Hilbert reciprocity.}\label{sec:hilbert-reciprocity}
+\subsection{Global properties.}\label{sec:hilbert-reciprocity}~The field \(\Rationals\) embeds in \(\Rationals_v\) for each \(v \in \Places\). We want to prove two results about the Hilbert symbol in \(\Rationals\) in this section. The first is the product formula, which is a generalization of the law of quadratic reciprocity. The second is a theorem that gives us a way to determine whether rational numbers exists with given Hilbert symbols.
 
 \begin{theoremx}
     If \(a, b \in \Rationals^{\times}\), then \((a, b)_v = 1\) for all but finitely many \(v \in \Places\) and 
@@ -380,7 +380,22 @@ This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, 
     \]
 \end{theoremx}
 
-See \cite[pp.~23--24]{serre2012course} for a proof. Note that this product formula is equivalent to the law of quadratic reciprocity.
+\begin{proof}
+    See \cite[p.~23]{weismann2006annotations}. Since the Hilbert symbol is bilinear, it suffices to prove the theorem for \(a\) and \(b\) equal to \(-1\) or a prime. We consider each case, making use of the identities in the preceding section.
+
+    \smallskip
+
+    \begin{enumerate}[nosep, label=(\roman*), wide]
+        \item If \(a = b = -1\), then \((a, b)_v = (-1, -1)_v = -1\) for all \(v \in \Places\).
+        \item If \(a = -1\) and \(b = \pi\), where \(\pi\) is a prime, then if \(\pi = 2\), we have \((a, b)_v = (-1, 2)_v = 1\) for all places \(v\). If \(\pi\) is odd, then \((a, b)_v = (-1, \pi)_v = 1\) for all \(v \neq 2\) and \((a, b)_2 = (-1, \pi)_2 = (-1, \pi)_{\pi} = (-1)^{\epsilon(\pi)} = 1\).\label{item:case-ii-hilbert-prod}
+        \item If \(a\) and \(b\) are the same prime \(\pi\), then by the theorem of \S\,\ref{sec:hilbert-symbol-intro}, \((\pi, \pi)_v = (-1, \pi)_v\) for all places \(v\) and we are back to case (\ref{item:case-ii-hilbert-prod}).
+        \item If \(a = 2\) and \(b\) is an odd prime \(\pi'\), then \((2, \pi')_v = 1\) for all \(v \notin \{2, \pi'\}\) while \((2, \pi')_2 = (-1)^{\omega(\pi')}\) and \((2, \pi')_{\pi'} = \legendre{2}{v}\), for \(v = 2\) and \(v = \pi'\), respectively; in either of these last two cases, we have \((2, \pi')_v = (-1)^{(\pi'^2 - 1)/8} = 1\).
+        \item If \(a\) and \(b\) are distinct odd primes \(\pi\) and \(\pi'\), then \((a,b)_v = 1\) for all \(v \notin \{2, \pi, \pi'\}\). In those cases we have \((a, b)_v = (-1)^{\epsilon{\pi}\epsilon{\pi'}}\) if \(v = 2\); \((a, b)_v = \legendre{\pi}{\pi'}\) if \(v = \pi\); and \((a, b)_v = \legendre{\pi'}{\pi}\) if \(v = \pi'\). The result follows by quadratic reciprocity, \emph{viz.,}
+        \[
+            \prod (a, b)_v =  (-1)^{\frac{\pi-1}{2}\frac{\pi'-1}{2}} \legendre{\pi}{\pi'} \legendre{\pi'}{\pi} = 1.
+        \]
+    \end{enumerate}
+\end{proof}
 
 \begin{theoremx}\label{thm:global-properties-hs}
     Let \(\{x_i\}_{i \in I}\) be a finite family of elements of \(\Rationals^{\times}\) and let \(\{\epsilon_{i, v}\}_{i \in I, v \in \Places}\) be a family of numbers equal to \(\pm 1\). There exists \(\lambda \in \fieldU\) such that \((x_i, \lambda)_v = \epsilon_{i, v}\) for all \(i \in I\) and \(v \in \Places\) if and only if the following conditions are satisfied:
