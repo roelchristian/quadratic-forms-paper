@@ -1,9 +1,9 @@
-\chapter{A local-global principle.}
+\chapter{A local-global principle}
 \label{chap:local-global-principle}
 
 {\scshape In this} chapter we shall prove the Hasse-Minkowski theorem for quadratic forms over \(\Rationals\). We shall follow Chapters 2\,--\,4 of \cite{serre2012course}, introducing and developing the structure theorems for the ring \(\Integers_p\) of \(p\)-adic integers and the field \(\Rationals_p\) of \(p\)-adic numbers together with the main result from Hensel on the roots of polynomials over \(\Integers_p\), followed by the introduction of the Hilbert symbol and some of its properties, and culminating in the proof of the Hasse-Minkowski theorem.
 
-\section{The field of \(p\)-adic numbers.}
+\section{The field of \(p\)-adic numbers}
 
 \subsection{}~The history of the theory of quadratic forms over \(\Rationals\) owes much of its development to the theory of \(p\)-adic numbers as introduced by Hensel and expanded by his student Hasse.\,\cite{hasse1922uber,hensel1913zahlentheorie} In this section, we shall introduce the field of \(p\)-adic numbers and prove some of its basic properties and develop the results we need as they relate to quadratic forms. For a more detailed treatment of the theory of \(p\)-adic numbers, we refer the reader to \cite{gouvea1997p,koblitzp}. The \(p\)-adic field can be constructed both analytically and algebraically; our approach in this paper shall be mainly algebraic.\label{sec:field-of-p-adic-numbers}
 
@@ -115,7 +115,7 @@ We begin with a lemma.
 
 We say that an element \(x = (x_1, \dots, x_m)\) of \(\Integers_p^m\) is primitive if at least one of the \(x_i\) is invertible, i.e., not all of the \(x_i\) are divisible by \(p\). We define similarly the notion of a primitive element of \(A_n^m\). We now relate Theorem \ref{thm:zeros-of-polynomials-in-zp} to solutions in \(\Rationals_p\).
 
-\begin{theoremx}
+\begin{theoremx}\label{thm:zeros-of-polynomials-in-qp-family}
     Let \(\mathfrak{F}\) be a family of homogeneous polynomials in \(m\) variables with coefficients in \(\Integers_p\). Then the following statements are equivalent:
 
     \smallskip
@@ -218,18 +218,35 @@ Thus we were able to ``lift'' solutions modulo \(7^2\) given solutions modulo \(
     k = 4 & \qquad \pm (3 + 7 + 2 \times 7^2 + 6 \times 7^3) \\
 \end{align*}
 
-\section{The Hilbert symbol.}\label{sec:hilbert-symbol}
+\section{The Hilbert symbol}\label{sec:hilbert-symbol}
 
-We shall now quickly review the norm-residue symbol introduced by Hilbert in \cite[pp.~286--287]{hilbert1932theorie}. Our treatment shall be mainly cursory as our goal is to use the properties we shall develop here to simplify some of the arguments in our proof of the Hasse-Minkowski theorem. We refer the reader to \cite{serre2012course} for the details of the proofs.
+We shall now quickly review the norm-residue symbol introduced by Hilbert in \cite[pp.~286--287]{hilbert1932theorie}. Our treatment shall be mainly cursory as our goal is to use the properties we shall develop here to simplify some of the arguments in our proof of the Hasse-Minkowski theorem, which is the main result of this chapter. The exception is Theorem\,\ref{thm:global-properties-hs} of \S\,\ref{sec:hilbert-reciprocity}, which we prove in detail, primarily because of its utility in the proof of the Hasse-Minkowski theorem. We refer the reader to \cite{serre2012course} for the details of the proofs.
 
-\subsection{Definition and properties.} Throughout this section we take \(\field\) to be the field \(\Rationals_p\) or \(\Reals.\) For any \(a\) and \(b\) in \(\fieldU\) we define the Hilbert norm-residue symbol (or more simply, the Hilbert symbol) \((a, b)\) by
+\subsection{Definition and properties.}~Throughout this section we take \(\field\) to be the field \(\Rationals_p\) or \(\Reals.\) For any \(a\) and \(b\) in \(\fieldU\) we define the Hilbert norm-residue symbol (or more simply, the Hilbert symbol) \((a, b)\) by
 \[
     (a, b) = \begin{cases}
         \ \ 1 & \text{if } z^2 - ax^2 - by^2 = 0 \text{ has a nontrivial solution in } \field^3, \\
         \ \ -1 & \text{otherwise}.
     \end{cases}
 \]
-Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any non-zero square we see that the Hilbert symbol defines a map \(\SquareClass \times \SquareClass \to \{1, -1\}\). We now show some elementary properties of the Hilbert symbol.
+\label{sec:hilbert-symbol-intro}
+Let \(\Places\) be the union of the set of all prime numbers and the symbol \(\infty\); we shall call \(\mathfrak{V}\) the set of ``places'' in \(\Rationals\). For each \(v \in \Places\), we write \((a, b)_v\) for  each \(a, b \in \fieldU\) to denote the image of \((a, b)\) under the map \(\SquareClass \times \SquareClass \to \{1, -1\}\) induced by the Hilbert symbol in \(\Rationals_v\), where we define \(\Rationals_{\infty}\) to be \(\Reals\).
+
+Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any non-zero square we see that the Hilbert symbol defines a map \(\SquareClass \times \SquareClass \to \{1, -1\}\). We formalize these observations in the following lemma.
+\begin{lemma}
+    Let \(a, b \in \fieldU\). The following statements are equivalent:
+
+    \medskip
+
+    \begin{enumerate}[nosep, label=(\alph*)]
+        \item \((a, b) = 1\);
+        \item The equation \(z^2 - ax^2 - by^2 = 0\) has a nontrivial solution in \(\field^3\);
+        \item The form \(z^2 - ax^2 - by^2\) represents zero in \(\field\).
+        \item The element \(a\) is a norm in \(\field(\sqrt{b})\).
+    \end{enumerate}
+\end{lemma}
+
+See \cite[pp.~17--18]{serre2012course} or \cite[p.~1]{sutherland2013introduction} for a proof. We now show some elementary properties of the Hilbert symbol.
 
 \begin{theorem}
     The Hilbert symbol satisfies the following properties for all \(a, b, c, a' \in \fieldU\), (with \(a \neq 1\) whenever \(1-a\) appears in the formula):
@@ -241,13 +258,120 @@ Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any 
         \item \((a, c^2) = 1\);
         \item \((a, -a) = -1\) and \((a, 1-a) = 1\);
         \item if \((a, b) = 1\), then \((aa', b) = (a', b)\); and
-        \item \((a, b) = (a, -ab) = (a, (1-a)b)\).
+        \item \((a, b) = (a, -ab) = (a, (1-a)b)\).\label{item:formula-e}
     \end{enumerate}
 \end{theorem}
 
 See \cite[pp.~19--21]{serre2012course} for a proof.
 
-\subsection{Hilbert reciprocity.}~Let \(\Places\) be the union of the set of all prime numbers and the symbol \(\infty\); we shall call \(\mathfrak{V}\) the set of ``places'' in \(\Rationals\). For each \(v \in \Places\), we write \((a, b)_v\) for  each \(a, b \in \fieldU\) to denote the image of \((a, b)\) under the map \(\SquareClass \times \SquareClass \to \{1, -1\}\) induced by the Hilbert symbol in \(\Rationals_v\), where we define \(\Rationals_{\infty}\) to be \(\Reals\).\label{sec:hilbert-reciprocity}
+\subsection{Computation of the Hilbert symbol.}~We will now study how to explicitly compute the Hilbert symbol and show that it is bilinear and nondegenerate. Before that, we first define the \emph{Legendre symbol}. Let \(p\) be an odd prime. An integer \(a\) is said to be a \emph{quadratic residue} modulo \(p\) if there exists an integer \(x\) such that \(x^2 \equiv a \pmod{p}\). If no such \(x\) exists, then \(a\) is said to be a \emph{quadratic nonresidue} modulo \(p\). The \emph{Legendre symbol} \(\left(\frac{a}{p}\right)\) is defined to be \(1\) if \(a\) is a quadratic residue modulo \(p\) and \(-1\) if \(a\) is a quadratic nonresidue modulo \(p\). Legendre has provided the following explicit formula for the symbol:\label{sec:computing-hilbert-symbol}
+\[
+       \left(\frac{a}{p}\right) = a^{(p-1)/2} \pmod{p}.  
+\]
+This brings us to the following theorem.
+\begin{theorem}
+    {\normalfont\cite[pp.~20--21]{serre2012course}}
+    If \(\field = \Reals\), then \((a, b) = -1\) if both \(a\) and \(b\) are negative and \((a, b) = 1\) otherwise. If \(\field = \Rationals_p\), then, writing \(a\) and \(b\) as \(a = p^\alpha u\) and \(b = p^\beta v\) with \(u, v \in \Units\), we have
+    \[
+        (a, b) = (-1)^{\alpha\beta\epsilon(p)}\left(\frac{u}{p}\right)^{\beta}\left(\frac{v}{p}\right)^{\alpha},
+    \]
+    whenever \(p\) is an odd prime, and 
+    \[
+        (a, b) = (-1)^{\epsilon(u)\epsilon(v) + \alpha\omega(v) + \beta\omega(u)}
+    \]
+    whenever \(p = 2\). Here we denote by \(\epsilon(x)\) and \(\omega(x)\) the images in \(\Integers/2\Integers\) of the integers \((x-1)/2\) and \((x^2-1)/8\), respectively.
+\end{theorem}
+
+\emph{Proof}. We first prove the theorem for \(\field = \Reals\). We can suppose that \(a, b \in \{\pm 1\}\) since \(\{\pm 1\}\) is a complete set of representatives of \(\Reals^{\times}/(\Reals^{\times})^2\). By the theorem of the previous section, if either \(a\) or \(b\) is equal to \(1\) then \((a, b)_{\infty} = 1\) and by the lemma of the same theorem, \((-1, -1)_{\infty} = -1\) since \(-1\) is not a norm in \(\Complex = \Reals(\sqrt{-1})\). See also \cite[Theorem~10.4]{sutherland2013introduction}.
+
+Now let \(\field = \Rationals_p\) and let \(p\) be an odd prime. Since \((a, b)_p\) depends only on the square classes of \(a\) and \(b\), we can assume that \(\alpha, \beta \in \Integers/ 2\Integers\). We need two lemmas.
+
+\begin{lemmax}\label{lem:serre-sol-zp}
+    {\normalfont\cite[p.~21]{serre2012course}}
+    Let \(v\) be a \(p\)-adic unit. If the equation \(z^2 - px^2 - vy^2 = 0\) has a nontrivial solution in \(\Rationals_p^3\), then it has a solution \((z, x, y)\) with \(z, y \in \Units\) and \(x \in \Integers_p\).
+\end{lemmax}
+
+\begin{proof}
+    By Theorem\,\ref{thm:zeros-of-polynomials-in-qp-family} the given equation has a primitive solution \((z, y, x)\). We want to show that this solution can be chosen so that \(z, y \in \Units\) and \(x \in \Integers_p\). Suppose for the sake of contradiction that this solution does not satisfy the conditions of the theorem. Then \(z\) or \(y\) is divisible by \(p\); since \(z^2 - vy^2 \equiv 0 \pmod{p}\) and \(v \not\equiv 0 \pmod{p}\), we would have both \(z\) and \(y\) divisible by \(p\), hence \(px^2\) would be divisible by \(p^2\) and \(x\) would be divisible by \(p\). But this contradicts the fact that \((z, y, x)\) is a primitive solution.
+\end{proof}
+
+\begin{lemmax}\label{lem:hilbert-odd-units}
+    {\normalfont\cite[Lemma~10.5]{sutherland2013introduction}}
+    If \(p\) is odd then \((u, v)_p = 1\) for all \(u, v \in \Units\).
+\end{lemmax}
+
+\begin{proof}
+    The proof uses the Chevalley-Warning theorem, which states that in a finite field if the number of variables of a polynomial is greater than its degree, then the cardinality of its solution set (i.e., the number of zeroes it has) is divisible by the characteristic of the field. We have not taken up this result in this paper but the reader may refer to \cite[p.~5]{serre2012course} for a proof. As a corollary of this result, we have that all quadratic forms of rank \(3\) has a non-trivial solution modulo \(p\). Hensel's lemma can then be used to lift this solution to a solution in \(\Integers_p\).
+\end{proof}
+
+\bigskip
+
+We now return to the proof of the theorem and consider three cases:
+
+\smallskip
+
+\begin{enumerate}[nosep, label=(\roman*), wide]
+    \item If \(\alpha = \beta = 0\), then \((a, b)_p = (u, v)_p = 1\) by Lemma\,\ref{lem:hilbert-odd-units} above.
+    \item If \(\alpha = 1\) and \(\beta = 0\), we need to show that \((pu, v)_p ={ \legendre{v}{p}}\). Since \((u, v)_p = 1\) we have \((pu, v)_p = (p,v)\) by the theorem of \S\,\ref{sec:hilbert-symbol-intro} so that it suffices to check \((p, v)_p ={\legendre{v}{p}}\). If \(v\) is a square then we have
+    \[
+    (p, v)_p = (p, 1)_p = (1, p)_p = 1 = \legendre{v}{p}.
+    \]
+    If \(p\) is not a square then \(z^2 - px^2 - vy^2 = 0\) has no nontrivial solutions in modulo \(p\) and hence has no primitive solutions. Thus we have
+    \[
+    (p, v)_p = -1 = \legendre{v}{p}.
+    \]
+    \item If \(\alpha = \beta = 1\), we must show that
+    \[
+    (pu, pv)_p = (-1)^{\frac{p-1}{2}}\legendre{u}{p}\legendre{v}{p}.
+    \]
+    Applying formula (\ref{item:formula-e}) of the theorem of \S\,\ref{sec:hilbert-symbol-intro} we obtain
+    \[
+    (pu, pv)_p = (pu, -p^2uv)_p = (pu, -uv)_p.
+    \]
+    Applying the formula in the preceding case we finally obtain
+    \[
+    (pu, -uv)_p = \legendre{-uv}{p} =\legendre{-1}{p} \legendre{u}{p}\legendre{v}{p} = (-1)^{\frac{p-1}{2}}\legendre{u}{p}\legendre{v}{p}.
+    \]
+\end{enumerate}
+
+This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, \beta\) in \(\Integers/2\Integers\) and we thus consider each of the three cases above.
+
+\smallskip
+
+\begin{enumerate}[nosep, label=(\roman*), wide]
+    \item If \(\alpha = \beta = 0\), we must check that \((u, v)_p = 1\) if \(u\) or \(v\) is congruent to \(1 \pmod{4}\) and \((u, v)_p\) otherwise. The first case implies \(u \equiv 1 \pmod{8}\) or \(u \equiv 5 \pmod{8}\). If \(u \equiv 1 \pmod{8}\) then \(u\) is a square modulo \(8\) and we have \((u, v)_p = 1\). Otherwise, if \(u \equiv 5 \pmod{8}\), we have \(u + 4v \equiv 1 \pmod{8}\) and there exists a unit \(w\) such that \(w^2 = u + 4v\); the form \(z^2 - ux^2 - 4vy^2\) thus has the nontrivial solution \((w, 1, 2)\) and we have \((u, v)_p = 1\). % TODO ADD REFERENCE
+    For the second case suppose \(u \equiv v \equiv -1 \pmod{4}\). If \((z,x,y)\) is a primitive root of \(z^2 - ux^2 - vy^2 = 0\), then \(z^2 + x^2 + y^2 \equiv 0 \pmod{4}\). But then again the squares modulo \(4\) are \(0\) and \(1\) so that this earlier congruence implies \(z \equiv x \equiv y \equiv 0 \pmod{2}\), contradicting the fact that \((z, x, y)\) is a primitive solution. Thus we have \((u, v)_p = -1\).
+
+    \item If \(\alpha = 1\) and \(\beta = 0\), we must check that
+    \[ (2u, v)_p = (-1)^{\epsilon(u)\epsilon(v) + \omega(v)}. \]
+    First we want to show that \((2, v)_p = (-1)^{\omega(v)}\), i.e, that \((2, v)_p = 1\) is equivalent to \(v \equiv \pm 1\pmod{8}\). By Lemma\,\ref{lem:serre-sol-zp} above, if \((2, v)_p = 1\) then there exists \(2\)-adic integers \(x\), \(y\) and \(z\) such that \(z^2 - 2x^2 - vy^2\) and \(y, z \not\equiv 0 \pmod{2}\). This implies that \(y^2 = z^2 \equiv 1 \pmod{8}\) and hence \(1 - 2x^2 - v \equiv 0 \pmod{8}\). But the only squares modulo \(8\) are \(0\), \(1\) and \(4\) so that \(v \equiv \pm 1 \pmod{8}\). Conversely, if \(v \equiv 1 \pmod{8}\) then \(v\) is a square and \((2, v)_p = 1\). If \(v \equiv -1 \pmod{8}\) then the equation \(z^2 - 2x^2 - vy^2 = 0\) has the nontrivial solution \((1, 1, 1)\) modulo \(8\); by Hensel's lemma, this solution can be lifted to a solution in \(\Integers_2\) and thus we have \((2, v)_p = 1\).
+
+    Next we show that \((2u, v)_p= (2, v)_p(u,v)_p\). By the theorem of \S\,\ref{sec:hilbert-symbol-intro}, this holds if either of \((2,v)_p\) or \((u, v)_p\) is equal to \(1\). The remaining case is \((2, v)_p = (u, v)_p = -1\), implying that \(v \equiv 3 \pmod{8}\) and \(u \equiv 3 \pmod{8}\). Multiplying \(u\) and \(v\) by squares, we can suppose that \(u = -1\) and \(v = 3\) or \(u = 3\) and \(v = -5\). But the equations
+    \[
+    z^2 + 2x^2 - 3y^2 = 0 \qquad \text{and} \qquad z^2 - 6x^2 + 5y^2 = 0
+    \]
+    then both have the nontrivial solution \((1, 1, 1)\) and therefore \((2u, v)_p = 1\).
+
+    \item Finally, if \(\alpha = \beta = 1\), we must show that
+    \[
+    (2u, 2v)_p = (-1)^{\epsilon(u)\epsilon(v) + \omega(u) + \omega(v)}.
+    \]
+    By the theorem of \S\,\ref{sec:hilbert-symbol-intro} we have
+    \[
+    (2u, 2v)_p = (2u, -4uv)_p = (2u, -uv)_p,
+    \]
+    and thus, we have
+    \begin{equation}
+    (2u, 2v)_p = (-1)^{\epsilon(u)\epsilon(-uv) + \omega(-uv)}
+    \label{eq:2u-2v}
+    \end{equation}
+    Now since \(\epsilon(-1) = 1\), \(\omega(-1) = 0\), and \(\epsilon(u) (1 + \epsilon(u)) = 0\), the exponent in \eqref{eq:2u-2v} is equal to \(\epsilon(u)\epsilon(v) + \omega(u) + \omega(v)\). \scshape{q.e.d.}
+\end{enumerate}
+
+
+
+
+\subsection{Hilbert reciprocity.}\label{sec:hilbert-reciprocity}
 
 \begin{theoremx}
     If \(a, b \in \Rationals^{\times}\), then \((a, b)_v = 1\) for all but finitely many \(v \in \Places\) and 
@@ -270,9 +394,56 @@ See \cite[pp.~23--24]{serre2012course} for a proof. Note that this product formu
     \end{enumerate}
 \end{theoremx}
 
-We again refer the reader to \cite[pp.~24--26]{serre2012course} for a proof.
+% We again refer the reader to \cite[pp.~24--26]{serre2012course} for a proof.
 
-\section{Quadratic forms over \(\FiniteHead_q\) and \(\RationalsHead_p\).}
+We first introduce a couple of lemmas to prove Theorem\,\ref{thm:global-properties-hs}.
+
+\begin{lemmax}[``Chinese remainder theorem'']\label{lem:chinese-remainder}
+    Let \(a_1, \dots, a_n\) and \(m_1, \dots, m_n\) be integers, with the \(m_i\) pairwise coprime. Then there exists an integer \(x\) such that \(x \equiv a_i \pmod{m_i}\) for all \(i\).
+\end{lemmax}
+
+\begin{proof}
+    This result has been proved in class. Alternatively, let \(m\) be the product of the \(m_i\). By B\'ezout's theorem, the map
+    \[\Integers/m\Integers \to \prod_{i = 1}^n \Integers/m_i\Integers\]
+    is an isomorphism. The result follows from this fact.
+\end{proof}
+
+\begin{lemmax}[``Approximation lemma'']\label{lem:approximation}
+    {\normalfont\cite[pp.~24--25]{serre2012course}}
+    Let \(S \subset \Places\) be a finite set of places. The image of \(\Rationals\) is dense in \(\prod_{v \in S} \Rationals_v\).
+\end{lemmax}
+    
+
+\emph{Proof.} Suppose that \(S = \{\infty, p_1, \dots, p_n\}\) with the \(p_i\) distinct. We can assume this without loss of generality since if the image of \(\Rationals\) is dense in \(\prod_{v \in S} \Rationals_v\) for any finite set \(S\) of places, then it is also dense in \(\prod_{v \in S'} \Rationals_v\) for any subset \(S' \subset S\). Thus we may enlarge \(S\) as needed and assume \(S\) is as we have defined it.
+
+Now fix an element \((x_{\infty}, x_1, \dots, x_n)\) of \(S\) so that multiplying it by some integer, we can assume that the \(x_i\) are all elements of \(\Integers_p\). Now let \(\epsilon > 0\) be any real number and \(N\) a natural number. By the Chinese remainder theorem, there exists an integer \(x_0\) such that \(x_0 \equiv x_i \pmod{p_i^N}\) for all \(i\). Therefore we have
+\[
+    \nu_{p_i}(x_0 - x_i) \geq N.
+\] 
+Choose now an integer \(\pi \geq 2\) relatively prime to each of the \(p_i\)  so that rational numbers of the form \(a/\pi^m\) are dense in \(\Rationals\) for \(a \in \Integers\) and \(m \in \Naturals\). (This is possible since \(\pi^m\) diverges as \(m\) tends to infinity.) We can thus choose a number \(\omega = a/\pi^m\) such that
+\[
+    |x_0 - x_{\infty} + \omega p_1^N\cdots p_n^N| \leq \epsilon,
+\]
+so that setting \(x = x_0 + \omega p_1^N\cdots p_n^N\) we have
+\begin{align*}
+    |x - x_{\infty}| \leq \epsilon, \text{ and } \nu_{p_i}(x - x_i) \geq N,
+\end{align*}
+for all \(i\), as desired. {\scshape q.e.d.}
+
+\medskip
+
+\begin{lemma}[``Dirichlet's theorem on arithmetic progressions'']\label{lem:dirichlet}
+    {\normalfont\cite[p.~25]{serre2012course}}
+    If \(a\) and \(m\) are relatively prime positive integers, then there exist infinitely many primes \(p\) such that \(p \equiv a \pmod{m}\).
+\end{lemma}
+
+This lemma is proved by showing that the value of the Dirichlet \(L\)-function at \(s = 1\) is nonzero. The proof requires some results from complex analysis and analytic number theory that are beyond the scope of this paper. We refer the reader to Chapter 6 of \cite{serre2012course} for the development and the proof of this result.
+
+We are now ready to prove Theorem\,\ref{thm:global-properties-hs}.
+
+\emph{Proof of Theorem} \ref{thm:global-properties-hs}. Let \(\{\epsilon_{i,v}\}\) a family of numbers equal to \(\pm 1\) satisfying the conditions of the theorem. Multiplying the \(x_i\) by the square of some integer, we can assume that the \(x_i\) are all integers (recall that the Hilbert symbol is trivial on squares).
+
+\section{Quadratic forms over \(\FiniteHead_q\) and \(\RationalsHead_p\)}
 
 \subsection{Some results from Witt.}~In \S\,\ref{sec:mat-equiv} we have established that the forms \(xy\) and \(x^2 - y^2\) are equivalent over \(\Rationals\). As it turns out, these forms relate to more general forms over \(\Rationals\) and over \(\Rationals_p\) and are thus particularly useful in understanding quadratic forms over these fields, as has been demonstrated by the German mathematician Ernst Witt in his seminal paper from 1937 \cite{witt1937theorie}. We refer the reader to \cite{lam1973quadratic} for a more detailed treatment of Witt's decomposition and cancellation theorems, but we shall state here the results we need.\label{sec:results-from-witt}
 
@@ -367,7 +538,7 @@ The following theorem is therefore a restatement of Theorem \ref{thm:hyperbolic-
 \end{theoremx}
 
 \begin{proof}
-    Following the corollary of Theorem \ref{thm:hyperbolic-decomp-2} of the preceding section, it suffices to show that all quadratic forms in \(3\) variables represent \(0\). This fact can indeed be shown as true, and is a consequence of the Chevalley-Warning theorem, which states that in a finite field if the number of variables of a polynomial is greater than its degree, then the cardinality of its solution set (i.e., the number of zeroes it has) is divisible by the characteristic of the field. We have not taken up this result in this paper but the reader may refer to \cite[p.~5]{serre2012course} for a proof.
+    Following the corollary of Theorem \ref{thm:hyperbolic-decomp-2} of the preceding section, it suffices to show that all quadratic forms in \(3\) variables represent \(0\). This fact is a consequence of the Chevalley-Warning theorem, which we have not taken up in this paper. See also the proof of Lemma \ref{lem:hilbert-odd-units} in \S\,\ref{sec:computing-hilbert-symbol}. 
 \end{proof}
 
 \begin{theoremx}\label{thm:quadratic-forms-fq-rank-n}
@@ -512,9 +683,9 @@ Before proceeding with the proof, recall that in \S\,\ref{sec:polynomials-over-z
 \emph{Proof.} The necessity is clear since \(\Rationals \subset \Rationals_p\) for all \(p\) so we are going to prove sufficiency. Write the form \(q\) as its equivalent diagonal form \(\quadform{a_1, \dots, a_n}\) where each \(a_i \in \fieldU\). Replacing \(q\) with \(a_1 q\), we can assume, without loss of generality, that \(a_1 = 1\). We shall then again follow \cite[pp.~41--44]{serre2012course} and \cite[pp.~102--104]{gerstein2008basic} and prove the theorem for \(n = 2, 3, 4\) and \(n \geq 5.\)
 
 \begin{enumerate}[wide, nosep, label=(\alph*)]
-    \item \emph{Case 1, \(n = 2\).} Suppose \(q \cong \quadform{1, a}\). Then for \(q\) to represent \(0\) in \(\Rationals\), \(q\) must represent \(0\) in all the places \(v\) of \(\Rationals\); in particular, \(q\) must represent \(0\) in \(\Rationals_{\infty} = \Reals\). It therefore follows that \(a < 0\) and thus we only need to consider the form \(q \cong \quadform{1, -a}\), with \(0 < a \in \Rationals\), so that \(q\) represents \(0\) in \(\Rationals\) if and only if it is a square in \(\Rationals\). Since \(q\) represents \(0\) in all \(\Rationals_p\),  \(a\) is a square in \(\Rationals_p\). Thus writing \(a\) as the product \(\prod_p p^{\nu_p(a)}\), we have that \(\nu_p(a)\) is even and therefore, \(a\) is a square in \(\Rationals\) and hence \(q\) represents \(0\) in \(\Rationals\).
+    \item \textbf{Case 1,} \(n = 2\). Suppose \(q \cong \quadform{1, a}\). Then for \(q\) to represent \(0\) in \(\Rationals\), \(q\) must represent \(0\) in all the places \(v\) of \(\Rationals\); in particular, \(q\) must represent \(0\) in \(\Rationals_{\infty} = \Reals\). It therefore follows that \(a < 0\) and thus we only need to consider the form \(q \cong \quadform{1, -a}\), with \(0 < a \in \Rationals\), so that \(q\) represents \(0\) in \(\Rationals\) if and only if it is a square in \(\Rationals\). Since \(q\) represents \(0\) in all \(\Rationals_p\),  \(a\) is a square in \(\Rationals_p\). Thus writing \(a\) as the product \(\prod_p p^{\nu_p(a)}\), we have that \(\nu_p(a)\) is even and therefore, \(a\) is a square in \(\Rationals\) and hence \(q\) represents \(0\) in \(\Rationals\).
     
-    \item \emph{Case 2, \(n = 3\).} We can assume, without loss of generality, that \(q \cong \quadform{1, -a, -b}\) where \(a\) and \(b\) are squarefree integers (i.e. \(\nu_p(a)\) and \(\nu_p(b)\) are equal to \(0\) or \(1\) for all prime \(p\)) and \(|a| \leq |b|\). We shall prove this by induction on the integer \(m = |a| + |b|\). If \(m = 2\), then \(q \cong \quadform{1, \pm 1, \pm 1}\), but since \(q\) is represents 0 in \(\Rationals_\infty = \Reals\), then \(q \not\cong \quadform{1, 1, 1}\) and hence \(q \cong \quadform{1, -1, -1}\).
+    \item \textbf{Case 2,} \(n = 3\). We can assume, without loss of generality, that \(q \cong \quadform{1, -a, -b}\) where \(a\) and \(b\) are squarefree integers (i.e. \(\nu_p(a)\) and \(\nu_p(b)\) are equal to \(0\) or \(1\) for all prime \(p\)) and \(|a| \leq |b|\). We shall prove this by induction on the integer \(m = |a| + |b|\). If \(m = 2\), then \(q \cong \quadform{1, \pm 1, \pm 1}\), but since \(q\) is represents 0 in \(\Rationals_\infty = \Reals\), then \(q \not\cong \quadform{1, 1, 1}\) and hence \(q \cong \quadform{1, -1, -1}\).
     
     Now if \(m > 2\). Recall that we are assuming \(|a| \leq |b|\) so that \(|b| \geq 2\) and write \(b = \pm p_1 \cdots p_r\) where \(p_i\) are distinct primes (noting also our assumption that \(b\) is squarefree). We then use the following lemma:
 
@@ -530,7 +701,7 @@ Before proceeding with the proof, recall that in \S\,\ref{sec:polynomials-over-z
     \]
     Again write \(b'\) as \(b''u^2\) for some squarefree integer \(b''\) and some integer \(u\). It follows \emph{a fortiori} that \(|b''| < |b|\) and thus the form \(q'' \cong \quadform{1, -a, -b''}\) represents \(0\) in \(\Rationals\) by the inductive hypothesis, whence \(q\) represents \(0\) in \(\Rationals\), as desired.
 
-    \item \emph{Case 3, \(n = 4\).} Let \(q \cong \quadform{a, b, -c, -d}\). By Theorem\,\ref{thm:hyperbolic-decomp-2}, it suffices to show that there exists some \(\lambda \in \fieldU\) (where again \(\field\) is either \(\Rationals\) or \(\Rationals_v\)) represented by both \(\quadform{a, b}\) and \(\quadform{-c, -d}\). Suppose \(\quadform{a, b, -c, -d}\) represents \(0\) in each \(\Rationals_v\); then \(\quadform{a, b}\) and \(\quadform{c, d}\) represent the same element, say \(\lambda_v\), in \(\Rationals_v\). Over \(\Rationals_v\), it follows that \(\quadform{a, b}\) represents \(\lambda_v\) if and only if \(\quadform{a, b, -\lambda_v}\) represents \(0\) if and only if \(\quadform{1, ab, -a\lambda_v}\) is isotropic. This is true if and only if \((-ab, a\lambda_v)_v = 1\), which is true if and only if \((a, b)_v = (-ab, \lambda_v)_v = 1\). Similarly, we have \((c,d)_v = (-cd, \lambda_v)_v = 1\).
+    \item \textbf{Case 3,} \(n = 4\). Let \(q \cong \quadform{a, b, -c, -d}\). By Theorem\,\ref{thm:hyperbolic-decomp-2}, it suffices to show that there exists some \(\lambda \in \fieldU\) (where again \(\field\) is either \(\Rationals\) or \(\Rationals_v\)) represented by both \(\quadform{a, b}\) and \(\quadform{-c, -d}\). Suppose \(\quadform{a, b, -c, -d}\) represents \(0\) in each \(\Rationals_v\); then \(\quadform{a, b}\) and \(\quadform{c, d}\) represent the same element, say \(\lambda_v\), in \(\Rationals_v\). Over \(\Rationals_v\), it follows that \(\quadform{a, b}\) represents \(\lambda_v\) if and only if \(\quadform{a, b, -\lambda_v}\) represents \(0\) if and only if \(\quadform{1, ab, -a\lambda_v}\) is isotropic. This is true if and only if \((-ab, a\lambda_v)_v = 1\), which is true if and only if \((a, b)_v = (-ab, \lambda_v)_v = 1\). Similarly, we have \((c,d)_v = (-cd, \lambda_v)_v = 1\).
     
     Using the product formula of \S\,\ref{sec:hilbert-reciprocity}, we have 
     \[
@@ -542,7 +713,7 @@ Before proceeding with the proof, recall that in \S\,\ref{sec:polynomials-over-z
     \]
     and thus the forms \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in each \(\Rationals_v\). By our proof in the case \(n = 3\) above, it follows that \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in \(\Rationals\) and thus both \(\quadform{a,b}\) and \(\quadform{c,d}\) represent \(\lambda\) in \(\Rationals\). Thus \(\quadform{a, b, -c, -d}\) represents \(0\) in \(\Rationals\) and the result follows.
     
-    \item \emph{Case 4, \(n \geq 5\).} Let \(q = \quadform{a_1, \dots, a_n}\) be a quadratic form of rank \(n \geq 5\). Let \(r = \quadform{a_1, a_2}\) and \(s = \quadform{-a_3, \dots, -a_n}\), so that \(q \cong r \perp s\), i.e., \(q = r + s\) by the notation we introduced in \S\,\ref{sec:results-from-witt} 
+    \item \textbf{Case 4,} \(n \geq 5\). Let \(q = \quadform{a_1, \dots, a_n}\) be a quadratic form of rank \(n \geq 5\). Let \(r = \quadform{a_1, a_2}\) and \(s = \quadform{-a_3, \dots, -a_n}\), so that \(q \cong r \perp s\), i.e., \(q = r + s\) by the notation we introduced in \S\,\ref{sec:results-from-witt} 
     ADD QED
 \end{enumerate}
 
@@ -567,7 +738,7 @@ The next theorem relates the Hasse-Minkowski theorem with our notion of equivale
 
 \section{Appendix: some classical results}
 
-\subsection{Sum of squares.}~We now begin to move from the rational theory of quadratic forms towards an initial result involving integral results, which we shall have more time to study in detail in the next chapter. We now use the results of this chapter to prove some classical results, due to Gauss and Lagrange, on the representation of integers as sums of squares. We follow the treatment in \cite[pp.~45--47]{serre2012course} and \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
+\subsection{Sum of squares.}~We now begin to move from the rational theory of quadratic forms towards an initial result involving integral results, which we shall have more time to study in detail in the next chapter. We now use the results of this chapter to prove some classical results, due to Gauss, Lagrange and Legendre, on the representation of integers as sums of squares. We follow the treatment in \cite[pp.~45--47]{serre2012course} and \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
 
 \begin{lemmax}\label{lem:sum-of-three-squares-q2}
     {\normalfont \cite[pp.\,45--46]{serre2012course}}
@@ -621,7 +792,7 @@ The next theorem relates the Hasse-Minkowski theorem with our notion of equivale
     and thus \(\tau = tq(x - y)\). Since \(|q(x - y)| < 1\), we have \(|\tau| < |t|\), condradicting the minimality of \(|t|\).
 \end{proof}
 
-We now arrive to the main result of this section, which is due to Gauss.
+We now arrive to the main result of this section, which is due to Gauss and Legendre.
 
 \begin{theorem}
     {\normalfont \cite[pp.\,46--47]{serre2012course}}
