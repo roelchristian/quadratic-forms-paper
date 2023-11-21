@@ -565,28 +565,84 @@ The next theorem relates the Hasse-Minkowski theorem with our notion of equivale
     Let \(q\) and \(r\) be equivalent quadratic forms over \(\Rationals\). Necessity follows directly from the definitions. We prove sufficiency by induction on the rank \(n\) of \(q\) and \(r\). The case \(n = 0\) is trivial. We thus suppose \(n > 0\), and by the corollary of Theorem\,\ref{thm:hasse-minkowski} above, we can assume that \(q\) and \(r\) represent the same element \(\lambda \in \Rationals^{\times}\). By the representation criterion of \S\,\ref{sec:diagonalization-of-forms}, \(q \sim \quadform{\lambda} \perp q'\) and \(r \sim \quadform{\lambda} \perp r'\) where \(q'\) and \(r'\) are quadratic forms of rank \(n - 1\) over \(\Rationals\). This implies \(r \sim r'\) over \(\Rationals_v\) since \(q \sim q'\) and \(\quadform{\lambda} \sim \quadform{\lambda}\) for every \(\Rationals_v\). From our induction hypothesis \(r \sim r'\) over \(\Rationals\) and hence, similarly, \(q \sim q'\) over \(\Rationals\).
 \end{proof}
 
+\section{Appendix: some classical results}
+
 \subsection{Sum of squares.}~We now begin to move from the rational theory of quadratic forms towards an initial result involving integral results, which we shall have more time to study in detail in the next chapter. We now use the results of this chapter to prove some classical results, due to Gauss and Lagrange, on the representation of integers as sums of squares. We follow the treatment in \cite[pp.~45--47]{serre2012course} and \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
 
-\begin{lemmax}
+\begin{lemmax}\label{lem:sum-of-three-squares-q2}
+    {\normalfont \cite[pp.\,45--46]{serre2012course}}
     If \(\lambda \in \Rationals^{\times}\), then \(\lambda\) is a sum of three rational squares if and only if \(\lambda > 0\) and \(-\lambda\) is not a square in \(\Rationals_2\).
 \end{lemmax}
 
 \begin{proof}
-    By the corollary to the Hasse-Minkowski theorem, we need to show that \(\lambda\) is represented in \(\Rationals_{\infty} = \Reals\) and in \(\Rationals_p\) for all prime \(p\).
+    By the corollary to the Hasse-Minkowski theorem, we need to show that \(\lambda\) is represented in \(\Rationals_{\infty} = \Reals\) and in \(\Rationals_p\) for all prime \(p\). The case of \(\Reals\) gives the positivity condition. On the other hand, for each \(p\) the local invariants \(\discr_p\) and \(\epsilon_p\) are both equal to \(1\). If \(p \neq 2\), then
+    \[
+        (-1, -\discr_p)_p = (-1, -1)_p = 1 = \epsilon_p
+    \]
+    and thus by the corollary of Theorem\,\ref{thm:rep-in-rationals-p} of \S\,\ref{sec:representation-in-qp-sec}, \(\lambda\) is represented in \(\Rationals_p\). If \(p = 2\), we have
+    \[
+        (-1, -\discr_2)_2 = (-1, -1)_2 = -1 \neq 1 = \epsilon_2.
+    \]
+    Thus by the same corollary, \(\lambda\) is represented in \(\Rationals_2\) if and only if \(\lambda\) is different from \(-1\) in \(\Rationals^*_2 / \Rationals^{*2}_2\), i.e., if and only if \(-\lambda\) is not a square in \(\Rationals_2\).
 \end{proof}
 
-\begin{lemmax}
-    
+\begin{lemmax}[Davenport-Cassels]\label{lem:sum-of-three-squares-davenport-cassels}
+    {\normalfont \cite[p.\,46]{serre2012course}}
+    Let \(q\) be a quadratic form over \(\Rationals\) of rank \(n\) with integer coefficients, and let \(A = (a_{ij})\) be its associated matrix. Suppose further that for every \(x = (x_1, \dots, x_n) \in \Rationals^n \setminus \Integers^n\) there exists some \(y = (y_1, \dots, y_n) \in \Integers^n\) such that \(q(x - y) < 1\). Then if \(q\) represents \(\lambda\) in \(\Rationals\), \(q\) also represents \(\lambda\) in \(\Integers\).
 \end{lemmax}
 
+\begin{proof}
+    We follow the proof in \cite[p.\,2]{clark2011representation}, which itself follows the proof by Serre with some variation (cf. p.\,3, \emph{loc. cit.}). For all \(x, y \in \Rationals^n\) define
+    \[
+        x \cdot y = \frac{1}{2} \left( q(x + y) - q(x) - q(y) \right).
+    \]
+    Then the map \((x, y) \mapsto x \cdot y\) is a bilinear form and \(x \cdot x = q(x)\). Note that for all \(x, y \in \Integers^n\), it does not necessarily follow that \(x \cdot y \in \Integers^n\) but \(2(x \cdot y) \in \Integers^n\).
+
+    Let \(\lambda\) be an integer and suppose that there exists some \(x \in \Integers^n\) such that \(q(x) = \lambda\). Equivalently, there exists some \(t \in \Integers\) and \(x' \in \Integers^n\) such that \(q(x') = t^2 \lambda\). Choose \(x'\) and \(t\) such that \(|t|\) is minimal, so that we need only show that \(|t| = 1\).
+    
+    By the hypothesis on \(x = x'/\lambda\), there exists an integer vector \(y\) such that \(q(x - y) < 1\). Now write
+    \begin{align*}
+        a &= y \cdot y - \lambda \qquad &b &= 2(\lambda t - x \cdot y) \\
+        \tau &= at + b\qquad &\xi &= ax' + by.
+    \end{align*}
+    Then \(a\), \(b\), and \(\tau\) are integers and \(\xi\) an integer vector. We now prove two claims: first, that \(q(\xi) = \tau^2\lambda\) and second, that \(\tau = tq(x - y)\).
+    
+    For the first claim we have
+    \begin{align*}
+        q(\xi) &= \xi \cdot \xi = a^2 (x' \cdot x') + ab(2x' \cdot y) + b^2(y \cdot y) \\
+               &= a^2 t^2 \lambda + ab(2\lambda t - b) + b^2(\lambda + a) \\
+               &= \lambda (a^2 t^2 + 2abt + b^2) = \lambda (at + b)^2 = \tau^2 \lambda.
+    \end{align*}
+    Similarly, for the second claim we have
+    \begin{align*}
+        t\tau &= t(at + b) = at^2 + bt = t^2 (y \cdot y) - \lambda t^2 + 2\lambda t^2 - t(2x' \cdot y)\\
+        &= t^2(y \cdot y) - t(2x' \cdot y) + x' \cdot x' = (ty-x') \cdot (ty-x') = t^2 q(x - y),
+    \end{align*}
+    and thus \(\tau = tq(x - y)\). Since \(|q(x - y)| < 1\), we have \(|\tau| < |t|\), condradicting the minimality of \(|t|\).
+\end{proof}
+
 We now arrive to the main result of this section, which is due to Gauss.
+
 \begin{theorem}
-    A positive integer \(n\) is a sum of three squares if and only if \(n\) is not of the form \(4^a k\) for some integer \(a\), where \(k \equiv 7 \pmod{8}\).
+    {\normalfont \cite[pp.\,46--47]{serre2012course}}
+    A positive integer \(\lambda\) is a sum of three squares if and only if \(\lambda\) is not of the form \(4^\nu k\) for some integer \(\nu\), where \(k \equiv 7 \pmod{8}\).
 \end{theorem}
+
+\begin{proof}
+    We may suppose without loss of generality that \(\lambda\) is nonzero. Then the condition that \(\lambda\) be of the form \(4^\nu k\) where \(k \equiv 7 \pmod{8}\) is equivalent to saying that \(-\lambda\) is not a square in \(\Rationals_2\). By Lemma\,\ref{lem:sum-of-three-squares-q2}, this implies that \(\lambda\) is represented by a sum of three squares in \(\Rationals\). Let \(q = x_1^2 + x_2^2 + x_3^2\) be this form. By Lemma\,\ref{lem:sum-of-three-squares-davenport-cassels}, we need to check that the form \(q\) satisfies the condition that for every rational vector \(x = (x_1, x_2, x_3)\) there exists some integer vector \(y = (y_1, y_2, y_3)\) such that \(q(x - y) < 1\). Now if \(x\) is a rational vector, we can choose \(y\) satisfying \(|y_i - x_i| \leq 1/2\) for all \(i\). Then
+    \[
+        \sum(x_i - y_i)^2 \leq \sum \left(\frac{1}{2}\right)^2 = \frac{3}{4} < 1,
+    \]
+    as desired. Therefore \(q\) represents \(\lambda\) in \(\Integers\).
+\end{proof}
 
 We can deduce the following corollary, due to Lagrange and commonly known as the four-square theorem, as mentioned in the Preface.
 
 \begin{corollary}
     Every positive integer is a sum of four squares.
 \end{corollary}
+
+\begin{proof}
+    Let \(\lambda > 0\) be an integer. Write \(\lambda\) in the form \(4^{\nu}m\) where \(m\) is an integer not divisible by \(4\). If \(m \equiv 1, 2, 3, 5, 6 \pmod{8}\) then \(m\) is a sum of three squares and so is \(\lambda\). Otherwise if \(m \equiv 7 \equiv -1 \pmod{8}\) then \(m-1\) is the sum of three squares. Hence \(m\) is the sum of four squares and so is \(\lambda\).
+\end{proof}
 
