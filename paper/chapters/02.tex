@@ -36,11 +36,15 @@ We shall see shortly that this is indeed a ring. Each element of \(\Integers_p\)
 Addition and multiplication in \(\Integers_p\) are defined componentwise, that is, if \(\alpha = (a_n)_{n \in \Naturals}\) and \(\beta = (b_n)_{n \in \Naturals}\) are elements of \(\Integers_p\), then \(\alpha + \beta = (a_n + b_n)_{n \in \Naturals}\) and \(\alpha\beta = (a_nb_n)_{n \in \Naturals}\). Elements of \(\Integers_p\) are called \emph{\(p\)-adic integers}.
 
 We proceed by exploring some properties of \(\Integers_p\). First fix a natural number \(n\) and define the map \(\epsilon_n: \Integers_p \to A_n\) which associates with every \(p\)-adic integer \(\alpha\) its \(n\)-th component \(a_n\). Then we have
-\begin{theoremx}
-    The sequence \(0 \to \Integers_p \xrightarrow{p^n} \Integers_p \xrightarrow{\epsilon_n} A_n \to 0\) is a short exact sequence of abelian groups.
+\begin{theoremx}\label{thm:exact-sequence-zp}
+    The sequence \(0 \to \Integers_p \xrightarrow{[p^n]} \Integers_p \xrightarrow{\epsilon_n} A_n \to 0\) is a short exact sequence of abelian groups.
 \end{theoremx}
 
-See \cite[pp.~11--12]{serre2012course} for a proof.
+See \cite[pp.~11--12]{serre2012course} for a proof. Theorem~\ref{thm:exact-sequence-zp} has the following immediate consequence:
+
+\begin{corollary}
+    For all positive integers \(m\), \(\Integers_p / p^m \Integers_p \cong \Integers / p^m \Integers\).
+\end{corollary}
 
 \begin{theoremx}\label{thm:criterion-units-of-zp}
     An element of \(\Integers_p\) is invertible if and only if it is not divisible by \(p\).
@@ -60,18 +64,27 @@ See \cite[pp.~11--12]{serre2012course} for a proof.
 
 \smallskip
 
-The unique integer \(n\) defined in Theorem \ref{thm:units-of-zp} induces a function \(\nu_p : \Integers_p \to \Integers_{\geq 0}\), i.e., we shall write \(\nu_p(\alpha) = n\) where \(\alpha = p^nu\) for some \(u \in \Units\). This function is called the \emph{\(p\)-adic valuation} of \(\alpha\). We write \(\nu_p(0) = +\infty\), and the reader may verify that it satisfies the following properties for all \(\alpha, \beta \in \Integers_p\):
+The unique integer \(n\) defined in Theorem \ref{thm:units-of-zp} induces a function \(\nu_p : \Integers_p \to \Integers_{\geq 0}\), i.e., we shall write \(\nu_p(\alpha) = n\) where \(\alpha = p^nu\) for some \(u \in \Units\). This function is called the \emph{\(p\)-adic valuation} of \(\alpha\). We write \(\nu_p(0) = +\infty\), and this valuation satisfies the following properties for all \(\alpha, \beta \in \Integers_p\):
 
 \smallskip
 
 \begin{enumerate}[nosep, label=(\roman*)]
-    \item \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta)\); and
+    \item \(\nu_p(\alpha) =\infty\) if and only if \(\alpha = 0\);\label{item:padic-valuation-zero}
+    \item \(\nu_p(\alpha) = 0\) if and only if \(\alpha \in \Units\);\label{item:padic-valuation-units}
+    \item \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta)\); and\label{item:padic-valuation-product}
     \item \(\nu_p(\alpha + \beta) \geq \min\{\nu_p(\alpha), \nu_p(\beta)\}\).
+    \label{item:padic-valuation-sum}
 \end{enumerate}
 
 \smallskip
 
-\noindent From this we conclude that \(\Integers_p\) has no zero divisors and is therefore an integral domain. The valuation \(\nu_p\) also allows us to define the \(p\)-adic absolute value \(|\ |_p : \Integers_p \to \Reals_{\geq 0}\) by
+Properties \ref{item:padic-valuation-zero} and \ref{item:padic-valuation-units} are immediate from the definition of \(\nu_p\). The product formula in \ref{item:padic-valuation-product} follows trivially if either \(\alpha\) or \(\beta\) is zero. If that is not the case, suppose that \(\nu_p(\alpha) = m\) and \(\nu_p(\beta) = n\) for some integers \(m\) and \(n\). We then have \(\alpha = p^mu\) and \(\beta = p^nv\) for some \(u, v \in \Units\). It follows that \(\alpha\beta = p^{m + n}uv\) so that the product \(\alpha\beta\) lies in the image of the map \([p^{m+n}]\) defined in Theorem~\ref{thm:exact-sequence-zp} and \(nu_p(\alpha\beta) \geq m + n\). On the other hand, both \(\epsilon_m(\alpha)\) and \(\epsilon_n(\beta)\) are nonzero and thus \(\epsilon_{m+n}(\alpha\beta)\) is nonzero and thus \(nu_p(\alpha\beta) \leq m + n\). This proves the product formula.
+
+Now to prove \ref{item:padic-valuation-sum}, we can assume without loss of generality that \(m \leq n\), so that the image of \([p^n]\) is contained in \([p^m]\) and thus both \(\alpha\) and \(\beta\) lie in the image of \([p^m]\), as does \(\alpha + \beta\), and thus \(nu_p(\alpha + \beta) \geq m = \min\{\nu_p(\alpha), \nu_p(\beta)\}\).
+
+From this we conclude that \(\Integers_p\) has no zero divisors and is therefore an integral domain. Indeed if \(\alpha\) and \(\beta\) are nonzero \(p\)-adic integers, we have \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta) < \infty\) and thus \(\alpha\beta \neq 0\).
+
+The valuation \(\nu_p\) also allows us to define the \(p\)-adic absolute value \(|\ |_p : \Integers_p \to \Reals_{\geq 0}\) by
 \[
   |\alpha|_p = p^{-\nu_p(\alpha)},
 \]
@@ -81,6 +94,7 @@ for all \(\alpha \in \Integers_p\), with equality if and only if \(\alpha = 0\).
 \]
 The reader may verify that this is indeed a metric on \(\Integers_p\). Finally, the ring \(\Integers_p\) is complete with respect to this metric and \(\Integers\) is dense in \(\Integers_p\). \cite[p.~12]{serre2012course}
 
+\subsection{The field \(\Rationals_p\).}\label{sec:qp-field-props}
 Because \(\Integers_p\) is an integral domain, we can define the field of fractions of \(\Integers_p\), which we shall denote by \(\Rationals_p\). The elements of \(\Rationals_p\) are called \emph{\(p\)-adic numbers}.
 
 \subsection{Polynomials over \(\Integers_p\) and \(\Rationals_p\).}~We shall now consider polynomials with coefficients in \(\Integers_p\). We are interested, as usual, in finding the roots of some polynomial \(f(x)\) in \(\Integers_p[x]\), i.e., we want to find the \(p\)-adic integers (or \(p\)-adic numbers) \(\alpha\) such that \(f(\alpha) = 0\). We can observe, however, that finding a solution in \(\Rationals_p\) for some prime \(p\) does not necessarily guarantee the existence of solutions in \(\Rationals\). For example, the polynomial \(x^2 - 2\) has roots in \(\Rationals_7\) but clearly \(\sqrt{2} \notin \Rationals\). We shall defer answering the question of when we can find solutions in \(\Rationals\) to later in this chapter; for now we shall investigate the existence of solutions in \(\Integers_p\) and \(\Rationals_p\).\label{sec:polynomials-over-zp}
