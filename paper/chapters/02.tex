@@ -324,7 +324,7 @@ We now return to the proof of the theorem and consider three cases:
     \[
     (pu, pv)_p = (-1)^{\frac{p-1}{2}}\legendre{u}{p}\legendre{v}{p}.
     \]
-    Applying formula (\ref{item:formula-e}) of the theorem of \S\,\ref{sec:hilbert-symbol-intro} we obtain
+    Applying formula \ref{item:formula-e} of the theorem of \S\,\ref{sec:hilbert-symbol-intro} we obtain
     \[
     (pu, pv)_p = (pu, -p^2uv)_p = (pu, -uv)_p.
     \]
@@ -388,7 +388,7 @@ This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, 
     \begin{enumerate}[nosep, label=(\roman*), wide]
         \item If \(a = b = -1\), then \((a, b)_v = (-1, -1)_v = -1\) for all \(v \in \Places\).
         \item If \(a = -1\) and \(b = \pi\), where \(\pi\) is a prime, then if \(\pi = 2\), we have \((a, b)_v = (-1, 2)_v = 1\) for all places \(v\). If \(\pi\) is odd, then \((a, b)_v = (-1, \pi)_v = 1\) for all \(v \neq 2\) and \((a, b)_2 = (-1, \pi)_2 = (-1, \pi)_{\pi} = (-1)^{\epsilon(\pi)} = 1\).\label{item:case-ii-hilbert-prod}
-        \item If \(a\) and \(b\) are the same prime \(\pi\), then by the theorem of \S\,\ref{sec:hilbert-symbol-intro}, \((\pi, \pi)_v = (-1, \pi)_v\) for all places \(v\) and we are back to case (\ref{item:case-ii-hilbert-prod}).
+        \item If \(a\) and \(b\) are the same prime \(\pi\), then by the theorem of \S\,\ref{sec:hilbert-symbol-intro}, \((\pi, \pi)_v = (-1, \pi)_v\) for all places \(v\) and we are back to case \ref{item:case-ii-hilbert-prod}.
         \item If \(a = 2\) and \(b\) is an odd prime \(\pi'\), then \((2, \pi')_v = 1\) for all \(v \notin \{2, \pi'\}\) while \((2, \pi')_2 = (-1)^{\omega(\pi')}\) and \((2, \pi')_{\pi'} = \legendre{2}{v}\), for \(v = 2\) and \(v = \pi'\), respectively; in either of these last two cases, we have \((2, \pi')_v = (-1)^{(\pi'^2 - 1)/8} = 1\).
         \item If \(a\) and \(b\) are distinct odd primes \(\pi\) and \(\pi'\), then \((a,b)_v = 1\) for all \(v \notin \{2, \pi, \pi'\}\). In those cases we have \((a, b)_v = (-1)^{\epsilon{\pi}\epsilon{\pi'}}\) if \(v = 2\); \((a, b)_v = \legendre{\pi}{\pi'}\) if \(v = \pi\); and \((a, b)_v = \legendre{\pi'}{\pi}\) if \(v = \pi'\). The result follows by quadratic reciprocity, \emph{viz.,}
         \[
@@ -405,7 +405,7 @@ This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item almost all the \(\epsilon_{i, v}\) are equal to \(1\);
         \item for all \(i \in I\), we have \(\prod_{v \in \Places} \epsilon_{i, v} = 1\); and
-        \item for all \(v \in \Places\), there exists \(\lambda_v \in \Rationals_v^{\times}\) such that \((x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(i \in I\).
+        \item for all \(v \in \Places\), there exists \(\lambda_v \in \Rationals_v^{\times}\) such that \((x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(i \in I\).\label{item:condition-c}
     \end{enumerate}
 \end{theoremx}
 
@@ -447,16 +447,39 @@ for all \(i\), as desired. {\scshape q.e.d.}
 
 \medskip
 
-\begin{lemma}[``Dirichlet's theorem on arithmetic progressions'']\label{lem:dirichlet}
+\begin{lemmax}[``Dirichlet's theorem on arithmetic progressions'']\label{lem:dirichlet}
     {\normalfont\cite[p.~25]{serre2012course}}
     If \(a\) and \(m\) are relatively prime positive integers, then there exist infinitely many primes \(p\) such that \(p \equiv a \pmod{m}\).
-\end{lemma}
+\end{lemmax}
 
 This lemma is proved by showing that the value of the Dirichlet \(L\)-function at \(s = 1\) is nonzero. The proof requires some results from complex analysis and analytic number theory that are beyond the scope of this paper. We refer the reader to Chapter 6 of \cite{serre2012course} for the development and the proof of this result.
 
 We are now ready to prove Theorem\,\ref{thm:global-properties-hs}.
 
-\emph{Proof of Theorem} \ref{thm:global-properties-hs}. Let \(\{\epsilon_{i,v}\}\) a family of numbers equal to \(\pm 1\) satisfying the conditions of the theorem. Multiplying the \(x_i\) by the square of some integer, we can assume that the \(x_i\) are all integers (recall that the Hilbert symbol is trivial on squares).
+\emph{Proof of Theorem} \ref{thm:global-properties-hs}. Let \(\{\epsilon_{i,v}\}\) a family of numbers equal to \(\pm 1\) satisfying the conditions of the theorem. Multiplying the \(x_i\) by the square of some integer, we can assume that the \(x_i\) are all integers (recall that the Hilbert symbol is trivial on squares). Let now \(S\) be the set of all prime factors of the \(x_i\) together with the symbol, \(\infty\) and the prime number \(2\). In addition, define the set \(T\) be the places \(v \in \Places\) such that there eixsts \(i \in I\) with \(\epsilon_{i, v} = -1\). The reader may verify that these sets  are finite. We can now distinguish between two cases.
+
+\begin{enumerate}[nosep, label=(\roman*), wide]
+    \item In the first case we have \(S \cap T = \emptyset\). Let \(a\) be the product of all places \(\pi \in T\) and \(m\) the product of all odd places \(\pi \in S\) multiplied by \(8\), in both cases excepting the case where \(\pi = \infty\). Because \(S\) and \(T\) are disjoint, the integers \(a\) and \(m\) are relatively prime, and by Lemma\,\ref{lem:dirichlet} there exists a prime number \(p\) such that \(p \equiv a \pmod{m}\) with \(p \notin S \cup T\). We shall now show that \(\lambda = ap\) has our desired property, i.e., \((x_i, \lambda)_v\) for all \(i \in I\) and \(v \in \Places\). 
+    
+    If \(v \in S\), we have \(\epsilon_{i, v} = 1\) since \(S\) and \(T\) are disjoint, and we must check that \((x_i, \lambda) = 1\). If \(v = \infty\), this fact follows from \(\lambda > 0\); if \(v\) is a prime number \(\pi\), we have \(\lambda \equiv a^2 \pmod{m}\), hence \(\lambda \equiv a^2 \pmod{8}\) for \(\pi = 2\) and \(\lambda \equiv a^2 \pmod{\pi}\) for \(\pi\) odd. Since \(\lambda\) and \(a\) are \(\pi\)-adic units, it follows that \(x\) is a square in \(\Rationals_{\pi}^{\times}\) and thus \((x_i, \lambda)_v = 1\).%TODO ADD REF
+
+    Otherwise, if \(v = \pi\) is not in \(S\), \(x_i\) is a \(\pi\)-adic unit; and since \(\pi\) is an odd prime we have, by the theorem of \S\,\ref{sec:computing-hilbert-symbol},
+    \[
+        (x_i, \mu)_{\pi} = \legendre{x_i}{\pi}^{\nu_\pi(\mu)}
+    \]
+    for all \(\mu \in \Rationals_{\pi}^{\times}\). If \(\pi\) is not in \(T \cup \{p\}\), \(\lambda\) is a \(\pi\)-adic unit, hence the \(\pi\)-adic valuation \(\nu_{\pi}(\lambda) = 0\) and the above formula shows that \((x_i, \lambda) = 1\); on the other hand, we have \(\epsilon_{i, \pi} = 1\) because \(\pi \notin T\). If \(\pi\) is in \(T\), we then have \(\nu_{\pi}(\lambda) = 1\); moreover, by condition {\normalfont\ref{item:condition-c}} of the theorem, there exists a \(\lambda_{\pi} \in \Rationals_{\pi}^{\times}\) such that \((x_i, \lambda_{\pi})_{\pi} = \epsilon_{i, \pi}\) for all \(i \in I\). Since one of the \(\epsilon_{i, \pi}\) is equal to \(-1\) (because \(pi \in T\)), we have \(\nu_\pi(\lambda_\pi) = 1 \pmod{2}\) and therefore
+    \[
+        (x_i, \lambda)_{\pi} = \legendre{x_\pi}{\pi} = (x_i, \lambda_{\pi})_{\pi} = \epsilon_{i, \pi} \text{ for all } i \in I.
+    \]
+
+    Finally, we consider the case \(\pi = p\), which we deduced from the previous cases using the product formula, \emph{viz.,}
+    \[
+        (x_i, \lambda)_p = \prod_{v \neq p} (x_i, \lambda)_v = \prod_{v \neq p} \epsilon_{i, v} = \epsilon_{i, p}.
+    \]
+    This concludes the proof of the theorem in the case \(S \cap T = \emptyset\).
+
+    \item Now we shall prove the general case. We have established in \S\,\ref{sec:qp-field-props} that the squares of \(\Rationals_v^{\times}\) form an open subgroup of \(\Rationals_v^{\times}\). By the approximation lemma above, there exists \(\lambda' \in \Rationals^{\times}\) such that \(\lambda' / \lambda_v\) is a square in \(\Rationals_v^{\times}\) for all \(v \in S\). In particular, \((x_i, \lambda')_v = (x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(v\) in \(S\). Define \(\eta_{i, v} = \epsilon_{i, v} (x_i, \lambda')_v\); the family \(\{\eta_{i, v}\}\) satisfies the conditions of the theorem and moreover, \(\eta_{i, v} = 1\) for all \(v \in S\). By the first case in this proof (\(S \cap T = \emptyset\)), there exists \(\zeta \in \Rationals^{\times}\) such that \((x_i, \zeta)_v = \eta_{i, v}\) for all \(i \in I\) and \(v \in \Places\). Setting \(\lambda = \lambda' \zeta\) we obtain the desired result. {\scshape q.e.d.}
+\end{enumerate}
 
 \section{Quadratic forms over \(\FiniteHead_q\) and \(\RationalsHead_p\)}
 
