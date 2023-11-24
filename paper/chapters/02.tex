@@ -35,7 +35,7 @@ We shall see shortly that this is indeed a ring. Each element of \(\Integers_p\)
 \]
 Addition and multiplication in \(\Integers_p\) are defined componentwise, that is, if \(\alpha = (a_n)_{n \in \Naturals}\) and \(\beta = (b_n)_{n \in \Naturals}\) are elements of \(\Integers_p\), then \(\alpha + \beta = (a_n + b_n)_{n \in \Naturals}\) and \(\alpha\beta = (a_nb_n)_{n \in \Naturals}\). Elements of \(\Integers_p\) are called \emph{\(p\)-adic integers}.
 
-We proceed by exploring some properties of \(\Integers_p\). First fix a natural number \(n\) and define the map \(\pi_n: \Integers_p \to A_n\) which associates with every \(p\)-adic integer \(\alpha\) its \(n\)-th component \(a_n\). Then we have
+We proceed by exploring some properties of \(\Integers_p\). First fix a natural number \(n\) and define the projection \(\pi_n: \Integers_p \to A_n\) which associates with every \(p\)-adic integer \(\alpha\) its \(n\)-th component \(a_n\). Let \([p^n]\) be the map from \(A_n\) to itself defined by multiplication by \(p^n\). Then we have
 \begin{theoremx}\label{thm:exact-sequence-zp}
     The sequence \(0 \to \Integers_p \xrightarrow{[p^n]} \Integers_p \xrightarrow{\pi_n} A_n \to 0\) is a short exact sequence of abelian groups.
 \end{theoremx}
@@ -86,11 +86,11 @@ From this we conclude that \(\Integers_p\) has no zero divisors and is therefore
 
 \subsection{The \(p\)-adic absolute value and metric.}\label{sec:padic-absolute-value}~Because \(\Integers_p\) is an integral domain, we can define the field of fractions\footnote{
     Let \(R\) be an integral domain. The \emph{field of fractions} of \(R\) is the set of equivalence classes of pairs \((a, b)\) where \(a, b \in R\) and \(b \neq 0\) under the equivalence relation \((a, b) \sim (c, d)\) if and only if \(ad = bc\). We denote the field of fractions of \(R\) by \(\FracField(R)\). See also \cite[p.~142]{hungerford2012algebra}. This definition generalizes the construction of the field of rational numbers from the ring of integers.
-} of \(\Integers_p\), which we shall denote by \(\Rationals_p\). The elements of \(\Rationals_p\) are called \emph{\(p\)-adic numbers}. The valuation \(\nu_p\) also allows us to define the \(p\)-adic absolute value \(|\ |_p : \Integers_p \to \Reals_{\geq 0}\) by
+} of \(\Integers_p\), which we shall denote by \(\Rationals_p\). The elements of \(\Rationals_p\) are called \emph{\(p\)-adic numbers}. The valuation \(\nu_p\) also allows us to define the \(p\)-adic absolute value \(|\ |_p : \Rationals_p \to \Reals_{\geq 0}\) by
 \[
   |\alpha|_p = p^{-\nu_p(\alpha)},
 \]
-for all \(\alpha \in \Integers_p\), with equality if and only if \(\alpha = 0\). Recall that an absolute value function on a field \(\field\) is any function \(|\ | : \field \to \Reals_{\geq 0}\) satisfying the following properties for all \(x, y \in \field\):
+for all \(\alpha \in \Rationals_p\), with equality if and only if \(\alpha = 0\). Recall that an absolute value function on a field \(\field\) is any function \(|\ | : \field \to \Reals_{\geq 0}\) satisfying the following properties for all \(x, y \in \field\):
 
 \smallskip
 
@@ -100,7 +100,7 @@ for all \(\alpha \in \Integers_p\), with equality if and only if \(\alpha = 0\).
     \item \(|x + y| \leq |x| + |y|\).\label{item:abs-val-sum}
 \end{enumerate}
 
-The reader may verify that the \(p\)-adic absolute value we have just defined satisfies the above properties. Moreover, we also claim that the \(p\)-adic absolute value is \emph{non-archimedean}, i.e., it satisfies the stronger property that \(|x + y|_p \leq \max\{|x|_p, |y|_p\}\) for all \(x, y \in \Integers_p\). To see this, let \(x, y \in \Integers_p\) and suppose, without loss of generality, that \(|x|_p \geq |y|_p\). Then \(p^{-\nu_p(x)} \geq p^{-\nu_p(y)}\) which implies that \(p^{\nu_p(x)} \leq p^{\nu_p(y)}\) and hence \(\min\{\nu_p(x), \nu_p(y)\} = \nu_p(x)\). It follows that \(p^{-\nu_p(x + y)} \leq p^{-\nu_p(x)}\) or equivalently, \(|x + y|_p \leq |x|_p = \max\{|x|_p, |y|_p\}\), proving our claim.
+The reader may verify that the \(p\)-adic absolute value we have just defined satisfies the above properties. Moreover, we also claim that the \(p\)-adic absolute value is \emph{non-archimedean}, i.e., it satisfies the stronger property that \(|x + y|_p \leq \max\{|x|_p, |y|_p\}\) for all \(x, y \in \Rationals_p\). To see this, let \(x, y \in \Rationals_p\) and suppose, without loss of generality, that \(|x|_p \geq |y|_p\). Then \(p^{-\nu_p(x)} \geq p^{-\nu_p(y)}\) which implies that \(p^{\nu_p(x)} \leq p^{\nu_p(y)}\) and hence \(\min\{\nu_p(x), \nu_p(y)\} = \nu_p(x)\). It follows that \(p^{-\nu_p(x + y)} \leq p^{-\nu_p(x)}\) or equivalently, \(|x + y|_p \leq |x|_p = \max\{|x|_p, |y|_p\}\), proving our claim.
 
 Our definition of the \(p\)-adic absolute value provides us with a notion of ``size'' in \(\Rationals_p\). With this, we can now introduce the notion of ``distance'' between two \(p\)-adic numbers by defining a metric\footnote{
     Again for completeness we recall the definition of a metric. Let \(X\) be a set. A \emph{metric} on \(X\) is a function \(d : X \times X \to \Reals_{\geq 0}\) satisfying the following properties for all \(x, y, z \in X\):
@@ -117,7 +117,7 @@ Our definition of the \(p\)-adic absolute value provides us with a notion of ``s
 
 The reader may verify that this is indeed a metric on \(\Integers_p\) using the definition we have provided in the footnote \emph{infra}.
 
-\subsection{Completions.}~Having defined the \(p\)-adic absolute value and metric, we shall now use them to introduce another way of looking at the field of \(p\)-adic numbers. The main goal of this section is to prove that the field of \(p\)-adic numbers is the completion of the field of rational numbers with respect to the \(p\)-adic absolute value. The treatment throughout this paper has been mainly algebraic, but we shall now introduce some results from analysis to achieve our aim. Nevertheless, the exposition in this section shall be cursory, as we shall not need the full strength of the results we shall prove here. We refer the reader to Chapters 2--3 Gouv\^ea's engaging book \cite{gouvea1997p} for a more detailed treatment.
+\subsection{Completions.}~Having defined the \(p\)-adic absolute value and metric, we shall now use them to introduce another way of looking at the field of \(p\)-adic numbers. The main goal of this section is to prove that the field of \(p\)-adic numbers is the completion of the field of rational numbers with respect to the \(p\)-adic absolute value. The treatment throughout this paper has been mainly algebraic, but we shall now introduce some results from analysis to achieve our aim. Nevertheless, the exposition in this section shall be cursory, as we shall not need the full strength of the results we shall prove here. We refer the reader to Chapters 2--3 of \cite{gouvea1997p} for a more detailed treatment.
 
 We first recall the following definitions from analysis; the reader may consult \cite{rudin1976principles} for a more detailed treatment. For these definitions, let \(\field\) be a field and let \(|\ |\) be an absolute value on \(\field\). 
 
@@ -155,9 +155,71 @@ By the `trivial' absolute value we mean the absolute value which is defined as \
 
 Ostrowski's theorem help us make sense of what is convention among number theorists and what will be our practice in this essay of often referring to the set of primes ``including the symbol \(\infty\)''.\footnote{In \S\,\ref{sec:hilbert-symbol-intro}, we provide a shorthand notation for the set of primes including the symbol \(\infty\), which we shall call the set of \emph{places} of \(\Rationals\).} By this theorem we can think of all non-trivial absolutes values on \(\Rationals\) as being prime, both in the sense of the \(p\)-adic absolute value for some prime \(p\) and in the sense of the usual absolute value for the ``prime at infinity.'' On the other hand, Ostrowski's theorem also reduces any result about absolute values on \(\Rationals\) to the case of the \(p\)-adic absolute value for some prime \(p\)  and the usual absolute value, as we have in the following lemma.
 
-\begin{lemma}\label{lem:ostrowski-lemma}
+\begin{lemmax}\label{lem:ostrowski-lemma}
+    {\normalfont\cite[pp.~63--64]{gouvea1997p}}
     The field \(\Rationals\) is not complete with respect to any of its non-trivial absolute values.
-\end{lemma}
+\end{lemmax}
+
+Because \(\Rationals\) is not complete with respect to any of its non-trivial absolute values, we shall now construct its completion. We will follow the path of least resistance \cite[p.~64]{gouvea1997p} and add to \(\Rationals\) the limits of all the Cauchy sequences. Since those limits do not currently exist, we need to build them using the limits of the Cauchy sequences we already have. We now make this construction precise. We shall denote by \(\mathscr{C}\) (or \(\mathscr{C}_p\) if we want to emphasize \(p\)) the set of all Cauchy sequences of elements of \(\Rationals\). If \((x_n)\) and \((y_n)\) are sequences in \(\mathscr{C}\), then defining \((x_n) + (y_n) = (x_n + y_n)\) and \((x_n)(y_n) = (x_ny_n)\) makes \(\mathscr{C}\) into a commutative ring with identity (the constant sequence \((1, 1, 1, \dots)\)).
+
+We are interested in a specific subset of \(\mathscr{C}\), to wit, the subset of sequences that tend to zero. Denote this set by \(\mathfrak{m}\) for brevity. By our definition of multiplication in \(\mathscr{C}\), it is clear that this subset is an ideal of \(\mathscr{C}\). That is, if \((x_n)\) is a sequence in \(\mathscr{C}\) and \((y_n)\) is a sequence that tends to zero, then \((x_n)(y_n) = (x_ny_n)\) is a sequence that tends to zero. We also claim that this ideal is maximal, i.e., if \(\mathfrak{a}\) is an ideal of \(\mathscr{C}\) such that \(\mathfrak{m} \subseteq \mathfrak{a}\), then \(\mathfrak{a} = \mathfrak{m}\). This latter claim is a bit trickier to prove. Since the constant sequence \((1, 1, 1, \dots)\) which is the identity in \(\mathscr{C}\) converges to \(1\), it follows that \((1, 1, 1, \dots) \notin \mathfrak{m}\) and thus \(\mathfrak{m} \subsetneq \mathscr{C}\).
+
+Now to show that \(\mathfrak{m}\) is indeed maximal, suppose first that \(\mathfrak{a}\) is an ideal of \(\mathscr{C}\) such that \(\mathfrak{m} \subsetneq \mathfrak{a} \subseteq \mathscr{C}\). Suppose \((x_n) \in \mathfrak{a} \setminus \mathfrak{m}\); then since the limit of \((x_n)\) is not zero, there must exist some number \(\gamma > 0\) and an integer \(N\) such that \(|x_n| \geq \gamma\) for all \(n \geq N\). This would imply that \(x_n \neq 0\) for all \(n \geq N\) so that we can define a new sequence \((y_n)\) by setting \(y_n = 1/x_n\) for all \(n \geq N\) and \(y_n = 0\) otherwise. Then we have
+\[
+    |y_{n+1} - y_n| = \left|\frac{1}{x_{n+1}} - \frac{1}{x_n}\right| = \frac{|x_n - x_{n+1}|}{|x_nx_{n+1}|} \leq \frac{1}{\gamma^2}|x_n - x_{n+1}| \to 0
+\]
+and thus \((y_n)\) is a Cauchy sequence. Now let \((z_n)\) be the sequence defined by \(z_n = x_ny_n\), so that \(z_n = 0\) for all \(n < N\) and \(z_n = 1\) for all \(n \geq N\). If we define a new sequence \((w_n)\) by subtracting \((z_n)\) from the constant sequence \((1, 1, 1, \dots)\), we obtain a sequence that tends to zero. But since \((w_n)\) and \((z_n)\) are both in \(\mathfrak{a}\), it follows that \((1, 1, 1, \dots)\) which is the identity in \(\mathscr{C}\) is also in \(\mathfrak{a}\) and thus \(\mathfrak{a} = \mathscr{C}\). This proves that \(\mathfrak{m}\) is maximal.
+
+Having laid the groundwork, we can now define the \emph{completion} of \(\Rationals\) with respect to the \(p\)-adic absolute value as the quotient ring
+\begin{equation}\label{eq:completion-of-rationals}
+    \Rationals_p = \mathscr{C}_p / \mathfrak{m}_p;
+\end{equation}
+moreover, since \(\mathfrak{m}_p\) is maximal, \(\Rationals_p\) is a field. We shall now prove that \(\Rationals_p\) is indeed the completion of \(\Rationals\) with respect to the \(p\)-adic absolute value.
+
+The elements of \(\Rationals_p\) are equivalence classes of Cauchy sequences of rational numbers. First observe that for any rational number \(x\), the constant sequence \((x, x, x, \dots)\) is a Cauchy sequence and thus defines an element of \(\mathscr{C}\). The map \(x \mapsto (x, x, x, \dots)\) is an embedding of \(\Rationals\) into \(\mathscr{C}\) since two sequences are equal if and only if every term of one sequence is equal to the corresponding term of the other sequence, which for two constant sequences \((x, x, x, \dots)\) and \((y, y, y, \dots)\) is equivalent to saying that \(x = y\). By our definition of \(\Rationals_p\) in \eqref{eq:completion-of-rationals} above, one can observe that two sequences \((x_n)\) and \((y_n)\) in \(\mathscr{C}_p\) differ by an element of \(\mathfrak{m}_p\) if and only if their difference \((x_n - y_n)\) is a sequence that tends to zero. This is equivalent to saying that we maintain the inclusion \(\Rationals \hookrightarrow \Rationals_p\), which sends each element \(x \in \Rationals\) to the equivalence class of the constant sequence \((x, x, x, \dots)\). Now to verify that we have indeed obtained a completion of \(\Rationals\), we check two things: first that \(\Rationals\) is dense in \(\Rationals_p\) and second that \(\Rationals_p\) is complete with respect to the \(p\)-adic absolute value.
+
+\begin{lemmax}
+    {\normalfont\cite[pp.~68--69]{gouvea1997p}}
+    The image of \(\Rationals\) in \(\Rationals_p\) is a dense subset of \(\Rationals_p\).
+\end{lemmax}
+
+\begin{proof}
+    We begin with a definition. We say that a Cauchy sequence \((x_n)\) represents an element \(\alpha \in \Rationals_p\) if \(|x_n|_p \to |\alpha|_p\). Our goal is to show that every open ball around an element \(\alpha\) of \(\Rationals_p\) contains an element of the image of \(\Rationals\), i.e., a constant sequence.
+    
+    Fix a radius \(\epsilon > 0\). Let \((x_n)\) be a Cauchy sequence representing \(\alpha\) and let \(\epsilon' > 0\) be another number such that \(\epsilon > \epsilon'\). Since \((x_n)\) is Cauchy, the exists an \(N\) such that \(|x_n - x_m|_p < \epsilon'\) for all \(n, m \geq N\). Let \(y = x_N\) and consider the constant sequence \((y, y, y, \dots)\). We claim that this sequence represents an element of \(\Rationals_p\) which is in the open ball \(B(\alpha, \epsilon)\). To see this, observe that \(\alpha - y\) is represented by the sequence \((x_n - y)\) and thus \(|\alpha - y|_p = \lim_{n \to \infty}|x_n - y|_p\). But then for any \(n \geq N\), we have \[|x_n - y|_p = |x_n - x_N|_p < \epsilon' < \epsilon\] and thus the constant sequence \((y, y, y, \dots)\) is in the open ball \(B(\alpha, \epsilon)\).
+\end{proof}
+
+\begin{lemmax}
+    {\normalfont\cite[pp.~69--70]{gouvea1997p}}
+    The field \(\Rationals_p\) is complete with respect to the \(p\)-adic absolute value.
+\end{lemmax}
+
+See \cite[pp.~69--70]{gouvea1997p} for a proof.
+
+Putting this altogether, we are now able to prove the main result of this section.
+
+\begin{theoremx}
+    {\normalfont\cite[pp.~70--71]{gouvea1997p}}
+    For each prime number \(p\), there exists a field \(\Rationals_p\) satisfying the following properties:
+
+    \smallskip
+
+    \begin{enumerate}[nosep, label=(\alph*)]
+        \item There is an embedding \(\Rationals \hookrightarrow \Rationals_p\) such that the image of \(\Rationals\) is dense in \(\Rationals_p\).
+        \item The field \(\Rationals_p\) is complete with respect to the \(p\)-adic absolute value.
+    \end{enumerate}
+
+    \smallskip
+
+    Moreover, \(\Rationals_p\) is unique up to isomorphism.
+\end{theoremx}
+
+\begin{proof}
+    It remains to prove that the field \(\Rationals_p\) we have constructed is unique up to isomorphism. Suppose another field \(K\) exists satisfying the conditions of the theorem. Then there exists an embedding \(\Rationals \hookrightarrow K\) preserving the \(p\)-adic absolute value and such that the image of \(\Rationals\) is dense in \(K\). Moreover, for any Cauchy sequence \((x_n)\) in \(\Rationals\), the image of \((x_n)\) in \(K\) is also Cauchy and thus converges to some element of \(K\). Now take some element \(\alpha \in \Rationals_p\). Then there exists a Cauchy sequence \((x_n)\) in \(\Rationals\) representing \(\alpha\). Since \(x_n\) is a rational number, we can find its image in \(K\), which by our definition of \(K\) is also a Cauchy sequence and thus converges to some element of \(K\) because \(K\) is complete. Call this limit in \(K\), \(f(\alpha)\), so that the function \(f: \Rationals_p \to K\) is the identity on \(\Rationals\) and is an isomorphism. Finally, its uniqueness follows from the factthat it induces the identity on \(\Rationals\).
+\end{proof}
+
+This theorem allows us to identify the field of \(p\)-adic numbers with the completion of the field of rational numbers with respect to the \(p\)-adic absolute value without regard to the construction we have provided above, but instead by simply invoking the properties we have identified.
+
 % Finally, the ring \(\Integers_p\) is complete with respect to this metric and \(\Integers\) is dense in \(\Integers_p\). \cite[p.~12]{serre2012course}
 
 
@@ -214,9 +276,6 @@ We say that an element \(x = (x_1, \dots, x_m)\) of \(\Integers_p^m\) is primiti
 \end{proof}
 
 The theorems in this section can be used to show that a polynomial in has a root in \(\Integers_p\) by proving that it has a solution in \(A_n\). \cite{weismann2006annotations}
-
-\subsection{Squares in \(\Rationals_p^{\times}\).}~\label{sec:qp-field-props}
-
 
 \subsection{Hensel's lemma.}~We now introduce an important result, due to Hensel, which allows us to pass from a solution modulo \(p^n\) to a ``true'' solution in \(\Integers_p\). In essence, this result provides a meaningful way to approximate roots of polynomials in \(\Integers_p[x]\). Finding the root of a polynomial modulo \(p^n\) is the same as finding a value which is within the radius \(p^{-n}\) of the solution in the \(p\)-adic metric \cite{weismann2006annotations} and thus the goal of this approximation algorithm is to make \(n\) successively larger (and thus the radius \(p^{-n}\) successively smaller) until we have a solution in \(\Integers_p\). This result, which we shall call Hensel's lemma, is similar to Newton's method in calculus for finding roots of polynomials given some initial approximation.\footnote{Newton's method is indeed a special case of Hensel's lemma. See \cite{von1984hensel}.}
 
@@ -558,7 +617,7 @@ We are now ready to prove Theorem\,\ref{thm:global-properties-hs}.
     \]
     This concludes the proof of the theorem in the case \(S \cap T = \emptyset\).
 
-    \item Now we shall prove the general case. We have established in \S\,\ref{sec:qp-field-props} that the squares of \(\Rationals_v^{\times}\) form an open subgroup of \(\Rationals_v^{\times}\). By the approximation lemma above, there exists \(\lambda' \in \Rationals^{\times}\) such that \(\lambda' / \lambda_v\) is a square in \(\Rationals_v^{\times}\) for all \(v \in S\). In particular, \((x_i, \lambda')_v = (x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(v\) in \(S\). Define \(\eta_{i, v} = \epsilon_{i, v} (x_i, \lambda')_v\); the family \(\{\eta_{i, v}\}\) satisfies the conditions of the theorem and moreover, \(\eta_{i, v} = 1\) for all \(v \in S\). By the first case in this proof (\(S \cap T = \emptyset\)), there exists \(\zeta \in \Rationals^{\times}\) such that \((x_i, \zeta)_v = \eta_{i, v}\) for all \(i \in I\) and \(v \in \Places\). Setting \(\lambda = \lambda' \zeta\) we obtain the desired result. {\scshape q.e.d.}
+    \item Now we shall prove the general case. The squares of \(\Rationals_v^{\times}\) form an open subgroup of \(\Rationals_v^{\times}\) (cf. \cite[p.~18]{serre2012course}). By the approximation lemma above, there exists \(\lambda' \in \Rationals^{\times}\) such that \(\lambda' / \lambda_v\) is a square in \(\Rationals_v^{\times}\) for all \(v \in S\). In particular, \((x_i, \lambda')_v = (x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(v\) in \(S\). Define \(\eta_{i, v} = \epsilon_{i, v} (x_i, \lambda')_v\); the family \(\{\eta_{i, v}\}\) satisfies the conditions of the theorem and moreover, \(\eta_{i, v} = 1\) for all \(v \in S\). By the first case in this proof (\(S \cap T = \emptyset\)), there exists \(\zeta \in \Rationals^{\times}\) such that \((x_i, \zeta)_v = \eta_{i, v}\) for all \(i \in I\) and \(v \in \Places\). Setting \(\lambda = \lambda' \zeta\) we obtain the desired result. {\scshape q.e.d.}
 \end{enumerate}
 
 \section{Quadratic forms over \(\FiniteHead_q\) and \(\RationalsHead_p\)}
@@ -829,10 +888,9 @@ Before proceeding with the proof, recall that in \S\,\ref{sec:polynomials-over-z
     \[
         (a, b)_v = (-ab, \lambda)_v \quad \text{and} \quad (c, d)_v = (-cd, \lambda)_v,
     \]
-    and thus the forms \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in each \(\Rationals_v\). By our proof in the case \(n = 3\) above, it follows that \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in \(\Rationals\) and thus both \(\quadform{a,b}\) and \(\quadform{c,d}\) represent \(\lambda\) in \(\Rationals\). Thus \(\quadform{a, b, -c, -d}\) represents \(0\) in \(\Rationals\) and the result follows.
+    and thus the forms \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in each \(\Rationals_v\). By our proof in the case \(n = 3\) above, it follows that \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in \(\Rationals\) and thus both \(\quadform{a,b}\) and \(\quadform{c,d}\) represent \(\lambda\) in \(\Rationals\). Thus \(\quadform{a, b, -c, -d}\) represents \(0\) in \(\Rationals\) and the result follows.\label{hm-case:4}
     
-    \item \textbf{Case 4,} \(n \geq 5\). Let \(q = \quadform{a_1, \dots, a_n}\) be a quadratic form of rank \(n \geq 5\). Let \(r = \quadform{a_1, a_2}\) and \(s = \quadform{-a_3, \dots, -a_n}\), so that \(q \cong r \perp s\), i.e., \(q = r + s\) by the notation we introduced in \S\,\ref{sec:results-from-witt} 
-    ADD QED
+    \item \textbf{Case 4,} \(n \geq 5\). Let \(q = \quadform{a_1, \dots, a_n}\) be a quadratic form of rank \(n \geq 5\). Let \(r = \quadform{a_1, a_2}\) and \(s = \quadform{-a_3, \dots, -a_n}\), so that \(q \cong r \perp s\), i.e., \(q = r - s\) by the notation we introduced in \S\,\ref{sec:results-from-witt}. Suppose that \(q\) represents zero over every \(\Rationals_v\). As in Case \ref{hm-case:4} above, ther exists \(\lambda_v \in \Rationals_v^{\times}\) such that \(r\) and \(s\) represent \(\lambda_v\) in \(\Rationals_v\). 
 \end{enumerate}
 
 \medskip
