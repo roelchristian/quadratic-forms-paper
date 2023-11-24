@@ -1,96 +1,181 @@
 \chapter{A local-global principle}
 \label{chap:local-global-principle}
 
-{\scshape In this} chapter we shall prove the Hasse-Minkowski theorem for quadratic forms over \(\Rationals\). We shall follow Chapters 2\,--\,4 of \cite{serre2012course}, introducing and developing the structure theorems for the ring \(\Integers_p\) of \(p\)-adic integers and the field \(\Rationals_p\) of \(p\)-adic numbers together with the main result from Hensel on the roots of polynomials over \(\Integers_p\), followed by the introduction of the Hilbert symbol and some of its properties, and culminating in the proof of the Hasse-Minkowski theorem.
+{\scshape In this} chapter we shall prove the Hasse-Minkowski theorem for
+quadratic forms over \(\Rationals\). We shall follow Chapters 2\,--\,4 of
+\cite{serre2012course}, introducing and developing the structure theorems for
+the ring \(\Integers_p\) of \(p\)-adic integers and the field \(\Rationals_p\)
+of \(p\)-adic numbers together with the main result from Hensel on the roots of
+polynomials over \(\Integers_p\), followed by the introduction of the Hilbert
+symbol and some of its properties, and culminating in the proof of the
+Hasse-Minkowski theorem.
 
 \section{The field of \(p\)-adic numbers}
 
-\subsection{}~The history of the theory of quadratic forms over \(\Rationals\) owes much of its development to the theory of \(p\)-adic numbers as introduced by Hensel and expanded by his student Hasse.\,\cite{hasse1922uber,hensel1913zahlentheorie} In this section, we shall introduce the field of \(p\)-adic numbers and prove some of its basic properties and develop the results we need as they relate to quadratic forms. For a more detailed treatment of the theory of \(p\)-adic numbers, we refer the reader to \cite{gouvea1997p,koblitzp}. The \(p\)-adic field can be constructed both analytically and algebraically; our approach in this paper shall be mainly algebraic.\label{sec:field-of-p-adic-numbers}
+\subsection{}~The history of the theory of quadratic forms over \(\Rationals\)
+owes much of its development to the theory of \(p\)-adic numbers as introduced
+by Hensel and expanded by his student
+Hasse.\,\cite{hasse1922uber,hensel1913zahlentheorie} In this section, we shall
+introduce the field of \(p\)-adic numbers and prove some of its basic properties
+and develop the results we need as they relate to quadratic forms. For a more
+detailed treatment of the theory of \(p\)-adic numbers, we refer the reader to
+\cite{gouvea1997p,koblitzp}. The \(p\)-adic field can be constructed both
+analytically and algebraically; our approach in this paper shall be mainly
+algebraic.\label{sec:field-of-p-adic-numbers}
 
-% The theory of \(p\)-adic numbers has been motivated historically by the desire to find the solutions to congruences of the form
-% \begin{equation}
-%     x^2 \equiv a \pmod{p^n}
-%     \label{eq:congruence-mod-pn}
-% \end{equation}
-% for a prime number \(p\) and an integer \(a\) and for all \(n \geq 1\). \cite{amice1975nombres} Consider, for example, the case \(p = 5\) and \(a = -1\). For \(n = 1\), this can be simplified to \(x^2 \equiv -1 \pmod{5}\), which has the solutions \(x \equiv 2\) and \(x \equiv -2 \pmod{5}\). Observe that for any \(k \leq n\)
+% The theory of \(p\)-adic numbers has been motivated historically by the desire
+% to find the solutions to congruences of the form \begin{equation} x^2 \equiv a
+% \pmod{p^n} \label{eq:congruence-mod-pn} \end{equation} for a prime number
+% \(p\) and an integer \(a\) and for all \(n \geq 1\). \cite{amice1975nombres}
+% Consider, for example, the case \(p = 5\) and \(a = -1\). For \(n = 1\), this
+% can be simplified to \(x^2 \equiv -1 \pmod{5}\), which has the solutions \(x
+% \equiv 2\) and \(x \equiv -2 \pmod{5}\). Observe that for any \(k \leq n\)
 
 % \subsection{}~
-We begin with a formal definition, following \cite{serre2012course}. Let \(A_n := \Integers/p^n \Integers\) be the set of equivalence classes of integers modulo \(p^n\) for a prime number \(p\) for each \(n \in \Naturals\). Each \(A_n\) is a ring and induces a homomorphism\label{sec:padic-def}
+We begin with a formal definition, following \cite{serre2012course}. Let \(A_n
+:= \Integers/p^n \Integers\) be the set of equivalence classes of integers
+modulo \(p^n\) for a prime number \(p\) for each \(n \in \Naturals\). Each
+\(A_n\) is a ring and induces a homomorphism\label{sec:padic-def}
 \[
   \phi_n : A_{n} \to A_{n - 1}  
 \]
-which is surjective and has kernel \(p^{n-1}A_n\). Define the sequence of rings and the corresponding homomorphisms
+which is surjective and has kernel \(p^{n-1}A_n\). Define the sequence of rings
+and the corresponding homomorphisms
 \begin{equation*}
     \dots \to A_n \xrightarrow{\phi_n} A_{n - 1} \xrightarrow{\phi_{n - 1}} \dots \xrightarrow{\phi_2} A_1
 \end{equation*}
-indexed by \(\Naturals\). The \emph{ring of \(p\)-adic integers} \(\Integers_p\) is defined to be the inverse limit of this sequence, that is,
+indexed by \(\Naturals\). The \emph{ring of \(p\)-adic integers} \(\Integers_p\)
+is defined to be the inverse limit of this sequence, that is,
 \[
   \Integers_p := \varprojlim A_n = \left\{
     (a_n)_{n \in \Naturals} \in \prod_{n \in \Naturals} A_n : \phi_n(a_n) = a_{n - 1} \text{ for all } n \in \Naturals
   \right\}.
 \]
-We shall see shortly that this is indeed a ring. Each element of \(\Integers_p\) is a sequence of the form \((\dots, x_3, x_2, x_1)\) and thus it is often useful to think of an element \(\alpha\) of \(\Integers_p\) as a formal sum
+We shall see shortly that this is indeed a ring. Each element of \(\Integers_p\)
+is a sequence of the form \((\dots, x_3, x_2, x_1)\) and thus it is often useful
+to think of an element \(\alpha\) of \(\Integers_p\) as a formal sum
 \[
   \alpha = a_0 + a_1p + a_2p^2 + \cdots
 \]
-Addition and multiplication in \(\Integers_p\) are defined componentwise, that is, if \(\alpha = (a_n)_{n \in \Naturals}\) and \(\beta = (b_n)_{n \in \Naturals}\) are elements of \(\Integers_p\), then \(\alpha + \beta = (a_n + b_n)_{n \in \Naturals}\) and \(\alpha\beta = (a_nb_n)_{n \in \Naturals}\). Elements of \(\Integers_p\) are called \emph{\(p\)-adic integers}.
+Addition and multiplication in \(\Integers_p\) are defined componentwise, that
+is, if \(\alpha = (a_n)_{n \in \Naturals}\) and \(\beta = (b_n)_{n \in
+\Naturals}\) are elements of \(\Integers_p\), then \(\alpha + \beta = (a_n +
+b_n)_{n \in \Naturals}\) and \(\alpha\beta = (a_nb_n)_{n \in \Naturals}\).
+Elements of \(\Integers_p\) are called \emph{\(p\)-adic integers}.
 
-We proceed by exploring some properties of \(\Integers_p\). First fix a natural number \(n\) and define the projection \(\pi_n: \Integers_p \to A_n\) which associates with every \(p\)-adic integer \(\alpha\) its \(n\)-th component \(a_n\). Let \([p^n]\) be the map from \(A_n\) to itself defined by multiplication by \(p^n\). Then we have
-\begin{theoremx}\label{thm:exact-sequence-zp}
-    The sequence \(0 \to \Integers_p \xrightarrow{[p^n]} \Integers_p \xrightarrow{\pi_n} A_n \to 0\) is a short exact sequence of abelian groups.
+We proceed by exploring some properties of \(\Integers_p\). First fix a natural
+number \(n\) and define the projection \(\pi_n: \Integers_p \to A_n\) which
+associates with every \(p\)-adic integer \(\alpha\) its \(n\)-th component
+\(a_n\). Let \([p^n]\) be the map from \(A_n\) to itself defined by
+multiplication by \(p^n\). Then we have
+\begin{theoremx}\label{thm:exact-sequence-zp} The sequence \(0 \to \Integers_p
+    \xrightarrow{[p^n]} \Integers_p \xrightarrow{\pi_n} A_n \to 0\) is a short
+    exact sequence of abelian groups.
 \end{theoremx}
 
-See \cite[pp.~11--12]{serre2012course} for a proof. Theorem~\ref{thm:exact-sequence-zp} has the following immediate consequence:
+See \cite[pp.~11--12]{serre2012course} for a proof.
+Theorem~\ref{thm:exact-sequence-zp} has the following immediate consequence:
 
 \begin{corollary}
-    For all positive integers \(m\), \(\Integers_p / p^m \Integers_p \cong \Integers / p^m \Integers\).
+    For all positive integers \(m\), \(\Integers_p / p^m \Integers_p \cong
+    \Integers / p^m \Integers\).
 \end{corollary}
 
-\begin{theoremx}\label{thm:criterion-units-of-zp}
-    An element of \(\Integers_p\) is invertible if and only if it is not divisible by \(p\).
+\begin{theoremx}\label{thm:criterion-units-of-zp} An element of \(\Integers_p\)
+    is invertible if and only if it is not divisible by \(p\).
 \end{theoremx}
 
 \begin{proof}
-    Let \(\alpha = (a_n) \in \Integers_p.\) If \(p\) does not divide \(\alpha\) then \(p\) does not divide each of the \(a_n\) and in particular \(a_1 \not\equiv 0 \pmod{p}\). By the Euclidean algorithm, there exists integers \(\xi\) and \(\eta\) such that \(a_1\xi + p\eta = 1\). Because \(p \mid p\eta\), it follows that \(a_1\xi \equiv 1 \pmod{p}\). Let \(z = 1 - \xi\alpha\); we can then compute the inverse of \(\alpha\) as follows:
+    Let \(\alpha = (a_n) \in \Integers_p.\) If \(p\) does not divide \(\alpha\)
+    then \(p\) does not divide each of the \(a_n\) and in particular \(a_1
+    \not\equiv 0 \pmod{p}\). By the Euclidean algorithm, there exists integers
+    \(\xi\) and \(\eta\) such that \(a_1\xi + p\eta = 1\). Because \(p \mid
+    p\eta\), it follows that \(a_1\xi \equiv 1 \pmod{p}\). Let \(z = 1 -
+    \xi\alpha\); we can then compute the inverse of \(\alpha\) as follows:
 \end{proof}
 
-\begin{theoremx}\label{thm:units-of-zp}
-    Let \(\Units\) be the set of invertible elements of \(\Integers_p\). Then every element of \(\Integers_p\) can be written uniquely as \(\alpha = p^nu\) where \(n \geq 0\) and \(u \in \Units\).
+\begin{theoremx}\label{thm:units-of-zp} Let \(\Units\) be the set of invertible
+    elements of \(\Integers_p\). Then every element of \(\Integers_p\) can be
+    written uniquely as \(\alpha = p^nu\) where \(n \geq 0\) and \(u \in
+    \Units\).
 \end{theoremx}
 
 \begin{proof}
-    If \(\alpha \in \Integers_p\) is not zero, then there exists a largest integer \(n\) such that \(a_n = \pi_n(a) = 0\); then \(\alpha = p^nu\) where \(u\) is not divisible by \(p\) (and hence by Theorem \ref{thm:criterion-units-of-zp} is invertible). That \(n\) is unique follows from the fact that \(p^n\) is injective.
+    If \(\alpha \in \Integers_p\) is not zero, then there exists a largest
+    integer \(n\) such that \(a_n = \pi_n(a) = 0\); then \(\alpha = p^nu\) where
+    \(u\) is not divisible by \(p\) (and hence by Theorem
+    \ref{thm:criterion-units-of-zp} is invertible). That \(n\) is unique follows
+    from the fact that \(p^n\) is injective.
 \end{proof}
 
 \smallskip
 
-The unique integer \(n\) defined in Theorem \ref{thm:units-of-zp} induces a function \(\nu_p : \Integers_p \to \Integers_{\geq 0}\), i.e., we shall write \(\nu_p(\alpha) = n\) where \(\alpha = p^nu\) for some \(u \in \Units\). This function is called the \emph{\(p\)-adic valuation} of \(\alpha\). We write \(\nu_p(0) = +\infty\), and this valuation satisfies the following properties for all \(\alpha, \beta \in \Integers_p\):
+The unique integer \(n\) defined in Theorem \ref{thm:units-of-zp} induces a
+function \(\nu_p : \Integers_p \to \Integers_{\geq 0}\), i.e., we shall write
+\(\nu_p(\alpha) = n\) where \(\alpha = p^nu\) for some \(u \in \Units\). This
+function is called the \emph{\(p\)-adic valuation} of \(\alpha\). We write
+\(\nu_p(0) = +\infty\), and this valuation satisfies the following properties
+for all \(\alpha, \beta \in \Integers_p\):
 
 \smallskip
 
 \begin{enumerate}[nosep, label=(\roman*)]
-    \item \(\nu_p(\alpha) =\infty\) if and only if \(\alpha = 0\);\label{item:padic-valuation-zero}
-    \item \(\nu_p(\alpha) = 0\) if and only if \(\alpha \in \Units\);\label{item:padic-valuation-units}
-    \item \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta)\); and\label{item:padic-valuation-product}
+    \item \(\nu_p(\alpha) =\infty\) if and only if \(\alpha =
+    0\);\label{item:padic-valuation-zero}
+    \item \(\nu_p(\alpha) = 0\) if and only if \(\alpha \in
+    \Units\);\label{item:padic-valuation-units}
+    \item \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta)\);
+    and\label{item:padic-valuation-product}
     \item \(\nu_p(\alpha + \beta) \geq \min\{\nu_p(\alpha), \nu_p(\beta)\}\).
     \label{item:padic-valuation-sum}
 \end{enumerate}
 
 \smallskip
 
-Properties \ref{item:padic-valuation-zero} and \ref{item:padic-valuation-units} are immediate from the definition of \(\nu_p\). The product formula in \ref{item:padic-valuation-product} follows trivially if either \(\alpha\) or \(\beta\) is zero. If that is not the case, suppose that \(\nu_p(\alpha) = m\) and \(\nu_p(\beta) = n\) for some integers \(m\) and \(n\). We then have \(\alpha = p^mu\) and \(\beta = p^nv\) for some \(u, v \in \Units\). It follows that \(\alpha\beta = p^{m + n}uv\) so that the product \(\alpha\beta\) lies in the image of the map \([p^{m+n}]\) defined in Theorem~\ref{thm:exact-sequence-zp} and \(\nu_p(\alpha\beta) \geq m + n\). On the other hand, both \(\pi_m(\alpha)\) and \(\pi_n(\beta)\) are nonzero and thus \(\pi_{m+n}(\alpha\beta)\) is nonzero and thus \(\nu_p(\alpha\beta) \leq m + n\). This proves the product formula.
+Properties \ref{item:padic-valuation-zero} and \ref{item:padic-valuation-units}
+are immediate from the definition of \(\nu_p\). The product formula in
+\ref{item:padic-valuation-product} follows trivially if either \(\alpha\) or
+\(\beta\) is zero. If that is not the case, suppose that \(\nu_p(\alpha) = m\)
+and \(\nu_p(\beta) = n\) for some integers \(m\) and \(n\). We then have
+\(\alpha = p^mu\) and \(\beta = p^nv\) for some \(u, v \in \Units\). It follows
+that \(\alpha\beta = p^{m + n}uv\) so that the product \(\alpha\beta\) lies in
+the image of the map \([p^{m+n}]\) defined in
+Theorem~\ref{thm:exact-sequence-zp} and \(\nu_p(\alpha\beta) \geq m + n\). On
+the other hand, both \(\pi_m(\alpha)\) and \(\pi_n(\beta)\) are nonzero and thus
+\(\pi_{m+n}(\alpha\beta)\) is nonzero and thus \(\nu_p(\alpha\beta) \leq m +
+n\). This proves the product formula.
 
-Now to prove \ref{item:padic-valuation-sum}, we can assume without loss of generality that \(m \leq n\), so that the image of \([p^n]\) is contained in \([p^m]\) and thus both \(\alpha\) and \(\beta\) lie in the image of \([p^m]\), as does \(\alpha + \beta\), and thus \(nu_p(\alpha + \beta) \geq m = \min\{\nu_p(\alpha), \nu_p(\beta)\}\).
+Now to prove \ref{item:padic-valuation-sum}, we can assume without loss of
+generality that \(m \leq n\), so that the image of \([p^n]\) is contained in
+\([p^m]\) and thus both \(\alpha\) and \(\beta\) lie in the image of \([p^m]\),
+as does \(\alpha + \beta\), and thus \(nu_p(\alpha + \beta) \geq m =
+\min\{\nu_p(\alpha), \nu_p(\beta)\}\).
 
-From this we conclude that \(\Integers_p\) has no zero divisors and is therefore an integral domain. Indeed if \(\alpha\) and \(\beta\) are nonzero \(p\)-adic integers, we have \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta) < \infty\) and thus \(\alpha\beta \neq 0\).
+From this we conclude that \(\Integers_p\) has no zero divisors and is therefore
+an integral domain. Indeed if \(\alpha\) and \(\beta\) are nonzero \(p\)-adic
+integers, we have \(\nu_p(\alpha\beta) = \nu_p(\alpha) + \nu_p(\beta) < \infty\)
+and thus \(\alpha\beta \neq 0\).
 
-\subsection{The \(p\)-adic absolute value and metric.}\label{sec:padic-absolute-value}~Because \(\Integers_p\) is an integral domain, we can define the field of fractions\footnote{
-    Let \(R\) be an integral domain. The \emph{field of fractions} of \(R\) is the set of equivalence classes of pairs \((a, b)\) where \(a, b \in R\) and \(b \neq 0\) under the equivalence relation \((a, b) \sim (c, d)\) if and only if \(ad = bc\). We denote the field of fractions of \(R\) by \(\FracField(R)\). See also \cite[p.~142]{hungerford2012algebra}. This definition generalizes the construction of the field of rational numbers from the ring of integers.
-} of \(\Integers_p\), which we shall denote by \(\Rationals_p\). The elements of \(\Rationals_p\) are called \emph{\(p\)-adic numbers}. The valuation \(\nu_p\) also allows us to define the \(p\)-adic absolute value \(|\ |_p : \Rationals_p \to \Reals_{\geq 0}\) by
+\subsection{The \(p\)-adic absolute value and
+    metric.}\label{sec:padic-absolute-value}~Because \(\Integers_p\) is an
+    integral domain, we can define the field of fractions\footnote{ Let \(R\) be
+    an integral domain. The \emph{field of fractions} of \(R\) is the set of
+    equivalence classes of pairs \((a, b)\) where \(a, b \in R\) and \(b \neq
+    0\) under the equivalence relation \((a, b) \sim (c, d)\) if and only if
+    \(ad = bc\). We denote the field of fractions of \(R\) by \(\FracField(R)\).
+    See also \cite[p.~142]{hungerford2012algebra}. This definition generalizes
+    the construction of the field of rational numbers from the ring of integers.
+    } of \(\Integers_p\), which we shall denote by \(\Rationals_p\). The
+    elements of \(\Rationals_p\) are called \emph{\(p\)-adic numbers}. The
+    valuation \(\nu_p\) also allows us to define the \(p\)-adic absolute value
+    \(|\ |_p : \Rationals_p \to \Reals_{\geq 0}\) by
 \[
   |\alpha|_p = p^{-\nu_p(\alpha)},
 \]
-for all \(\alpha \in \Rationals_p\), with equality if and only if \(\alpha = 0\). Recall that an absolute value function on a field \(\field\) is any function \(|\ | : \field \to \Reals_{\geq 0}\) satisfying the following properties for all \(x, y \in \field\):
+for all \(\alpha \in \Rationals_p\), with equality if and only if \(\alpha =
+0\). Recall that an absolute value function on a field \(\field\) is any
+function \(|\ | : \field \to \Reals_{\geq 0}\) satisfying the following
+properties for all \(x, y \in \field\):
 
 \smallskip
 
@@ -100,113 +185,252 @@ for all \(\alpha \in \Rationals_p\), with equality if and only if \(\alpha = 0\)
     \item \(|x + y| \leq |x| + |y|\).\label{item:abs-val-sum}
 \end{enumerate}
 
-The reader may verify that the \(p\)-adic absolute value we have just defined satisfies the above properties. Moreover, we also claim that the \(p\)-adic absolute value is \emph{non-archimedean}, i.e., it satisfies the stronger property that \(|x + y|_p \leq \max\{|x|_p, |y|_p\}\) for all \(x, y \in \Rationals_p\). To see this, let \(x, y \in \Rationals_p\) and suppose, without loss of generality, that \(|x|_p \geq |y|_p\). Then \(p^{-\nu_p(x)} \geq p^{-\nu_p(y)}\) which implies that \(p^{\nu_p(x)} \leq p^{\nu_p(y)}\) and hence \(\min\{\nu_p(x), \nu_p(y)\} = \nu_p(x)\). It follows that \(p^{-\nu_p(x + y)} \leq p^{-\nu_p(x)}\) or equivalently, \(|x + y|_p \leq |x|_p = \max\{|x|_p, |y|_p\}\), proving our claim.
+The reader may verify that the \(p\)-adic absolute value we have just defined
+satisfies the above properties. Moreover, we also claim that the \(p\)-adic
+absolute value is \emph{non-archimedean}, i.e., it satisfies the stronger
+property that \(|x + y|_p \leq \max\{|x|_p, |y|_p\}\) for all \(x, y \in
+\Rationals_p\). To see this, let \(x, y \in \Rationals_p\) and suppose, without
+loss of generality, that \(|x|_p \geq |y|_p\). Then \(p^{-\nu_p(x)} \geq
+p^{-\nu_p(y)}\) which implies that \(p^{\nu_p(x)} \leq p^{\nu_p(y)}\) and hence
+\(\min\{\nu_p(x), \nu_p(y)\} = \nu_p(x)\). It follows that \(p^{-\nu_p(x + y)}
+\leq p^{-\nu_p(x)}\) or equivalently, \(|x + y|_p \leq |x|_p = \max\{|x|_p,
+|y|_p\}\), proving our claim.
 
-Our definition of the \(p\)-adic absolute value provides us with a notion of ``size'' in \(\Rationals_p\). With this, we can now introduce the notion of ``distance'' between two \(p\)-adic numbers by defining a metric\footnote{
-    Again for completeness we recall the definition of a metric. Let \(X\) be a set. A \emph{metric} on \(X\) is a function \(d : X \times X \to \Reals_{\geq 0}\) satisfying the following properties for all \(x, y, z \in X\):
+Our definition of the \(p\)-adic absolute value provides us with a notion of
+    ``size'' in \(\Rationals_p\). With this, we can now introduce the notion of
+    ``distance'' between two \(p\)-adic numbers by defining a metric\footnote{
+    Again for completeness we recall the definition of a metric. Let \(X\) be a
+    set. A \emph{metric} on \(X\) is a function \(d : X \times X \to
+    \Reals_{\geq 0}\) satisfying the following properties for all \(x, y, z \in
+    X\):
     \begin{enumerate}[nosep, label=(\roman*)]
         \item \(d(x, y) = 0\) if and only if \(x = y\);\label{item:metric-zero}
         \item \(d(x, y) = d(y, x)\);\label{item:metric-symmetry}
         \item \(d(x, z) \leq d(x, y) + d(y, z)\).\label{item:metric-triangle}
     \end{enumerate}
-    A set \(X\) equipped with a metric \(d\) is called a \emph{metric space}. See also \cite[p.~30]{rudin1976principles}.
-} on \(\Rationals_p\). The \(p\)-adic absolute value induces the distance function
+    A set \(X\) equipped with a metric \(d\) is called a \emph{metric space}.
+See also \cite[p.~30]{rudin1976principles}. } on \(\Rationals_p\). The
+\(p\)-adic absolute value induces the distance function
 \[
   d(\alpha, \beta) = |\alpha - \beta|_p.
 \]
 
-The reader may verify that this is indeed a metric on \(\Integers_p\) using the definition we have provided in the footnote \emph{infra}.
+The reader may verify that this is indeed a metric on \(\Integers_p\) using the
+definition we have provided in the footnote \emph{infra}.
 
-\subsection{Completions.}~Having defined the \(p\)-adic absolute value and metric, we shall now use them to introduce another way of looking at the field of \(p\)-adic numbers. The main goal of this section is to prove that the field of \(p\)-adic numbers is the completion of the field of rational numbers with respect to the \(p\)-adic absolute value. The treatment throughout this paper has been mainly algebraic, but we shall now introduce some results from analysis to achieve our aim. Nevertheless, the exposition in this section shall be cursory, as we shall not need the full strength of the results we shall prove here. We refer the reader to Chapters 2--3 of \cite{gouvea1997p} for a more detailed treatment.
+\subsection{Completions.}~Having defined the \(p\)-adic absolute value and
+metric, we shall now use them to introduce another way of looking at the field
+of \(p\)-adic numbers. The main goal of this section is to prove that the field
+of \(p\)-adic numbers is the completion of the field of rational numbers with
+respect to the \(p\)-adic absolute value. The treatment throughout this paper
+has been mainly algebraic, but we shall now introduce some results from analysis
+to achieve our aim. Nevertheless, the exposition in this section shall be
+cursory, as we shall not need the full strength of the results we shall prove
+here. We refer the reader to Chapters 2--3 of \cite{gouvea1997p} for a more
+detailed treatment.
 
-We first recall the following definitions from analysis; the reader may consult \cite{rudin1976principles} for a more detailed treatment. For these definitions, let \(\field\) be a field and let \(|\ |\) be an absolute value on \(\field\). 
+We first recall the following definitions from analysis; the reader may consult
+\cite{rudin1976principles} for a more detailed treatment. For these definitions,
+let \(\field\) be a field and let \(|\ |\) be an absolute value on \(\field\). 
 
 \begin{enumerate}[nosep, label=(\roman*)]
-    \item A sequence \((x_n)\) in \(\field\) is a map \(x_n : \Naturals \to \field\).
-    \item A sequence \((x_n)\) in \(\field\) is \emph{Cauchy} if for every \(\epsilon > 0\) there exists an integer \(N\) such that \(|x_n - x_m| < \epsilon\) for all \(n, m \geq N\).
-    \item A sequence \((x_n)\) in \(\field\) is \emph{convergent} if there exists an element \(x \in \field\) such that for every \(\epsilon > 0\) there exists an integer \(N\) such that \(|x_n - x| < \epsilon\) for all \(n \geq N\).
-    \item A field \(\field\) is \emph{complete} with respect to \(|\ |\) if every Cauchy sequence in \(\field\) is convergent.
-    \item An \emph{open ball} in \(\field\) is a set of the form \(B(x,\epsilon) = \{y \in \field : |x - y| < \epsilon\}\) for some \(x \in \field\) and \(\epsilon > 0\).
-    \item A subset \(E\) of \(\field\) is \emph{dense} in \(\field\) if every element of \(\field\) is a limit of a sequence of elements of \(E\). Alternatively, \(E\) is dense in \(\field\) if every open ball in \(\field\) contains an element of \(E\).
+    \item A sequence \((x_n)\) in \(\field\) is a map \(x_n : \Naturals \to
+    \field\).
+    \item A sequence \((x_n)\) in \(\field\) is \emph{Cauchy} if for every
+    \(\epsilon > 0\) there exists an integer \(N\) such that \(|x_n - x_m| <
+    \epsilon\) for all \(n, m \geq N\).
+    \item A sequence \((x_n)\) in \(\field\) is \emph{convergent} if there
+    exists an element \(x \in \field\) such that for every \(\epsilon > 0\)
+    there exists an integer \(N\) such that \(|x_n - x| < \epsilon\) for all \(n
+    \geq N\).
+    \item A field \(\field\) is \emph{complete} with respect to \(|\ |\) if
+    every Cauchy sequence in \(\field\) is convergent.
+    \item An \emph{open ball} in \(\field\) is a set of the form \(B(x,\epsilon)
+    = \{y \in \field : |x - y| < \epsilon\}\) for some \(x \in \field\) and
+    \(\epsilon > 0\).
+    \item A subset \(E\) of \(\field\) is \emph{dense} in \(\field\) if every
+    element of \(\field\) is a limit of a sequence of elements of \(E\).
+    Alternatively, \(E\) is dense in \(\field\) if every open ball in \(\field\)
+    contains an element of \(E\).
 \end{enumerate}
 
-We shall now start to develop the results we need for the main theorem of this section. Let \(\field\) be a field and let \(|\ |_1\) and \(|\ |_2\) be two absolute values on \(\field\). We say that \(|\ |_1\) and \(|\ |_2\) are \emph{equivalent} if they define the same topology on \(\field\), i.e., if every open ball in \(\field\) with respect to \(|\ |_1\) is also an open ball with respect to \(|\ |_2\) and \emph{vice versa.} This brings us to the following lemma.
+We shall now start to develop the results we need for the main theorem of this
+section. Let \(\field\) be a field and let \(|\ |_1\) and \(|\ |_2\) be two
+absolute values on \(\field\). We say that \(|\ |_1\) and \(|\ |_2\) are
+\emph{equivalent} if they define the same topology on \(\field\), i.e., if every
+open ball in \(\field\) with respect to \(|\ |_1\) is also an open ball with
+respect to \(|\ |_2\) and \emph{vice versa.} This brings us to the following
+lemma.
 
 \begin{lemma}
-    Let \(\field\) be a field and let \(|\ |_1\) and \(|\ |_2\) be two absolute values on \(\field\). The following statements are equivalent:
+    Let \(\field\) be a field and let \(|\ |_1\) and \(|\ |_2\) be two absolute
+    values on \(\field\). The following statements are equivalent:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item The absolute values \(|\ |_1\) and \(|\ |_2\) are equivalent.
-        \item Any sequence in \(\field\) converging with respect to \(|\ |_1\) to some limit \(a \in \field\) also converges with respect to \(|\ |_2\) to \(a\).
-        \item For any \(x \in \field\), \(|x|_1 < 1\) if and only if \(|x|_2 < 1\).
-        \item There exists a positive real number \(c\) such that \(|x|_1 = |x|_2^c\) for all \(x \in \field\).
+        \item Any sequence in \(\field\) converging with respect to \(|\ |_1\)
+        to some limit \(a \in \field\) also converges with respect to \(|\ |_2\)
+        to \(a\).
+        \item For any \(x \in \field\), \(|x|_1 < 1\) if and only if \(|x|_2 <
+        1\).
+        \item There exists a positive real number \(c\) such that \(|x|_1 =
+        |x|_2^c\) for all \(x \in \field\).
     \end{enumerate}
 \end{lemma}
 
-See \cite[pp.~54-56]{gouvea1997p} for a proof. The lemma above helps us prove the following theorem, due to Ostrowski.
+See \cite[pp.~54-56]{gouvea1997p} for a proof. The lemma above helps us prove
+the following theorem, due to Ostrowski.
 
-\begin{theoremx}[Ostrowski]\label{thm:ostrowski}
-    Every non-trivial absolute value on \(\Rationals\) is equivalent to either the usual absolute value \(|\ |_{\infty}\) or the \(p\)-adic absolute value \(|\ |_p\) for some prime number \(p\).
+\begin{theoremx}[Ostrowski]\label{thm:ostrowski} Every non-trivial absolute
+    value on \(\Rationals\) is equivalent to either the usual absolute value
+    \(|\ |_{\infty}\) or the \(p\)-adic absolute value \(|\ |_p\) for some prime
+    number \(p\).
 \end{theoremx}
 
-By the `trivial' absolute value we mean the absolute value which is defined as \(1\) if \(x \neq 0\) and \(0\) otherwise. A proof of this theorem can again be found in \cite[pp.~56--59]{gouvea1997p}.
+By the `trivial' absolute value we mean the absolute value which is defined as
+\(1\) if \(x \neq 0\) and \(0\) otherwise. A proof of this theorem can again be
+found in \cite[pp.~56--59]{gouvea1997p}.
 
-Ostrowski's theorem help us make sense of what is convention among number theorists and what will be our practice in this essay of often referring to the set of primes ``including the symbol \(\infty\)''.\footnote{In \S\,\ref{sec:hilbert-symbol-intro}, we provide a shorthand notation for the set of primes including the symbol \(\infty\), which we shall call the set of \emph{places} of \(\Rationals\).} By this theorem we can think of all non-trivial absolutes values on \(\Rationals\) as being prime, both in the sense of the \(p\)-adic absolute value for some prime \(p\) and in the sense of the usual absolute value for the ``prime at infinity.'' On the other hand, Ostrowski's theorem also reduces any result about absolute values on \(\Rationals\) to the case of the \(p\)-adic absolute value for some prime \(p\)  and the usual absolute value, as we have in the following lemma.
+Ostrowski's theorem help us make sense of what is convention among number
+theorists and what will be our practice in this essay of often referring to the
+set of primes ``including the symbol \(\infty\)''.\footnote{In
+\S\,\ref{sec:hilbert-symbol-intro}, we provide a shorthand notation for the set
+of primes including the symbol \(\infty\), which we shall call the set of
+\emph{places} of \(\Rationals\).} By this theorem we can think of all
+non-trivial absolutes values on \(\Rationals\) as being prime, both in the sense
+of the \(p\)-adic absolute value for some prime \(p\) and in the sense of the
+usual absolute value for the ``prime at infinity.'' On the other hand,
+Ostrowski's theorem also reduces any result about absolute values on
+\(\Rationals\) to the case of the \(p\)-adic absolute value for some prime \(p\)
+and the usual absolute value, as we have in the following lemma.
 
 \begin{lemmax}\label{lem:ostrowski-lemma}
-    {\normalfont\cite[pp.~63--64]{gouvea1997p}}
-    The field \(\Rationals\) is not complete with respect to any of its non-trivial absolute values.
+    {\normalfont\cite[pp.~63--64]{gouvea1997p}} The field \(\Rationals\) is not
+    complete with respect to any of its non-trivial absolute values.
 \end{lemmax}
 
-Because \(\Rationals\) is not complete with respect to any of its non-trivial absolute values, we shall now construct its completion. We will follow the path of least resistance \cite[p.~64]{gouvea1997p} and add to \(\Rationals\) the limits of all the Cauchy sequences. Since those limits do not currently exist, we need to build them using the limits of the Cauchy sequences we already have. We now make this construction precise. We shall denote by \(\mathscr{C}\) (or \(\mathscr{C}_p\) if we want to emphasize \(p\)) the set of all Cauchy sequences of elements of \(\Rationals\). If \((x_n)\) and \((y_n)\) are sequences in \(\mathscr{C}\), then defining \((x_n) + (y_n) = (x_n + y_n)\) and \((x_n)(y_n) = (x_ny_n)\) makes \(\mathscr{C}\) into a commutative ring with identity (the constant sequence \((1, 1, 1, \dots)\)).
+Because \(\Rationals\) is not complete with respect to any of its non-trivial
+absolute values, we shall now construct its completion. We will follow the path
+of least resistance \cite[p.~64]{gouvea1997p} and add to \(\Rationals\) the
+limits of all the Cauchy sequences. Since those limits do not currently exist,
+we need to build them using the limits of the Cauchy sequences we already have.
+We now make this construction precise. We shall denote by \(\mathscr{C}\) (or
+\(\mathscr{C}_p\) if we want to emphasize \(p\)) the set of all Cauchy sequences
+of elements of \(\Rationals\). If \((x_n)\) and \((y_n)\) are sequences in
+\(\mathscr{C}\), then defining \((x_n) + (y_n) = (x_n + y_n)\) and \((x_n)(y_n)
+= (x_ny_n)\) makes \(\mathscr{C}\) into a commutative ring with identity (the
+constant sequence \((1, 1, 1, \dots)\)).
 
-We are interested in a specific subset of \(\mathscr{C}\), to wit, the subset of sequences that tend to zero. Denote this set by \(\mathfrak{m}\) for brevity. By our definition of multiplication in \(\mathscr{C}\), it is clear that this subset is an ideal of \(\mathscr{C}\). That is, if \((x_n)\) is a sequence in \(\mathscr{C}\) and \((y_n)\) is a sequence that tends to zero, then \((x_n)(y_n) = (x_ny_n)\) is a sequence that tends to zero. We also claim that this ideal is maximal, i.e., if \(\mathfrak{a}\) is an ideal of \(\mathscr{C}\) such that \(\mathfrak{m} \subseteq \mathfrak{a}\), then \(\mathfrak{a} = \mathfrak{m}\). This latter claim is a bit trickier to prove. Since the constant sequence \((1, 1, 1, \dots)\) which is the identity in \(\mathscr{C}\) converges to \(1\), it follows that \((1, 1, 1, \dots) \notin \mathfrak{m}\) and thus \(\mathfrak{m} \subsetneq \mathscr{C}\).
+We are interested in a specific subset of \(\mathscr{C}\), to wit, the subset of
+sequences that tend to zero. Denote this set by \(\mathfrak{m}\) for brevity. By
+our definition of multiplication in \(\mathscr{C}\), it is clear that this
+subset is an ideal of \(\mathscr{C}\). That is, if \((x_n)\) is a sequence in
+\(\mathscr{C}\) and \((y_n)\) is a sequence that tends to zero, then
+\((x_n)(y_n) = (x_ny_n)\) is a sequence that tends to zero. We also claim that
+this ideal is maximal, i.e., if \(\mathfrak{a}\) is an ideal of \(\mathscr{C}\)
+such that \(\mathfrak{m} \subseteq \mathfrak{a}\), then \(\mathfrak{a} =
+\mathfrak{m}\). This latter claim is a bit trickier to prove. Since the constant
+sequence \((1, 1, 1, \dots)\) which is the identity in \(\mathscr{C}\) converges
+to \(1\), it follows that \((1, 1, 1, \dots) \notin \mathfrak{m}\) and thus
+\(\mathfrak{m} \subsetneq \mathscr{C}\).
 
-Now to show that \(\mathfrak{m}\) is indeed maximal, suppose first that \(\mathfrak{a}\) is an ideal of \(\mathscr{C}\) such that \(\mathfrak{m} \subsetneq \mathfrak{a} \subseteq \mathscr{C}\). Suppose \((x_n) \in \mathfrak{a} \setminus \mathfrak{m}\); then since the limit of \((x_n)\) is not zero, there must exist some number \(\gamma > 0\) and an integer \(N\) such that \(|x_n| \geq \gamma\) for all \(n \geq N\). This would imply that \(x_n \neq 0\) for all \(n \geq N\) so that we can define a new sequence \((y_n)\) by setting \(y_n = 1/x_n\) for all \(n \geq N\) and \(y_n = 0\) otherwise. Then we have
+Now to show that \(\mathfrak{m}\) is indeed maximal, suppose first that
+\(\mathfrak{a}\) is an ideal of \(\mathscr{C}\) such that \(\mathfrak{m}
+\subsetneq \mathfrak{a} \subseteq \mathscr{C}\). Suppose \((x_n) \in
+\mathfrak{a} \setminus \mathfrak{m}\); then since the limit of \((x_n)\) is not
+zero, there must exist some number \(\gamma > 0\) and an integer \(N\) such that
+\(|x_n| \geq \gamma\) for all \(n \geq N\). This would imply that \(x_n \neq 0\)
+for all \(n \geq N\) so that we can define a new sequence \((y_n)\) by setting
+\(y_n = 1/x_n\) for all \(n \geq N\) and \(y_n = 0\) otherwise. Then we have
 \[
     |y_{n+1} - y_n| = \left|\frac{1}{x_{n+1}} - \frac{1}{x_n}\right| = \frac{|x_n - x_{n+1}|}{|x_nx_{n+1}|} \leq \frac{1}{\gamma^2}|x_n - x_{n+1}| \to 0
 \]
-and thus \((y_n)\) is a Cauchy sequence. Now let \((z_n)\) be the sequence defined by \(z_n = x_ny_n\), so that \(z_n = 0\) for all \(n < N\) and \(z_n = 1\) for all \(n \geq N\). If we define a new sequence \((w_n)\) by subtracting \((z_n)\) from the constant sequence \((1, 1, 1, \dots)\), we obtain a sequence that tends to zero. But since \((w_n)\) and \((z_n)\) are both in \(\mathfrak{a}\), it follows that \((1, 1, 1, \dots)\) which is the identity in \(\mathscr{C}\) is also in \(\mathfrak{a}\) and thus \(\mathfrak{a} = \mathscr{C}\). This proves that \(\mathfrak{m}\) is maximal.
+and thus \((y_n)\) is a Cauchy sequence. Now let \((z_n)\) be the sequence
+defined by \(z_n = x_ny_n\), so that \(z_n = 0\) for all \(n < N\) and \(z_n =
+1\) for all \(n \geq N\). If we define a new sequence \((w_n)\) by subtracting
+\((z_n)\) from the constant sequence \((1, 1, 1, \dots)\), we obtain a sequence
+that tends to zero. But since \((w_n)\) and \((z_n)\) are both in
+\(\mathfrak{a}\), it follows that \((1, 1, 1, \dots)\) which is the identity in
+\(\mathscr{C}\) is also in \(\mathfrak{a}\) and thus \(\mathfrak{a} =
+\mathscr{C}\). This proves that \(\mathfrak{m}\) is maximal.
 
-Having laid the groundwork, we can now define the \emph{completion} of \(\Rationals\) with respect to the \(p\)-adic absolute value as the quotient ring
+Having laid the groundwork, we can now define the \emph{completion} of
+\(\Rationals\) with respect to the \(p\)-adic absolute value as the quotient
+ring
 \begin{equation}\label{eq:completion-of-rationals}
     \Rationals_p = \mathscr{C}_p / \mathfrak{m}_p;
 \end{equation}
-moreover, since \(\mathfrak{m}_p\) is maximal, \(\Rationals_p\) is a field. We shall now prove that \(\Rationals_p\) is indeed the completion of \(\Rationals\) with respect to the \(p\)-adic absolute value.
+moreover, since \(\mathfrak{m}_p\) is maximal, \(\Rationals_p\) is a field. We
+shall now prove that \(\Rationals_p\) is indeed the completion of \(\Rationals\)
+with respect to the \(p\)-adic absolute value.
 
-The elements of \(\Rationals_p\) are equivalence classes of Cauchy sequences of rational numbers. First observe that for any rational number \(x\), the constant sequence \((x, x, x, \dots)\) is a Cauchy sequence and thus defines an element of \(\mathscr{C}\). The map \(x \mapsto (x, x, x, \dots)\) is an embedding of \(\Rationals\) into \(\mathscr{C}\) since two sequences are equal if and only if every term of one sequence is equal to the corresponding term of the other sequence, which for two constant sequences \((x, x, x, \dots)\) and \((y, y, y, \dots)\) is equivalent to saying that \(x = y\). By our definition of \(\Rationals_p\) in \eqref{eq:completion-of-rationals} above, one can observe that two sequences \((x_n)\) and \((y_n)\) in \(\mathscr{C}_p\) differ by an element of \(\mathfrak{m}_p\) if and only if their difference \((x_n - y_n)\) is a sequence that tends to zero. This is equivalent to saying that we maintain the inclusion \(\Rationals \hookrightarrow \Rationals_p\), which sends each element \(x \in \Rationals\) to the equivalence class of the constant sequence \((x, x, x, \dots)\). Now to verify that we have indeed obtained a completion of \(\Rationals\), we check two things: first that \(\Rationals\) is dense in \(\Rationals_p\) and second that \(\Rationals_p\) is complete with respect to the \(p\)-adic absolute value.
+The elements of \(\Rationals_p\) are equivalence classes of Cauchy sequences of
+rational numbers. First observe that for any rational number \(x\), the constant
+sequence \((x, x, x, \dots)\) is a Cauchy sequence and thus defines an element
+of \(\mathscr{C}\). The map \(x \mapsto (x, x, x, \dots)\) is an embedding of
+\(\Rationals\) into \(\mathscr{C}\) since two sequences are equal if and only if
+every term of one sequence is equal to the corresponding term of the other
+sequence, which for two constant sequences \((x, x, x, \dots)\) and \((y, y, y,
+\dots)\) is equivalent to saying that \(x = y\). By our definition of
+\(\Rationals_p\) in \eqref{eq:completion-of-rationals} above, one can observe
+that two sequences \((x_n)\) and \((y_n)\) in \(\mathscr{C}_p\) differ by an
+element of \(\mathfrak{m}_p\) if and only if their difference \((x_n - y_n)\) is
+a sequence that tends to zero. This is equivalent to saying that we maintain the
+inclusion \(\Rationals \hookrightarrow \Rationals_p\), which sends each element
+\(x \in \Rationals\) to the equivalence class of the constant sequence \((x, x,
+x, \dots)\). Now to verify that we have indeed obtained a completion of
+\(\Rationals\), we check two things: first that \(\Rationals\) is dense in
+\(\Rationals_p\) and second that \(\Rationals_p\) is complete with respect to
+the \(p\)-adic absolute value.
 
 \begin{lemmax}
-    {\normalfont\cite[pp.~68--69]{gouvea1997p}}
-    The image of \(\Rationals\) in \(\Rationals_p\) is a dense subset of \(\Rationals_p\).
+    {\normalfont\cite[pp.~68--69]{gouvea1997p}} The image of \(\Rationals\) in
+    \(\Rationals_p\) is a dense subset of \(\Rationals_p\).
 \end{lemmax}
 
 \begin{proof}
-    We begin with a definition. We say that a Cauchy sequence \((x_n)\) represents an element \(\alpha \in \Rationals_p\) if \(|x_n|_p \to |\alpha|_p\). Our goal is to show that every open ball around an element \(\alpha\) of \(\Rationals_p\) contains an element of the image of \(\Rationals\), i.e., a constant sequence.
+    We begin with a definition. We say that a Cauchy sequence \((x_n)\)
+    represents an element \(\alpha \in \Rationals_p\) if \(|x_n|_p \to
+    |\alpha|_p\). Our goal is to show that every open ball around an element
+    \(\alpha\) of \(\Rationals_p\) contains an element of the image of
+    \(\Rationals\), i.e., a constant sequence.
     
-    Fix a radius \(\epsilon > 0\). Let \((x_n)\) be a Cauchy sequence representing \(\alpha\) and let \(\epsilon' > 0\) be another number such that \(\epsilon > \epsilon'\). Since \((x_n)\) is Cauchy, the exists an \(N\) such that \(|x_n - x_m|_p < \epsilon'\) for all \(n, m \geq N\). Let \(y = x_N\) and consider the constant sequence \((y, y, y, \dots)\). We claim that this sequence represents an element of \(\Rationals_p\) which is in the open ball \(B(\alpha, \epsilon)\). To see this, observe that \(\alpha - y\) is represented by the sequence \((x_n - y)\) and thus \(|\alpha - y|_p = \lim_{n \to \infty}|x_n - y|_p\). But then for any \(n \geq N\), we have \[|x_n - y|_p = |x_n - x_N|_p < \epsilon' < \epsilon\] and thus the constant sequence \((y, y, y, \dots)\) is in the open ball \(B(\alpha, \epsilon)\).
+    Fix a radius \(\epsilon > 0\). Let \((x_n)\) be a Cauchy sequence
+    representing \(\alpha\) and let \(\epsilon' > 0\) be another number such
+    that \(\epsilon > \epsilon'\). Since \((x_n)\) is Cauchy, the exists an
+    \(N\) such that \(|x_n - x_m|_p < \epsilon'\) for all \(n, m \geq N\). Let
+    \(y = x_N\) and consider the constant sequence \((y, y, y, \dots)\). We
+    claim that this sequence represents an element of \(\Rationals_p\) which is
+    in the open ball \(B(\alpha, \epsilon)\). To see this, observe that \(\alpha
+    - y\) is represented by the sequence \((x_n - y)\) and thus \(|\alpha - y|_p
+    = \lim_{n \to \infty}|x_n - y|_p\). But then for any \(n \geq N\), we have
+    \[|x_n - y|_p = |x_n - x_N|_p < \epsilon' < \epsilon\] and thus the constant
+    sequence \((y, y, y, \dots)\) is in the open ball \(B(\alpha, \epsilon)\).
 \end{proof}
 
 \begin{lemmax}
-    {\normalfont\cite[pp.~69--70]{gouvea1997p}}
-    The field \(\Rationals_p\) is complete with respect to the \(p\)-adic absolute value.
+    {\normalfont\cite[pp.~69--70]{gouvea1997p}} The field \(\Rationals_p\) is
+    complete with respect to the \(p\)-adic absolute value.
 \end{lemmax}
 
 See \cite[pp.~69--70]{gouvea1997p} for a proof.
 
-Putting this altogether, we are now able to prove the main result of this section.
+Putting this altogether, we are now able to prove the main result of this
+section.
 
 \begin{theoremx}
-    {\normalfont\cite[pp.~70--71]{gouvea1997p}}
-    For each prime number \(p\), there exists a field \(\Rationals_p\) satisfying the following properties:
+    {\normalfont\cite[pp.~70--71]{gouvea1997p}} For each prime number \(p\),
+    there exists a field \(\Rationals_p\) satisfying the following properties:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
-        \item There is an embedding \(\Rationals \hookrightarrow \Rationals_p\) such that the image of \(\Rationals\) is dense in \(\Rationals_p\).
-        \item The field \(\Rationals_p\) is complete with respect to the \(p\)-adic absolute value.
+        \item There is an embedding \(\Rationals \hookrightarrow \Rationals_p\)
+        such that the image of \(\Rationals\) is dense in \(\Rationals_p\).
+        \item The field \(\Rationals_p\) is complete with respect to the
+        \(p\)-adic absolute value.
     \end{enumerate}
 
     \smallskip
@@ -215,80 +439,169 @@ Putting this altogether, we are now able to prove the main result of this sectio
 \end{theoremx}
 
 \begin{proof}
-    It remains to prove that the field \(\Rationals_p\) we have constructed is unique up to isomorphism. Suppose another field \(K\) exists satisfying the conditions of the theorem. Then there exists an embedding \(\Rationals \hookrightarrow K\) preserving the \(p\)-adic absolute value and such that the image of \(\Rationals\) is dense in \(K\). Moreover, for any Cauchy sequence \((x_n)\) in \(\Rationals\), the image of \((x_n)\) in \(K\) is also Cauchy and thus converges to some element of \(K\). Now take some element \(\alpha \in \Rationals_p\). Then there exists a Cauchy sequence \((x_n)\) in \(\Rationals\) representing \(\alpha\). Since \(x_n\) is a rational number, we can find its image in \(K\), which by our definition of \(K\) is also a Cauchy sequence and thus converges to some element of \(K\) because \(K\) is complete. Call this limit in \(K\), \(f(\alpha)\), so that the function \(f: \Rationals_p \to K\) is the identity on \(\Rationals\) and is an isomorphism. Finally, its uniqueness follows from the factthat it induces the identity on \(\Rationals\).
+    It remains to prove that the field \(\Rationals_p\) we have constructed is
+    unique up to isomorphism. Suppose another field \(K\) exists satisfying the
+    conditions of the theorem. Then there exists an embedding \(\Rationals
+    \hookrightarrow K\) preserving the \(p\)-adic absolute value and such that
+    the image of \(\Rationals\) is dense in \(K\). Moreover, for any Cauchy
+    sequence \((x_n)\) in \(\Rationals\), the image of \((x_n)\) in \(K\) is
+    also Cauchy and thus converges to some element of \(K\). Now take some
+    element \(\alpha \in \Rationals_p\). Then there exists a Cauchy sequence
+    \((x_n)\) in \(\Rationals\) representing \(\alpha\). Since \(x_n\) is a
+    rational number, we can find its image in \(K\), which by our definition of
+    \(K\) is also a Cauchy sequence and thus converges to some element of \(K\)
+    because \(K\) is complete. Call this limit in \(K\), \(f(\alpha)\), so that
+    the function \(f: \Rationals_p \to K\) is the identity on \(\Rationals\) and
+    is an isomorphism. Finally, its uniqueness follows from the factthat it
+    induces the identity on \(\Rationals\).
 \end{proof}
 
-This theorem allows us to identify the field of \(p\)-adic numbers with the completion of the field of rational numbers with respect to the \(p\)-adic absolute value without regard to the construction we have provided above, but instead by simply invoking the properties we have identified.
+This theorem allows us to identify the field of \(p\)-adic numbers with the
+completion of the field of rational numbers with respect to the \(p\)-adic
+absolute value without regard to the construction we have provided above, but
+instead by simply invoking the properties we have identified.
 
-% Finally, the ring \(\Integers_p\) is complete with respect to this metric and \(\Integers\) is dense in \(\Integers_p\). \cite[p.~12]{serre2012course}
+% Finally, the ring \(\Integers_p\) is complete with respect to this metric and
+% \(\Integers\) is dense in \(\Integers_p\). \cite[p.~12]{serre2012course}
 
 
-\subsection{Polynomials over \(\Integers_p\) and \(\Rationals_p\).}~We shall now consider polynomials with coefficients in \(\Integers_p\). We are interested, as usual, in finding the roots of some polynomial \(f(x)\) in \(\Integers_p[x]\), i.e., we want to find the \(p\)-adic integers (or \(p\)-adic numbers) \(\alpha\) such that \(f(\alpha) = 0\). We can observe, however, that finding a solution in \(\Rationals_p\) for some prime \(p\) does not necessarily guarantee the existence of solutions in \(\Rationals\). For example, the polynomial \(x^2 - 2\) has roots in \(\Rationals_7\) but clearly \(\sqrt{2} \notin \Rationals\). We shall defer answering the question of when we can find solutions in \(\Rationals\) to later in this chapter; for now we shall investigate the existence of solutions in \(\Integers_p\) and \(\Rationals_p\).\label{sec:polynomials-over-zp}
+\subsection{Polynomials over \(\Integers_p\) and \(\Rationals_p\).}~We shall now
+consider polynomials with coefficients in \(\Integers_p\). We are interested, as
+usual, in finding the roots of some polynomial \(f(x)\) in \(\Integers_p[x]\),
+i.e., we want to find the \(p\)-adic integers (or \(p\)-adic numbers) \(\alpha\)
+such that \(f(\alpha) = 0\). We can observe, however, that finding a solution in
+\(\Rationals_p\) for some prime \(p\) does not necessarily guarantee the
+existence of solutions in \(\Rationals\). For example, the polynomial \(x^2 -
+2\) has roots in \(\Rationals_7\) but clearly \(\sqrt{2} \notin \Rationals\). We
+shall defer answering the question of when we can find solutions in
+\(\Rationals\) to later in this chapter; for now we shall investigate the
+existence of solutions in \(\Integers_p\) and
+\(\Rationals_p\).\label{sec:polynomials-over-zp}
 
-We shall again denote by \(A_n\) the ring \(\Integers / p^n \Integers\) of integers modulo \(p^n\). If \(f\) is a polynomial in \(\Integers_p[x]\) then for any \(n \geq 1\), we write \(f_n\) for the reduction of \(f\) modulo \(p^n\), i.e., \(f_n(x) = f(x) \pmod{p^n}\).
+We shall again denote by \(A_n\) the ring \(\Integers / p^n \Integers\) of
+integers modulo \(p^n\). If \(f\) is a polynomial in \(\Integers_p[x]\) then for
+any \(n \geq 1\), we write \(f_n\) for the reduction of \(f\) modulo \(p^n\),
+i.e., \(f_n(x) = f(x) \pmod{p^n}\).
 
 We begin with a lemma.
 
 \begin{lemma}
-    {\normalfont\cite[p.~13]{serre2012course}}
-    If \(\dots \to D_n \to D_{n - 1} \to \dots \to D_1\) is a projective system (as in {\normalfont \S\,\ref{sec:padic-def}}) and \(D = \varprojlim D_n\), then \(D\) is nonempty if each \(D_n\) is nonempty.
+    {\normalfont\cite[p.~13]{serre2012course}} If \(\dots \to D_n \to D_{n - 1}
+    \to \dots \to D_1\) is a projective system (as in {\normalfont
+    \S\,\ref{sec:padic-def}}) and \(D = \varprojlim D_n\), then \(D\) is
+    nonempty if each \(D_n\) is nonempty.
 \end{lemma}
 
 \begin{proof}
-    If \(D_n \to D_{n-1}\) is surjective, then \(D_{n-1}\) is nonempty if \(D_n\) is nonempty, and the lemma follows by induction. We thus reduce the lemma to this special case. Let \(D_{n, p}\) be the image of \(D_{n+p}\) in \(D_n\). Fix \(n\) so that the \(D_{n,p}\) form a decreasing family of finite, nonempty subsets (i.e., \(D_{n,p+1} \subseteq D_{n,p}\) and \(D_{n,p}\) is nonempty for all \(p\)). This family is \emph{stationary}, i.e., \(D_{n,p} = D_{n,p+1}\) for all \(p\) sufficiently large. Let \(E_n\) be the limit value of the \(D_{n,p}\) as \(p\) tends to infinity. Then \(D_n \to D_{n-1}\) carries \(E_n\) onto \(E_{n-1}\) (i.e., \(E_n = \phi_n(E_{n-1})\)). Since the \(E_n\) are nonempty, we have \(\varprojlim E_n \neq \emptyset\) and the lemma follows.
+    If \(D_n \to D_{n-1}\) is surjective, then \(D_{n-1}\) is nonempty if
+    \(D_n\) is nonempty, and the lemma follows by induction. We thus reduce the
+    lemma to this special case. Let \(D_{n, p}\) be the image of \(D_{n+p}\) in
+    \(D_n\). Fix \(n\) so that the \(D_{n,p}\) form a decreasing family of
+    finite, nonempty subsets (i.e., \(D_{n,p+1} \subseteq D_{n,p}\) and
+    \(D_{n,p}\) is nonempty for all \(p\)). This family is \emph{stationary},
+    i.e., \(D_{n,p} = D_{n,p+1}\) for all \(p\) sufficiently large. Let \(E_n\)
+    be the limit value of the \(D_{n,p}\) as \(p\) tends to infinity. Then \(D_n
+    \to D_{n-1}\) carries \(E_n\) onto \(E_{n-1}\) (i.e., \(E_n =
+    \phi_n(E_{n-1})\)). Since the \(E_n\) are nonempty, we have \(\varprojlim
+    E_n \neq \emptyset\) and the lemma follows.
 \end{proof}
 
-\begin{theoremx}\label{thm:zeros-of-polynomials-in-zp}
-    Let \(\mathfrak{F}\) be a family of polynomials in \(m\) variables with coefficients in \(\Integers_p\). The following statements are equivalent:
+\begin{theoremx}\label{thm:zeros-of-polynomials-in-zp} Let \(\mathfrak{F}\) be a
+    family of polynomials in \(m\) variables with coefficients in
+    \(\Integers_p\). The following statements are equivalent:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
-        \item All the polynomials in \(\mathfrak{F}\) have a common root in \(\Integers_p^m\).
-        \item For all \(n > 1\), all the polynomials \(f_n\) for each \(f \in \mathfrak{F}\) have a common root in \(A_n^m\).
+        \item All the polynomials in \(\mathfrak{F}\) have a common root in
+        \(\Integers_p^m\).
+        \item For all \(n > 1\), all the polynomials \(f_n\) for each \(f \in
+        \mathfrak{F}\) have a common root in \(A_n^m\).
     \end{enumerate}
 \end{theoremx}
 
 \begin{proof}
-    Let \(R\) (resp. \(R_n\)) be the set of common roots of the polynomials in \(\mathfrak{F}\) in \(\Integers_p^m\) (resp. \(A_n^m\)). The \(R_n\) are finite and we have \(R = \varprojlim R_n\). The theorem follows from the lemma.
+    Let \(R\) (resp. \(R_n\)) be the set of common roots of the polynomials in
+    \(\mathfrak{F}\) in \(\Integers_p^m\) (resp. \(A_n^m\)). The \(R_n\) are
+    finite and we have \(R = \varprojlim R_n\). The theorem follows from the
+    lemma.
 \end{proof}
 
-We say that an element \(x = (x_1, \dots, x_m)\) of \(\Integers_p^m\) is primitive if at least one of the \(x_i\) is invertible, i.e., not all of the \(x_i\) are divisible by \(p\). We define similarly the notion of a primitive element of \(A_n^m\). We now relate Theorem \ref{thm:zeros-of-polynomials-in-zp} to solutions in \(\Rationals_p\).
+We say that an element \(x = (x_1, \dots, x_m)\) of \(\Integers_p^m\) is
+primitive if at least one of the \(x_i\) is invertible, i.e., not all of the
+\(x_i\) are divisible by \(p\). We define similarly the notion of a primitive
+element of \(A_n^m\). We now relate Theorem \ref{thm:zeros-of-polynomials-in-zp}
+to solutions in \(\Rationals_p\).
 
-\begin{theoremx}\label{thm:zeros-of-polynomials-in-qp-family}
-    Let \(\mathfrak{F}\) be a family of homogeneous polynomials in \(m\) variables with coefficients in \(\Integers_p\). Then the following statements are equivalent:
+\begin{theoremx}\label{thm:zeros-of-polynomials-in-qp-family} Let
+    \(\mathfrak{F}\) be a family of homogeneous polynomials in \(m\) variables
+    with coefficients in \(\Integers_p\). Then the following statements are
+    equivalent:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
-        \item The polynomials in \(\mathfrak{F}\) have a nontrivial common root in \(\Rationals_p^m\).
-        \item The polynomials in \(\mathfrak{F}\) have a common primitive root in \(\Integers_p^m\).
-        \item For all \(n > 1\), the polynomials \(f_n\) for each \(f \in \mathfrak{F}\) have a common primitive root in \(A_n^m\).
+        \item The polynomials in \(\mathfrak{F}\) have a nontrivial common root
+        in \(\Rationals_p^m\).
+        \item The polynomials in \(\mathfrak{F}\) have a common primitive root
+        in \(\Integers_p^m\).
+        \item For all \(n > 1\), the polynomials \(f_n\) for each \(f \in
+        \mathfrak{F}\) have a common primitive root in \(A_n^m\).
     \end{enumerate}
 \end{theoremx}
 
 \begin{proof}
-    The equivalence (b) \(\iff\) (c) follows from the lemma above. We prove (a) \(\iff\) (b). If \(x\) is a common primitive root of the polynomials in \(\mathfrak{F}\) in \(\Integers_p^m\), then \(x \neq 0\) and is also a common root of the polynomials in \(\mathfrak{F}\) in \(\Rationals_p^m\). Conversely, let \(x = (x_1, \dots, x_m)\) be a nontrivial common root of the polynomials in \(\mathfrak{F}\) in \(\Rationals_p^m\) and write
+    The equivalence (b) \(\iff\) (c) follows from the lemma above. We prove (a)
+    \(\iff\) (b). If \(x\) is a common primitive root of the polynomials in
+    \(\mathfrak{F}\) in \(\Integers_p^m\), then \(x \neq 0\) and is also a
+    common root of the polynomials in \(\mathfrak{F}\) in \(\Rationals_p^m\).
+    Conversely, let \(x = (x_1, \dots, x_m)\) be a nontrivial common root of the
+    polynomials in \(\mathfrak{F}\) in \(\Rationals_p^m\) and write
     \[
       h = \inf\{\nu_p(x_i) : 1 \leq i \leq m\}.
     \]
-    Let \(y = p^{-h}x\) so that \(y\) is a primitive element of \(\Integers_p^m\). Moreover, \(y\) is a common root of the polynomials in \(\mathfrak{F}\) in \(\Integers_p^m\).
+    Let \(y = p^{-h}x\) so that \(y\) is a primitive element of
+    \(\Integers_p^m\). Moreover, \(y\) is a common root of the polynomials in
+    \(\mathfrak{F}\) in \(\Integers_p^m\).
 \end{proof}
 
-The theorems in this section can be used to show that a polynomial in has a root in \(\Integers_p\) by proving that it has a solution in \(A_n\). \cite{weismann2006annotations}
+The theorems in this section can be used to show that a polynomial in has a root
+in \(\Integers_p\) by proving that it has a solution in \(A_n\).
+\cite{weismann2006annotations}
 
-\subsection{Hensel's lemma.}~We now introduce an important result, due to Hensel, which allows us to pass from a solution modulo \(p^n\) to a ``true'' solution in \(\Integers_p\). In essence, this result provides a meaningful way to approximate roots of polynomials in \(\Integers_p[x]\). Finding the root of a polynomial modulo \(p^n\) is the same as finding a value which is within the radius \(p^{-n}\) of the solution in the \(p\)-adic metric \cite{weismann2006annotations} and thus the goal of this approximation algorithm is to make \(n\) successively larger (and thus the radius \(p^{-n}\) successively smaller) until we have a solution in \(\Integers_p\). This result, which we shall call Hensel's lemma, is similar to Newton's method in calculus for finding roots of polynomials given some initial approximation.\footnote{Newton's method is indeed a special case of Hensel's lemma. See \cite{von1984hensel}.}
+\subsection{Hensel's lemma.}~We now introduce an important result, due to
+Hensel, which allows us to pass from a solution modulo \(p^n\) to a ``true''
+solution in \(\Integers_p\). In essence, this result provides a meaningful way
+to approximate roots of polynomials in \(\Integers_p[x]\). Finding the root of a
+polynomial modulo \(p^n\) is the same as finding a value which is within the
+radius \(p^{-n}\) of the solution in the \(p\)-adic metric
+\cite{weismann2006annotations} and thus the goal of this approximation algorithm
+is to make \(n\) successively larger (and thus the radius \(p^{-n}\)
+successively smaller) until we have a solution in \(\Integers_p\). This result,
+which we shall call Hensel's lemma, is similar to Newton's method in calculus
+for finding roots of polynomials given some initial
+approximation.\footnote{Newton's method is indeed a special case of Hensel's
+lemma. See \cite{von1984hensel}.}
 
 \begin{lemma}
-    Let \(f \in \Integers_p[x]\) and \(f'\) be its derivative. If \(n\) and \(k\) are integers satisfying \(0 \leq 2k < n\), and for any \(\alpha \in \Integers_p\) we have \(f(\alpha) \equiv 0 \pmod{p^n}\) and \(\nu_p(f'(\alpha)) = k\), then there exists \(\beta \in \Integers_p\) such that \(f(\beta) \equiv 0 \pmod{p^{n + 1}}\), \(\nu_p(f'(\beta)) = k\), and \(\beta \equiv \alpha \pmod{p^{n-k}}\).
+    Let \(f \in \Integers_p[x]\) and \(f'\) be its derivative. If \(n\) and
+    \(k\) are integers satisfying \(0 \leq 2k < n\), and for any \(\alpha \in
+    \Integers_p\) we have \(f(\alpha) \equiv 0 \pmod{p^n}\) and
+    \(\nu_p(f'(\alpha)) = k\), then there exists \(\beta \in \Integers_p\) such
+    that \(f(\beta) \equiv 0 \pmod{p^{n + 1}}\), \(\nu_p(f'(\beta)) = k\), and
+    \(\beta \equiv \alpha \pmod{p^{n-k}}\).
 \end{lemma}
 
 \begin{proof}
-    We follow the proof in \cite{serre2012course}. Take \(\beta\) of the form \(\alpha + p^{n-k}\gamma\) with \(\gamma \in \Integers_p\). By Taylor's formula we have
+    We follow the proof in \cite{serre2012course}. Take \(\beta\) of the form
+    \(\alpha + p^{n-k}\gamma\) with \(\gamma \in \Integers_p\). By Taylor's
+    formula we have
     \[
         f(\beta) = f(\alpha) + p^{n-k}f'(\alpha)\gamma + p^{2n-2k}\zeta
     \]
-    with \(\zeta \in \Integers_p\). Then by our hypothesis \(f(\alpha) = p^n\eta\) and \(f'(\alpha) = p^k\xi\) with \(\eta \in \Integers_p\) and \(\xi \in \Units\). This alows us to choose \(\gamma\) such that
+    with \(\zeta \in \Integers_p\). Then by our hypothesis \(f(\alpha) =
+    p^n\eta\) and \(f'(\alpha) = p^k\xi\) with \(\eta \in \Integers_p\) and
+    \(\xi \in \Units\). This alows us to choose \(\gamma\) such that
     \[
         \eta + \gamma\xi \equiv 0 \pmod{p}.
     \]
@@ -296,7 +609,9 @@ The theorems in this section can be used to show that a polynomial in has a root
     \[
         f(\beta) = p^n(\eta + \gamma\xi) + p^{2n-2k}\zeta \equiv 0 \pmod{p^{n+1}}
     \]
-    since \(2n - 2k > n\). Finally, applying Taylor's formula to \(f'\) shows that \(f'(\beta) \equiv p^k \xi \pmod{p^{n-k}}\); since \(n - k > k\), we have \(\nu_p(f'(\beta)) = k\).
+    since \(2n - 2k > n\). Finally, applying Taylor's formula to \(f'\) shows
+    that \(f'(\beta) \equiv p^k \xi \pmod{p^{n-k}}\); since \(n - k > k\), we
+    have \(\nu_p(f'(\beta)) = k\).
 \end{proof}
 
 \medskip
@@ -304,11 +619,15 @@ The theorems in this section can be used to show that a polynomial in has a root
 We can extend this result to polynomials in several variables.
 
 \begin{theorem}
-    Let \(f\) be a polynomial in \(m\) variables with coefficients in \(\Integers_p\) and let \(j\) be an integer such that \(0 \leq j \leq m\). If \(n\) and \(k\) are integers with \(0 \leq 2k < n\) and if \(f'(\alpha) \equiv 0 \pmod{p^n}\) and
+    Let \(f\) be a polynomial in \(m\) variables with coefficients in
+    \(\Integers_p\) and let \(j\) be an integer such that \(0 \leq j \leq m\).
+    If \(n\) and \(k\) are integers with \(0 \leq 2k < n\) and if \(f'(\alpha)
+    \equiv 0 \pmod{p^n}\) and
     \[
         \nu_p\left(\frac{\partial f}{\partial a_j}(\alpha)\right) = k
     \]
-    for some \(\alpha = (a_i) \in \Integers_p^m\), then there exists a zero \(\beta = (b_i) \in \Integers_p^m\) of \(f\) such that
+    for some \(\alpha = (a_i) \in \Integers_p^m\), then there exists a zero
+    \(\beta = (b_i) \in \Integers_p^m\) of \(f\) such that
     \[
         \alpha \equiv \beta \pmod{p^{n-k}}.
     \]
@@ -318,13 +637,19 @@ See \cite[pp.~14--15]{serre2012course} for a proof.
 
 \medskip
 
-By using Hensel's lemma, one can ``lift'' (i.e., obtain) from a given root \(r\) of a polynomial \(f\) modulo \(p^k\) another root \(s\) of \(f\) modulo \(p^{k+1}\) such that \(s \equiv r \pmod{p^k}\). The above theorem is often applied as the following corollary.
+By using Hensel's lemma, one can ``lift'' (i.e., obtain) from a given root \(r\)
+of a polynomial \(f\) modulo \(p^k\) another root \(s\) of \(f\) modulo
+\(p^{k+1}\) such that \(s \equiv r \pmod{p^k}\). The above theorem is often
+applied as the following corollary.
 
 \begin{corollary}
-    Every simple root of reduction modulo \(p\) of a polynomial \(f\) can be lifted to a root of \(f\) in \(\Integers_p[x]\).
+    Every simple root of reduction modulo \(p\) of a polynomial \(f\) can be
+    lifted to a root of \(f\) in \(\Integers_p[x]\).
 \end{corollary}
 
-Here a root \(x = (x_1, \dots, x_n)\) is considered ``simple'' if \(f(x) = 0\) but \(\partial f / \partial x_i \neq 0\) for some \(i\). This is a special case of the theorem with \(n = 1\) and \(k = 0\).
+Here a root \(x = (x_1, \dots, x_n)\) is considered ``simple'' if \(f(x) = 0\)
+but \(\partial f / \partial x_i \neq 0\) for some \(i\). This is a special case
+of the theorem with \(n = 1\) and \(k = 0\).
 
 \smallskip
 
@@ -332,7 +657,10 @@ Let us now use Hensel's lemma to solve the congruence
 \[
     x^2 \equiv 2 \pmod{7^3}.  
 \]
-The case \(x^2 \equiv 2 \pmod{7}\). This has solutions \(x \equiv 3\) and \(x \equiv 4 \pmod{7}\). Consider first the solution \(x \equiv 3 \pmod{7}\); then \(x = 3 + 7y\) for any integer \(y\). Substituting this into the congruence gives
+The case \(x^2 \equiv 2 \pmod{7}\). This has solutions \(x \equiv 3\) and \(x
+\equiv 4 \pmod{7}\). Consider first the solution \(x \equiv 3 \pmod{7}\); then
+\(x = 3 + 7y\) for any integer \(y\). Substituting this into the congruence
+gives
 \[
     9 + 42y + 49y^2 \equiv 0 \pmod{7^2},
 \]
@@ -340,15 +668,23 @@ or equivalently,
 \[
     7(1 + 6y) \equiv 1 + 6y \equiv 0 \pmod{7^2}.
 \]
-Thus \(y \equiv 1 \pmod{7}\) and we obtain \(x \equiv 10 \pmod{7^2}\). Similarly, for \(x \equiv 4 \pmod{7}\), we get \(x \equiv 39 \equiv -10 \pmod{7^2}\).
+Thus \(y \equiv 1 \pmod{7}\) and we obtain \(x \equiv 10 \pmod{7^2}\).
+Similarly, for \(x \equiv 4 \pmod{7}\), we get \(x \equiv 39 \equiv -10
+\pmod{7^2}\).
 
-Now let us solve the initial congruence modulo \(7^3\). Consider again the case \(x \equiv 10 \pmod{7^2}\). Then \(x = 10 + 7^2z\) for some integer \(z\). Substituting this into the congruence gives
+Now let us solve the initial congruence modulo \(7^3\). Consider again the case
+\(x \equiv 10 \pmod{7^2}\). Then \(x = 10 + 7^2z\) for some integer \(z\).
+Substituting this into the congruence gives
 \[
     (10+7^2z)^2 \equiv 2 \pmod{7^3},
 \]
-and hence by routine computation we obtain \(z \equiv 2 \pmod{7}\) and thus \(x \equiv 10 + 7^2z \equiv 108 \pmod{7^3}\). Similarly, for \(x \equiv 39 \pmod{7^2}\), we get \(x \equiv 235 \pmod{7^3}\).
+and hence by routine computation we obtain \(z \equiv 2 \pmod{7}\) and thus \(x
+\equiv 10 + 7^2z \equiv 108 \pmod{7^3}\). Similarly, for \(x \equiv 39
+\pmod{7^2}\), we get \(x \equiv 235 \pmod{7^3}\).
 
-Thus we were able to ``lift'' solutions modulo \(7^2\) given solutions modulo \(7\). This process can be repeated indefinitely, and one can observe that the solutions modulo \(x^2 \equiv 2 \pmod{7^k}\) follow a familiar pattern:
+Thus we were able to ``lift'' solutions modulo \(7^2\) given solutions modulo
+\(7\). This process can be repeated indefinitely, and one can observe that the
+solutions modulo \(x^2 \equiv 2 \pmod{7^k}\) follow a familiar pattern:
 
 \begin{align*}
     k = 1 & \qquad \pm 3 \\
@@ -359,9 +695,20 @@ Thus we were able to ``lift'' solutions modulo \(7^2\) given solutions modulo \(
 
 \section{The Hilbert symbol}\label{sec:hilbert-symbol}
 
-We shall now review the norm-residue symbol introduced by Hilbert in \cite[pp.~286--287]{hilbert1932theorie}. Our treatment in \S\,\ref{sec:hilbert-symbol-intro} shall be mainly cursory as our goal is to use the properties we shall develop here to simplify some of the arguments in our proof of the Hasse-Minkowski theorem, which is the main result of this chapter. After \S\,\ref{sec:hilbert-symbol-intro}, we shall then continue with the development of the theory in keeping with the rigor of the rest of this paper.  We refer the reader to \cite{serre2012course} and to \cite{sutherland2013introduction10} for the details of the omitted proofs.
+We shall now review the norm-residue symbol introduced by Hilbert in
+\cite[pp.~286--287]{hilbert1932theorie}. Our treatment in
+\S\,\ref{sec:hilbert-symbol-intro} shall be mainly cursory as our goal is to use
+the properties we shall develop here to simplify some of the arguments in our
+proof of the Hasse-Minkowski theorem, which is the main result of this chapter.
+After \S\,\ref{sec:hilbert-symbol-intro}, we shall then continue with the
+development of the theory in keeping with the rigor of the rest of this paper.
+We refer the reader to \cite{serre2012course} and to
+\cite{sutherland2013introduction10} for the details of the omitted proofs.
 
-\subsection{Definition and properties.}~Throughout this section we take \(\field\) to be the field \(\Rationals_p\) or \(\Reals.\) For any \(a\) and \(b\) in \(\fieldU\) we define the Hilbert norm-residue symbol (or more simply, the Hilbert symbol) \((a, b)\) by
+\subsection{Definition and properties.}~Throughout this section we take
+\(\field\) to be the field \(\Rationals_p\) or \(\Reals.\) For any \(a\) and
+\(b\) in \(\fieldU\) we define the Hilbert norm-residue symbol (or more simply,
+the Hilbert symbol) \((a, b)\) by
 \[
     (a, b) = \begin{cases}
         \ \ 1 & \text{if } z^2 - ax^2 - by^2 = 0 \text{ has a nontrivial solution in } \field^3, \\
@@ -369,9 +716,17 @@ We shall now review the norm-residue symbol introduced by Hilbert in \cite[pp.~2
     \end{cases}
 \]
 \label{sec:hilbert-symbol-intro}
-Let \(\Places\) be the union of the set of all prime numbers and the symbol \(\infty\); we shall call \(\mathfrak{V}\) the set of ``places'' in \(\Rationals\). For each \(v \in \Places\), we write \((a, b)_v\) for  each \(a, b \in \fieldU\) to denote the image of \((a, b)\) under the map \(\SquareClass \times \SquareClass \to \{1, -1\}\) induced by the Hilbert symbol in \(\Rationals_v\), where we define \(\Rationals_{\infty}\) to be \(\Reals\).
+Let \(\Places\) be the union of the set of all prime numbers and the symbol
+\(\infty\); we shall call \(\mathfrak{V}\) the set of ``places'' in
+\(\Rationals\). For each \(v \in \Places\), we write \((a, b)_v\) for  each \(a,
+b \in \fieldU\) to denote the image of \((a, b)\) under the map \(\SquareClass
+\times \SquareClass \to \{1, -1\}\) induced by the Hilbert symbol in
+\(\Rationals_v\), where we define \(\Rationals_{\infty}\) to be \(\Reals\).
 
-Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any non-zero square we see that the Hilbert symbol defines a map \(\SquareClass \times \SquareClass \to \{1, -1\}\). We formalize these observations in the following lemma.
+Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any
+non-zero square we see that the Hilbert symbol defines a map \(\SquareClass
+\times \SquareClass \to \{1, -1\}\). We formalize these observations in the
+following lemma.
 \begin{lemma}
     Let \(a, b \in \fieldU\). The following statements are equivalent:
 
@@ -379,16 +734,20 @@ Because \((a, b)\) remains unchanged when \(a\) and \(b\) are multiplied by any 
 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item \((a, b) = 1\);
-        \item The equation \(z^2 - ax^2 - by^2 = 0\) has a nontrivial solution in \(\field^3\);
+        \item The equation \(z^2 - ax^2 - by^2 = 0\) has a nontrivial solution
+        in \(\field^3\);
         \item The form \(z^2 - ax^2 - by^2\) represents zero in \(\field\).
         \item The element \(a\) is a norm in \(\field(\sqrt{b})\).
     \end{enumerate}
 \end{lemma}
 
-See \cite[pp.~17--18]{serre2012course} or \cite[p.~1]{sutherland2013introduction10} for a proof. We now show some elementary properties of the Hilbert symbol.
+See \cite[pp.~17--18]{serre2012course} or
+\cite[p.~1]{sutherland2013introduction10} for a proof. We now show some
+elementary properties of the Hilbert symbol.
 
 \begin{theorem}
-    The Hilbert symbol satisfies the following properties for all \(a, b, c, a' \in \fieldU\), (with \(a \neq 1\) whenever \(1-a\) appears in the formula):
+    The Hilbert symbol satisfies the following properties for all \(a, b, c, a'
+    \in \fieldU\), (with \(a \neq 1\) whenever \(1-a\) appears in the formula):
 
     \smallskip
 
@@ -403,14 +762,25 @@ See \cite[pp.~17--18]{serre2012course} or \cite[p.~1]{sutherland2013introduction
 
 See \cite[pp.~19--21]{serre2012course} for a proof.
 
-\subsection{Computation of the Hilbert symbol.}~We shall now study how to explicitly compute the Hilbert symbol and show that it is bilinear and nondegenerate. Before that, we first define the {Legendre symbol}. Let \(p\) be an odd prime. An integer \(a\) is said to be a \emph{quadratic residue} modulo \(p\) if there exists an integer \(x\) such that \(x^2 \equiv a \pmod{p}\). If no such \(x\) exists, then \(a\) is said to be a \emph{quadratic nonresidue} modulo \(p\). The \emph{Legendre symbol} \(\left(\frac{a}{p}\right)\) is defined to be \(1\) if \(a\) is a quadratic residue modulo \(p\) and \(-1\) if \(a\) is a quadratic nonresidue modulo \(p\). Legendre has provided the following explicit formula for the symbol:\label{sec:computing-hilbert-symbol}
+\subsection{Computation of the Hilbert symbol.}~We shall now study how to
+explicitly compute the Hilbert symbol and show that it is bilinear and
+nondegenerate. Before that, we first define the {Legendre symbol}. Let \(p\) be
+an odd prime. An integer \(a\) is said to be a \emph{quadratic residue} modulo
+\(p\) if there exists an integer \(x\) such that \(x^2 \equiv a \pmod{p}\). If
+no such \(x\) exists, then \(a\) is said to be a \emph{quadratic nonresidue}
+modulo \(p\). The \emph{Legendre symbol} \(\left(\frac{a}{p}\right)\) is defined
+to be \(1\) if \(a\) is a quadratic residue modulo \(p\) and \(-1\) if \(a\) is
+a quadratic nonresidue modulo \(p\). Legendre has provided the following
+explicit formula for the symbol:\label{sec:computing-hilbert-symbol}
 \[
        \left(\frac{a}{p}\right) = a^{(p-1)/2} \pmod{p}.  
 \]
 This brings us to the following theorem.
 \begin{theorem}
-    {\normalfont\cite[pp.~20--21]{serre2012course}}
-    If \(\field = \Reals\), then \((a, b) = -1\) if both \(a\) and \(b\) are negative and \((a, b) = 1\) otherwise. If \(\field = \Rationals_p\), then, writing \(a\) and \(b\) as \(a = p^\alpha u\) and \(b = p^\beta v\) with \(u, v \in \Units\), we have
+    {\normalfont\cite[pp.~20--21]{serre2012course}} If \(\field = \Reals\), then
+    \((a, b) = -1\) if both \(a\) and \(b\) are negative and \((a, b) = 1\)
+    otherwise. If \(\field = \Rationals_p\), then, writing \(a\) and \(b\) as
+    \(a = p^\alpha u\) and \(b = p^\beta v\) with \(u, v \in \Units\), we have
     \[
         (a, b) = (-1)^{\alpha\beta\epsilon(p)}\left(\frac{u}{p}\right)^{\beta}\left(\frac{v}{p}\right)^{\alpha},
     \]
@@ -418,29 +788,57 @@ This brings us to the following theorem.
     \[
         (a, b) = (-1)^{\epsilon(u)\epsilon(v) + \alpha\omega(v) + \beta\omega(u)}
     \]
-    whenever \(p = 2\). Here we denote by \(\epsilon(x)\) and \(\omega(x)\) the images in \(\Integers/2\Integers\) of the integers \((x-1)/2\) and \((x^2-1)/8\), respectively.
+    whenever \(p = 2\). Here we denote by \(\epsilon(x)\) and \(\omega(x)\) the
+    images in \(\Integers/2\Integers\) of the integers \((x-1)/2\) and
+    \((x^2-1)/8\), respectively.
 \end{theorem}
 
-\emph{Proof}. We first prove the theorem for \(\field = \Reals\). We can suppose that \(a, b \in \{\pm 1\}\) since \(\{\pm 1\}\) is a complete set of representatives of \(\Reals^{\times}/(\Reals^{\times})^2\). By the theorem of the previous section, if either \(a\) or \(b\) is equal to \(1\) then \((a, b)_{\infty} = 1\) and by the lemma of the same theorem, \((-1, -1)_{\infty} = -1\) since \(-1\) is not a norm in \(\Complex = \Reals(\sqrt{-1})\). See also \cite[Theorem~10.4]{sutherland2013introduction10}.
+\emph{Proof}. We first prove the theorem for \(\field = \Reals\). We can suppose
+that \(a, b \in \{\pm 1\}\) since \(\{\pm 1\}\) is a complete set of
+representatives of \(\Reals^{\times}/(\Reals^{\times})^2\). By the theorem of
+the previous section, if either \(a\) or \(b\) is equal to \(1\) then \((a,
+b)_{\infty} = 1\) and by the lemma of the same theorem, \((-1, -1)_{\infty} =
+-1\) since \(-1\) is not a norm in \(\Complex = \Reals(\sqrt{-1})\). See also
+\cite[Theorem~10.4]{sutherland2013introduction10}.
 
-Now let \(\field = \Rationals_p\) and let \(p\) be an odd prime. Since \((a, b)_p\) depends only on the square classes of \(a\) and \(b\), we can assume that \(\alpha, \beta \in \Integers/ 2\Integers\). We need two lemmas.
+Now let \(\field = \Rationals_p\) and let \(p\) be an odd prime. Since \((a,
+b)_p\) depends only on the square classes of \(a\) and \(b\), we can assume that
+\(\alpha, \beta \in \Integers/ 2\Integers\). We need two lemmas.
 
 \begin{lemmax}\label{lem:serre-sol-zp}
-    {\normalfont\cite[p.~21]{serre2012course}}
-    Let \(v\) be a \(p\)-adic unit. If the equation \(z^2 - px^2 - vy^2 = 0\) has a nontrivial solution in \(\Rationals_p^3\), then it has a solution \((z, x, y)\) with \(z, y \in \Units\) and \(x \in \Integers_p\).
+    {\normalfont\cite[p.~21]{serre2012course}} Let \(v\) be a \(p\)-adic unit.
+    If the equation \(z^2 - px^2 - vy^2 = 0\) has a nontrivial solution in
+    \(\Rationals_p^3\), then it has a solution \((z, x, y)\) with \(z, y \in
+    \Units\) and \(x \in \Integers_p\).
 \end{lemmax}
 
 \begin{proof}
-    By Theorem\,\ref{thm:zeros-of-polynomials-in-qp-family} the given equation has a primitive solution \((z, y, x)\). We want to show that this solution can be chosen so that \(z, y \in \Units\) and \(x \in \Integers_p\). Suppose for the sake of contradiction that this solution does not satisfy the conditions of the theorem. Then \(z\) or \(y\) is divisible by \(p\); since \(z^2 - vy^2 \equiv 0 \pmod{p}\) and \(v \not\equiv 0 \pmod{p}\), we would have both \(z\) and \(y\) divisible by \(p\), hence \(px^2\) would be divisible by \(p^2\) and \(x\) would be divisible by \(p\). But this contradicts the fact that \((z, y, x)\) is a primitive solution.
+    By Theorem\,\ref{thm:zeros-of-polynomials-in-qp-family} the given equation
+    has a primitive solution \((z, y, x)\). We want to show that this solution
+    can be chosen so that \(z, y \in \Units\) and \(x \in \Integers_p\). Suppose
+    for the sake of contradiction that this solution does not satisfy the
+    conditions of the theorem. Then \(z\) or \(y\) is divisible by \(p\); since
+    \(z^2 - vy^2 \equiv 0 \pmod{p}\) and \(v \not\equiv 0 \pmod{p}\), we would
+    have both \(z\) and \(y\) divisible by \(p\), hence \(px^2\) would be
+    divisible by \(p^2\) and \(x\) would be divisible by \(p\). But this
+    contradicts the fact that \((z, y, x)\) is a primitive solution.
 \end{proof}
 
 \begin{lemmax}\label{lem:hilbert-odd-units}
-    {\normalfont\cite[Lemma~10.5]{sutherland2013introduction10}}
-    If \(p\) is odd then \((u, v)_p = 1\) for all \(u, v \in \Units\).
+    {\normalfont\cite[Lemma~10.5]{sutherland2013introduction10}} If \(p\) is odd
+    then \((u, v)_p = 1\) for all \(u, v \in \Units\).
 \end{lemmax}
 
 \begin{proof}
-    The proof uses the Chevalley-Warning theorem, which states that in a finite field if the number of variables of a polynomial is greater than its degree, then the cardinality of its solution set (i.e., the number of zeroes it has) is divisible by the characteristic of the field. We have not taken up this result in this paper but the reader may refer to \cite[p.~5]{serre2012course} for a proof. As a corollary of this result, we have that all quadratic forms of rank \(3\) has a non-trivial solution modulo \(p\). Hensel's lemma can then be used to lift this solution to a solution in \(\Integers_p\).
+    The proof uses the Chevalley-Warning theorem, which states that in a finite
+    field if the number of variables of a polynomial is greater than its degree,
+    then the cardinality of its solution set (i.e., the number of zeroes it has)
+    is divisible by the characteristic of the field. We have not taken up this
+    result in this paper but the reader may refer to
+    \cite[p.~5]{serre2012course} for a proof. As a corollary of this result, we
+    have that all quadratic forms of rank \(3\) has a non-trivial solution
+    modulo \(p\). Hensel's lemma can then be used to lift this solution to a
+    solution in \(\Integers_p\).
 \end{proof}
 
 \bigskip
@@ -450,12 +848,17 @@ We now return to the proof of the theorem and consider three cases:
 \smallskip
 
 \begin{enumerate}[nosep, label=(\roman*), wide]
-    \item If \(\alpha = \beta = 0\), then \((a, b)_p = (u, v)_p = 1\) by Lemma\,\ref{lem:hilbert-odd-units} above.
-    \item If \(\alpha = 1\) and \(\beta = 0\), we need to show that \((pu, v)_p ={ \legendre{v}{p}}\). Since \((u, v)_p = 1\) we have \((pu, v)_p = (p,v)\) by the theorem of \S\,\ref{sec:hilbert-symbol-intro} so that it suffices to check \((p, v)_p ={\legendre{v}{p}}\). If \(v\) is a square then we have
+    \item If \(\alpha = \beta = 0\), then \((a, b)_p = (u, v)_p = 1\) by
+    Lemma\,\ref{lem:hilbert-odd-units} above.
+    \item If \(\alpha = 1\) and \(\beta = 0\), we need to show that \((pu, v)_p
+    ={ \legendre{v}{p}}\). Since \((u, v)_p = 1\) we have \((pu, v)_p = (p,v)\)
+    by the theorem of \S\,\ref{sec:hilbert-symbol-intro} so that it suffices to
+    check \((p, v)_p ={\legendre{v}{p}}\). If \(v\) is a square then we have
     \[
     (p, v)_p = (p, 1)_p = (1, p)_p = 1 = \legendre{v}{p}.
     \]
-    If \(p\) is not a square then \(z^2 - px^2 - vy^2 = 0\) has no nontrivial solutions in modulo \(p\) and hence has no primitive solutions. Thus we have
+    If \(p\) is not a square then \(z^2 - px^2 - vy^2 = 0\) has no nontrivial
+    solutions in modulo \(p\) and hence has no primitive solutions. Thus we have
     \[
     (p, v)_p = -1 = \legendre{v}{p}.
     \]
@@ -463,7 +866,8 @@ We now return to the proof of the theorem and consider three cases:
     \[
     (pu, pv)_p = (-1)^{\frac{p-1}{2}}\legendre{u}{p}\legendre{v}{p}.
     \]
-    Applying formula \ref{item:formula-e} of the theorem of \S\,\ref{sec:hilbert-symbol-intro} we obtain
+    Applying formula \ref{item:formula-e} of the theorem of
+    \S\,\ref{sec:hilbert-symbol-intro} we obtain
     \[
     (pu, pv)_p = (pu, -p^2uv)_p = (pu, -uv)_p.
     \]
@@ -473,23 +877,54 @@ We now return to the proof of the theorem and consider three cases:
     \]
 \end{enumerate}
 
-This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, \beta\) in \(\Integers/2\Integers\) and we thus consider each of the three cases above.
+This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha,
+\beta\) in \(\Integers/2\Integers\) and we thus consider each of the three cases
+above.
 
 \smallskip
 
 \begin{enumerate}[nosep, label=(\roman*), wide]
-    \item If \(\alpha = \beta = 0\), we must check that \((u, v)_p = 1\) if \(u\) or \(v\) is congruent to \(1 \pmod{4}\) and \((u, v)_p\) otherwise. The first case implies \(u \equiv 1 \pmod{8}\) or \(u \equiv 5 \pmod{8}\). If \(u \equiv 1 \pmod{8}\) then \(u\) is a square modulo \(8\) and we have \((u, v)_p = 1\). Otherwise, if \(u \equiv 5 \pmod{8}\), we have \(u + 4v \equiv 1 \pmod{8}\) and there exists a unit \(w\) such that \(w^2 = u + 4v\); the form \(z^2 - ux^2 - 4vy^2\) thus has the nontrivial solution \((w, 1, 2)\) and we have \((u, v)_p = 1\). % TODO ADD REFERENCE
-    For the second case suppose \(u \equiv v \equiv -1 \pmod{4}\). If \((z,x,y)\) is a primitive root of \(z^2 - ux^2 - vy^2 = 0\), then \(z^2 + x^2 + y^2 \equiv 0 \pmod{4}\). But then again the squares modulo \(4\) are \(0\) and \(1\) so that this earlier congruence implies \(z \equiv x \equiv y \equiv 0 \pmod{2}\), contradicting the fact that \((z, x, y)\) is a primitive solution. Thus we have \((u, v)_p = -1\).
+    \item If \(\alpha = \beta = 0\), we must check that \((u, v)_p = 1\) if
+    \(u\) or \(v\) is congruent to \(1 \pmod{4}\) and \((u, v)_p\) otherwise.
+    The first case implies \(u \equiv 1 \pmod{8}\) or \(u \equiv 5 \pmod{8}\).
+    If \(u \equiv 1 \pmod{8}\) then \(u\) is a square modulo \(8\) and we have
+    \((u, v)_p = 1\). Otherwise, if \(u \equiv 5 \pmod{8}\), we have \(u + 4v
+    \equiv 1 \pmod{8}\) and there exists a unit \(w\) such that \(w^2 = u +
+    4v\); the form \(z^2 - ux^2 - 4vy^2\) thus has the nontrivial solution \((w,
+    1, 2)\) and we have \((u, v)_p = 1\). % TODO ADD REFERENCE
+    For the second case suppose \(u \equiv v \equiv -1 \pmod{4}\). If
+    \((z,x,y)\) is a primitive root of \(z^2 - ux^2 - vy^2 = 0\), then \(z^2 +
+    x^2 + y^2 \equiv 0 \pmod{4}\). But then again the squares modulo \(4\) are
+    \(0\) and \(1\) so that this earlier congruence implies \(z \equiv x \equiv
+    y \equiv 0 \pmod{2}\), contradicting the fact that \((z, x, y)\) is a
+    primitive solution. Thus we have \((u, v)_p = -1\).
 
     \item If \(\alpha = 1\) and \(\beta = 0\), we must check that
-    \[ (2u, v)_p = (-1)^{\epsilon(u)\epsilon(v) + \omega(v)}. \]
-    First we want to show that \((2, v)_p = (-1)^{\omega(v)}\), i.e, that \((2, v)_p = 1\) is equivalent to \(v \equiv \pm 1\pmod{8}\). By Lemma\,\ref{lem:serre-sol-zp} above, if \((2, v)_p = 1\) then there exists \(2\)-adic integers \(x\), \(y\) and \(z\) such that \(z^2 - 2x^2 - vy^2\) and \(y, z \not\equiv 0 \pmod{2}\). This implies that \(y^2 = z^2 \equiv 1 \pmod{8}\) and hence \(1 - 2x^2 - v \equiv 0 \pmod{8}\). But the only squares modulo \(8\) are \(0\), \(1\) and \(4\) so that \(v \equiv \pm 1 \pmod{8}\). Conversely, if \(v \equiv 1 \pmod{8}\) then \(v\) is a square and \((2, v)_p = 1\). If \(v \equiv -1 \pmod{8}\) then the equation \(z^2 - 2x^2 - vy^2 = 0\) has the nontrivial solution \((1, 1, 1)\) modulo \(8\); by Hensel's lemma, this solution can be lifted to a solution in \(\Integers_2\) and thus we have \((2, v)_p = 1\).
+    \[ (2u, v)_p = (-1)^{\epsilon(u)\epsilon(v) + \omega(v)}. \] First we want
+    to show that \((2, v)_p = (-1)^{\omega(v)}\), i.e, that \((2, v)_p = 1\) is
+    equivalent to \(v \equiv \pm 1\pmod{8}\). By Lemma\,\ref{lem:serre-sol-zp}
+    above, if \((2, v)_p = 1\) then there exists \(2\)-adic integers \(x\),
+    \(y\) and \(z\) such that \(z^2 - 2x^2 - vy^2\) and \(y, z \not\equiv 0
+    \pmod{2}\). This implies that \(y^2 = z^2 \equiv 1 \pmod{8}\) and hence \(1
+    - 2x^2 - v \equiv 0 \pmod{8}\). But the only squares modulo \(8\) are \(0\),
+    \(1\) and \(4\) so that \(v \equiv \pm 1 \pmod{8}\). Conversely, if \(v
+    \equiv 1 \pmod{8}\) then \(v\) is a square and \((2, v)_p = 1\). If \(v
+    \equiv -1 \pmod{8}\) then the equation \(z^2 - 2x^2 - vy^2 = 0\) has the
+    nontrivial solution \((1, 1, 1)\) modulo \(8\); by Hensel's lemma, this
+    solution can be lifted to a solution in \(\Integers_2\) and thus we have
+    \((2, v)_p = 1\).
 
-    Next we show that \((2u, v)_p= (2, v)_p(u,v)_p\). By the theorem of \S\,\ref{sec:hilbert-symbol-intro}, this holds if either of \((2,v)_p\) or \((u, v)_p\) is equal to \(1\). The remaining case is \((2, v)_p = (u, v)_p = -1\), implying that \(v \equiv 3 \pmod{8}\) and \(u \equiv 3 \pmod{8}\). Multiplying \(u\) and \(v\) by squares, we can suppose that \(u = -1\) and \(v = 3\) or \(u = 3\) and \(v = -5\). But the equations
+    Next we show that \((2u, v)_p= (2, v)_p(u,v)_p\). By the theorem of
+    \S\,\ref{sec:hilbert-symbol-intro}, this holds if either of \((2,v)_p\) or
+    \((u, v)_p\) is equal to \(1\). The remaining case is \((2, v)_p = (u, v)_p
+    = -1\), implying that \(v \equiv 3 \pmod{8}\) and \(u \equiv 3 \pmod{8}\).
+    Multiplying \(u\) and \(v\) by squares, we can suppose that \(u = -1\) and
+    \(v = 3\) or \(u = 3\) and \(v = -5\). But the equations
     \[
     z^2 + 2x^2 - 3y^2 = 0 \qquad \text{and} \qquad z^2 - 6x^2 + 5y^2 = 0
     \]
-    then both have the nontrivial solution \((1, 1, 1)\) and therefore \((2u, v)_p = 1\).
+    then both have the nontrivial solution \((1, 1, 1)\) and therefore \((2u,
+    v)_p = 1\).
 
     \item Finally, if \(\alpha = \beta = 1\), we must show that
     \[
@@ -504,77 +939,131 @@ This concludes the proof for odd primes. For \(p = 2\), we still have \(\alpha, 
     (2u, 2v)_p = (-1)^{\epsilon(u)\epsilon(-uv) + \omega(-uv)}
     \label{eq:2u-2v}
     \end{equation}
-    Now since \(\epsilon(-1) = 1\), \(\omega(-1) = 0\), and \(\epsilon(u) (1 + \epsilon(u)) = 0\), the exponent in \eqref{eq:2u-2v} is equal to \(\epsilon(u)\epsilon(v) + \omega(u) + \omega(v)\). \scshape{q.e.d.}
+    Now since \(\epsilon(-1) = 1\), \(\omega(-1) = 0\), and \(\epsilon(u) (1 +
+    \epsilon(u)) = 0\), the exponent in \eqref{eq:2u-2v} is equal to
+    \(\epsilon(u)\epsilon(v) + \omega(u) + \omega(v)\). \scshape{q.e.d.}
 \end{enumerate}
 
 
 
 
-\subsection{Global properties.}\label{sec:hilbert-reciprocity}~The field \(\Rationals\) embeds in \(\Rationals_v\) for each \(v \in \Places\). We want to prove two results about the Hilbert symbol in \(\Rationals\) in this section. The first is the product formula, which is a generalization of the law of quadratic reciprocity. The second is a theorem that gives us a way to determine whether rational numbers exists with given Hilbert symbols.
+\subsection{Global properties.}\label{sec:hilbert-reciprocity}~The field
+\(\Rationals\) embeds in \(\Rationals_v\) for each \(v \in \Places\). We want to
+prove two results about the Hilbert symbol in \(\Rationals\) in this section.
+The first is the product formula, which is a generalization of the law of
+quadratic reciprocity. The second is a theorem that gives us a way to determine
+whether rational numbers exists with given Hilbert symbols.
 
 \begin{theoremx}
-    If \(a, b \in \Rationals^{\times}\), then \((a, b)_v = 1\) for all but finitely many \(v \in \Places\) and 
+    If \(a, b \in \Rationals^{\times}\), then \((a, b)_v = 1\) for all but
+    finitely many \(v \in \Places\) and 
     \[
         \prod_{v \in \Places} (a, b)_v = 1.
     \]
 \end{theoremx}
 
 \begin{proof}
-    See \cite[p.~23]{weismann2006annotations}. Since the Hilbert symbol is bilinear, it suffices to prove the theorem for \(a\) and \(b\) equal to \(-1\) or a prime. We consider each case, making use of the identities in the preceding section.
+    See \cite[p.~23]{weismann2006annotations}. Since the Hilbert symbol is
+    bilinear, it suffices to prove the theorem for \(a\) and \(b\) equal to
+    \(-1\) or a prime. We consider each case, making use of the identities in
+    the preceding section.
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\roman*), wide]
-        \item If \(a = b = -1\), then \((a, b)_v = (-1, -1)_v = -1\) for all \(v \in \Places\).
-        \item If \(a = -1\) and \(b = \pi\), where \(\pi\) is a prime, then if \(\pi = 2\), we have \((a, b)_v = (-1, 2)_v = 1\) for all places \(v\). If \(\pi\) is odd, then \((a, b)_v = (-1, \pi)_v = 1\) for all \(v \neq 2\) and \((a, b)_2 = (-1, \pi)_2 = (-1, \pi)_{\pi} = (-1)^{\epsilon(\pi)} = 1\).\label{item:case-ii-hilbert-prod}
-        \item If \(a\) and \(b\) are the same prime \(\pi\), then by the theorem of \S\,\ref{sec:hilbert-symbol-intro}, \((\pi, \pi)_v = (-1, \pi)_v\) for all places \(v\) and we are back to case \ref{item:case-ii-hilbert-prod}.
-        \item If \(a = 2\) and \(b\) is an odd prime \(\pi'\), then \((2, \pi')_v = 1\) for all \(v \notin \{2, \pi'\}\) while \((2, \pi')_2 = (-1)^{\omega(\pi')}\) and \((2, \pi')_{\pi'} = \legendre{2}{v}\), for \(v = 2\) and \(v = \pi'\), respectively; in either of these last two cases, we have \((2, \pi')_v = (-1)^{(\pi'^2 - 1)/8} = 1\).
-        \item If \(a\) and \(b\) are distinct odd primes \(\pi\) and \(\pi'\), then \((a,b)_v = 1\) for all \(v \notin \{2, \pi, \pi'\}\). In those cases we have \((a, b)_v = (-1)^{\epsilon{\pi}\epsilon{\pi'}}\) if \(v = 2\); \((a, b)_v = \legendre{\pi}{\pi'}\) if \(v = \pi\); and \((a, b)_v = \legendre{\pi'}{\pi}\) if \(v = \pi'\). The result follows by quadratic reciprocity, \emph{viz.,}
+        \item If \(a = b = -1\), then \((a, b)_v = (-1, -1)_v = -1\) for all \(v
+        \in \Places\).
+        \item If \(a = -1\) and \(b = \pi\), where \(\pi\) is a prime, then if
+        \(\pi = 2\), we have \((a, b)_v = (-1, 2)_v = 1\) for all places \(v\).
+        If \(\pi\) is odd, then \((a, b)_v = (-1, \pi)_v = 1\) for all \(v \neq
+        2\) and \((a, b)_2 = (-1, \pi)_2 = (-1, \pi)_{\pi} =
+        (-1)^{\epsilon(\pi)} = 1\).\label{item:case-ii-hilbert-prod}
+        \item If \(a\) and \(b\) are the same prime \(\pi\), then by the theorem
+        of \S\,\ref{sec:hilbert-symbol-intro}, \((\pi, \pi)_v = (-1, \pi)_v\)
+        for all places \(v\) and we are back to case
+        \ref{item:case-ii-hilbert-prod}.
+        \item If \(a = 2\) and \(b\) is an odd prime \(\pi'\), then \((2,
+        \pi')_v = 1\) for all \(v \notin \{2, \pi'\}\) while \((2, \pi')_2 =
+        (-1)^{\omega(\pi')}\) and \((2, \pi')_{\pi'} = \legendre{2}{v}\), for
+        \(v = 2\) and \(v = \pi'\), respectively; in either of these last two
+        cases, we have \((2, \pi')_v = (-1)^{(\pi'^2 - 1)/8} = 1\).
+        \item If \(a\) and \(b\) are distinct odd primes \(\pi\) and \(\pi'\),
+        then \((a,b)_v = 1\) for all \(v \notin \{2, \pi, \pi'\}\). In those
+        cases we have \((a, b)_v = (-1)^{\epsilon{\pi}\epsilon{\pi'}}\) if \(v =
+        2\); \((a, b)_v = \legendre{\pi}{\pi'}\) if \(v = \pi\); and \((a, b)_v
+        = \legendre{\pi'}{\pi}\) if \(v = \pi'\). The result follows by
+        quadratic reciprocity, \emph{viz.,}
         \[
             \prod (a, b)_v =  (-1)^{\frac{\pi-1}{2}\frac{\pi'-1}{2}} \legendre{\pi}{\pi'} \legendre{\pi'}{\pi} = 1.
         \]
     \end{enumerate}
 \end{proof}
 
-\begin{theoremx}\label{thm:global-properties-hs}
-    Let \(\{x_i\}_{i \in I}\) be a finite family of elements of \(\Rationals^{\times}\) and let \(\{\epsilon_{i, v}\}_{i \in I, v \in \Places}\) be a family of numbers equal to \(\pm 1\). There exists \(\lambda \in \fieldU\) such that \((x_i, \lambda)_v = \epsilon_{i, v}\) for all \(i \in I\) and \(v \in \Places\) if and only if the following conditions are satisfied:
+\begin{theoremx}\label{thm:global-properties-hs} Let \(\{x_i\}_{i \in I}\) be a
+    finite family of elements of \(\Rationals^{\times}\) and let
+    \(\{\epsilon_{i, v}\}_{i \in I, v \in \Places}\) be a family of numbers
+    equal to \(\pm 1\). There exists \(\lambda \in \fieldU\) such that \((x_i,
+    \lambda)_v = \epsilon_{i, v}\) for all \(i \in I\) and \(v \in \Places\) if
+    and only if the following conditions are satisfied:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item almost all the \(\epsilon_{i, v}\) are equal to \(1\);
-        \item for all \(i \in I\), we have \(\prod_{v \in \Places} \epsilon_{i, v} = 1\); and
-        \item for all \(v \in \Places\), there exists \(\lambda_v \in \Rationals_v^{\times}\) such that \((x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(i \in I\).\label{item:condition-c}
+        \item for all \(i \in I\), we have \(\prod_{v \in \Places} \epsilon_{i,
+        v} = 1\); and
+        \item for all \(v \in \Places\), there exists \(\lambda_v \in
+        \Rationals_v^{\times}\) such that \((x_i, \lambda_v)_v = \epsilon_{i,
+        v}\) for all \(i \in I\).\label{item:condition-c}
     \end{enumerate}
 \end{theoremx}
 
 % We again refer the reader to \cite[pp.~24--26]{serre2012course} for a proof.
 
-We first introduce a couple of lemmas to prove Theorem\,\ref{thm:global-properties-hs}.
+We first introduce a couple of lemmas to prove
+Theorem\,\ref{thm:global-properties-hs}.
 
-\begin{lemmax}[``Chinese remainder theorem'']\label{lem:chinese-remainder}
-    Let \(a_1, \dots, a_n\) and \(m_1, \dots, m_n\) be integers, with the \(m_i\) pairwise coprime. Then there exists an integer \(x\) such that \(x \equiv a_i \pmod{m_i}\) for all \(i\).
+\begin{lemmax}[``Chinese remainder theorem'']\label{lem:chinese-remainder} Let
+    \(a_1, \dots, a_n\) and \(m_1, \dots, m_n\) be integers, with the \(m_i\)
+    pairwise coprime. Then there exists an integer \(x\) such that \(x \equiv
+    a_i \pmod{m_i}\) for all \(i\).
 \end{lemmax}
 
 \begin{proof}
-    This result has been proved in class. Alternatively, let \(m\) be the product of the \(m_i\). By B\'ezout's theorem, the map
-    \[\Integers/m\Integers \to \prod_{i = 1}^n \Integers/m_i\Integers\]
-    is an isomorphism. The result follows from this fact.
+    This result has been proved in class. Alternatively, let \(m\) be the
+    product of the \(m_i\). By B\'ezout's theorem, the map
+    \[\Integers/m\Integers \to \prod_{i = 1}^n \Integers/m_i\Integers\] is an
+    isomorphism. The result follows from this fact.
 \end{proof}
 
 \begin{lemmax}[``Approximation lemma'']\label{lem:approximation}
-    {\normalfont\cite[pp.~24--25]{serre2012course}}
-    Let \(S \subset \Places\) be a finite set of places. The image of \(\Rationals\) is dense in \(\prod_{v \in S} \Rationals_v\).
+    {\normalfont\cite[pp.~24--25]{serre2012course}} Let \(S \subset \Places\) be
+    a finite set of places. The image of \(\Rationals\) is dense in \(\prod_{v
+    \in S} \Rationals_v\).
 \end{lemmax}
     
 
-\emph{Proof.} Suppose that \(S = \{\infty, p_1, \dots, p_n\}\) with the \(p_i\) distinct. We can assume this without loss of generality since if the image of \(\Rationals\) is dense in \(\prod_{v \in S} \Rationals_v\) for any finite set \(S\) of places, then it is also dense in \(\prod_{v \in S'} \Rationals_v\) for any subset \(S' \subset S\). Thus we may enlarge \(S\) as needed and assume \(S\) is as we have defined it.
+\emph{Proof.} Suppose that \(S = \{\infty, p_1, \dots, p_n\}\) with the \(p_i\)
+distinct. We can assume this without loss of generality since if the image of
+\(\Rationals\) is dense in \(\prod_{v \in S} \Rationals_v\) for any finite set
+\(S\) of places, then it is also dense in \(\prod_{v \in S'} \Rationals_v\) for
+any subset \(S' \subset S\). Thus we may enlarge \(S\) as needed and assume
+\(S\) is as we have defined it.
 
-Now fix an element \((x_{\infty}, x_1, \dots, x_n)\) of \(S\) so that multiplying it by some integer, we can assume that the \(x_i\) are all elements of \(\Integers_p\). Now let \(\epsilon > 0\) be any real number and \(N\) a natural number. By the Chinese remainder theorem, there exists an integer \(x_0\) such that \(x_0 \equiv x_i \pmod{p_i^N}\) for all \(i\). Therefore we have
+Now fix an element \((x_{\infty}, x_1, \dots, x_n)\) of \(S\) so that
+multiplying it by some integer, we can assume that the \(x_i\) are all elements
+of \(\Integers_p\). Now let \(\epsilon > 0\) be any real number and \(N\) a
+natural number. By the Chinese remainder theorem, there exists an integer
+\(x_0\) such that \(x_0 \equiv x_i \pmod{p_i^N}\) for all \(i\). Therefore we
+have
 \[
     \nu_{p_i}(x_0 - x_i) \geq N.
 \] 
-Choose now an integer \(\pi \geq 2\) relatively prime to each of the \(p_i\)  so that rational numbers of the form \(a/\pi^m\) are dense in \(\Rationals\) for \(a \in \Integers\) and \(m \in \Naturals\). (This is possible since \(\pi^m\) diverges as \(m\) tends to infinity.) We can thus choose a number \(\omega = a/\pi^m\) such that
+Choose now an integer \(\pi \geq 2\) relatively prime to each of the \(p_i\)  so
+that rational numbers of the form \(a/\pi^m\) are dense in \(\Rationals\) for
+\(a \in \Integers\) and \(m \in \Naturals\). (This is possible since \(\pi^m\)
+diverges as \(m\) tends to infinity.) We can thus choose a number \(\omega =
+a/\pi^m\) such that
 \[
     |x_0 - x_{\infty} + \omega p_1^N\cdots p_n^N| \leq \epsilon,
 \]
@@ -586,71 +1075,155 @@ for all \(i\), as desired. {\scshape q.e.d.}
 
 \medskip
 
-\begin{lemmax}[``Dirichlet's theorem on arithmetic progressions'']\label{lem:dirichlet}
-    {\normalfont\cite[p.~25]{serre2012course}}
-    If \(a\) and \(m\) are relatively prime positive integers, then there exist infinitely many primes \(p\) such that \(p \equiv a \pmod{m}\).
+\begin{lemmax}[``Dirichlet's theorem on arithmetic
+    progressions'']\label{lem:dirichlet}
+    {\normalfont\cite[p.~25]{serre2012course}} If \(a\) and \(m\) are relatively
+    prime positive integers, then there exist infinitely many primes \(p\) such
+    that \(p \equiv a \pmod{m}\).
 \end{lemmax}
 
-This lemma is proved by showing that the value of the Dirichlet \(L\)-function at \(s = 1\) is nonzero. The proof requires some results from complex analysis and analytic number theory that are beyond the scope of this paper. We refer the reader to Chapter 6 of \cite{serre2012course} for the development and the proof of this result.
+This lemma is proved by showing that the value of the Dirichlet \(L\)-function
+at \(s = 1\) is nonzero. The proof requires some results from complex analysis
+and analytic number theory that are beyond the scope of this paper. We refer the
+reader to Chapter 6 of \cite{serre2012course} for the development and the proof
+of this result.
 
 We are now ready to prove Theorem\,\ref{thm:global-properties-hs}.
 
-\emph{Proof of Theorem} \ref{thm:global-properties-hs}. Let \(\{\epsilon_{i,v}\}\) a family of numbers equal to \(\pm 1\) satisfying the conditions of the theorem. Multiplying the \(x_i\) by the square of some integer, we can assume that the \(x_i\) are all integers (recall that the Hilbert symbol is trivial on squares). Let now \(S\) be the set of all prime factors of the \(x_i\) together with the symbol, \(\infty\) and the prime number \(2\). In addition, define the set \(T\) be the places \(v \in \Places\) such that there eixsts \(i \in I\) with \(\epsilon_{i, v} = -1\). The reader may verify that these sets  are finite. We can now distinguish between two cases.
+\emph{Proof of Theorem} \ref{thm:global-properties-hs}. Let
+\(\{\epsilon_{i,v}\}\) a family of numbers equal to \(\pm 1\) satisfying the
+conditions of the theorem. Multiplying the \(x_i\) by the square of some
+integer, we can assume that the \(x_i\) are all integers (recall that the
+Hilbert symbol is trivial on squares). Let now \(S\) be the set of all prime
+factors of the \(x_i\) together with the symbol, \(\infty\) and the prime number
+\(2\). In addition, define the set \(T\) be the places \(v \in \Places\) such
+that there eixsts \(i \in I\) with \(\epsilon_{i, v} = -1\). The reader may
+verify that these sets  are finite. We can now distinguish between two cases.
 
 \begin{enumerate}[nosep, label=(\roman*), wide]
-    \item In the first case we have \(S \cap T = \emptyset\). Let \(a\) be the product of all places \(\pi \in T\) and \(m\) the product of all odd places \(\pi \in S\) multiplied by \(8\), in both cases excepting the case where \(\pi = \infty\). Because \(S\) and \(T\) are disjoint, the integers \(a\) and \(m\) are relatively prime, and by Lemma\,\ref{lem:dirichlet} there exists a prime number \(p\) such that \(p \equiv a \pmod{m}\) with \(p \notin S \cup T\). We shall now show that \(\lambda = ap\) has our desired property, i.e., \((x_i, \lambda)_v\) for all \(i \in I\) and \(v \in \Places\). 
+    \item In the first case we have \(S \cap T = \emptyset\). Let \(a\) be the
+    product of all places \(\pi \in T\) and \(m\) the product of all odd places
+    \(\pi \in S\) multiplied by \(8\), in both cases excepting the case where
+    \(\pi = \infty\). Because \(S\) and \(T\) are disjoint, the integers \(a\)
+    and \(m\) are relatively prime, and by Lemma\,\ref{lem:dirichlet} there
+    exists a prime number \(p\) such that \(p \equiv a \pmod{m}\) with \(p
+    \notin S \cup T\). We shall now show that \(\lambda = ap\) has our desired
+    property, i.e., \((x_i, \lambda)_v\) for all \(i \in I\) and \(v \in
+    \Places\). 
     
-    If \(v \in S\), we have \(\epsilon_{i, v} = 1\) since \(S\) and \(T\) are disjoint, and we must check that \((x_i, \lambda) = 1\). If \(v = \infty\), this fact follows from \(\lambda > 0\); if \(v\) is a prime number \(\pi\), we have \(\lambda \equiv a^2 \pmod{m}\), hence \(\lambda \equiv a^2 \pmod{8}\) for \(\pi = 2\) and \(\lambda \equiv a^2 \pmod{\pi}\) for \(\pi\) odd. Since \(\lambda\) and \(a\) are \(\pi\)-adic units, it follows that \(x\) is a square in \(\Rationals_{\pi}^{\times}\) and thus \((x_i, \lambda)_v = 1\).%TODO ADD REF
+    If \(v \in S\), we have \(\epsilon_{i, v} = 1\) since \(S\) and \(T\) are
+    disjoint, and we must check that \((x_i, \lambda) = 1\). If \(v = \infty\),
+    this fact follows from \(\lambda > 0\); if \(v\) is a prime number \(\pi\),
+    we have \(\lambda \equiv a^2 \pmod{m}\), hence \(\lambda \equiv a^2
+    \pmod{8}\) for \(\pi = 2\) and \(\lambda \equiv a^2 \pmod{\pi}\) for \(\pi\)
+    odd. Since \(\lambda\) and \(a\) are \(\pi\)-adic units, it follows that
+    \(x\) is a square in \(\Rationals_{\pi}^{\times}\) and thus \((x_i,
+    \lambda)_v = 1\).%TODO ADD REF
 
-    Otherwise, if \(v = \pi\) is not in \(S\), \(x_i\) is a \(\pi\)-adic unit; and since \(\pi\) is an odd prime we have, by the theorem of \S\,\ref{sec:computing-hilbert-symbol},
+    Otherwise, if \(v = \pi\) is not in \(S\), \(x_i\) is a \(\pi\)-adic unit;
+    and since \(\pi\) is an odd prime we have, by the theorem of
+    \S\,\ref{sec:computing-hilbert-symbol},
     \[
         (x_i, \mu)_{\pi} = \legendre{x_i}{\pi}^{\nu_\pi(\mu)}
     \]
-    for all \(\mu \in \Rationals_{\pi}^{\times}\). If \(\pi\) is not in \(T \cup \{p\}\), \(\lambda\) is a \(\pi\)-adic unit, hence the \(\pi\)-adic valuation \(\nu_{\pi}(\lambda) = 0\) and the above formula shows that \((x_i, \lambda) = 1\); on the other hand, we have \(\epsilon_{i, \pi} = 1\) because \(\pi \notin T\). If \(\pi\) is in \(T\), we then have \(\nu_{\pi}(\lambda) = 1\); moreover, by condition {\normalfont\ref{item:condition-c}} of the theorem, there exists a \(\lambda_{\pi} \in \Rationals_{\pi}^{\times}\) such that \((x_i, \lambda_{\pi})_{\pi} = \epsilon_{i, \pi}\) for all \(i \in I\). Since one of the \(\epsilon_{i, \pi}\) is equal to \(-1\) (because \(pi \in T\)), we have \(\nu_\pi(\lambda_\pi) = 1 \pmod{2}\) and therefore
+    for all \(\mu \in \Rationals_{\pi}^{\times}\). If \(\pi\) is not in \(T \cup
+    \{p\}\), \(\lambda\) is a \(\pi\)-adic unit, hence the \(\pi\)-adic
+    valuation \(\nu_{\pi}(\lambda) = 0\) and the above formula shows that
+    \((x_i, \lambda) = 1\); on the other hand, we have \(\epsilon_{i, \pi} = 1\)
+    because \(\pi \notin T\). If \(\pi\) is in \(T\), we then have
+    \(\nu_{\pi}(\lambda) = 1\); moreover, by condition
+    {\normalfont\ref{item:condition-c}} of the theorem, there exists a
+    \(\lambda_{\pi} \in \Rationals_{\pi}^{\times}\) such that \((x_i,
+    \lambda_{\pi})_{\pi} = \epsilon_{i, \pi}\) for all \(i \in I\). Since one of
+    the \(\epsilon_{i, \pi}\) is equal to \(-1\) (because \(pi \in T\)), we have
+    \(\nu_\pi(\lambda_\pi) = 1 \pmod{2}\) and therefore
     \[
         (x_i, \lambda)_{\pi} = \legendre{x_\pi}{\pi} = (x_i, \lambda_{\pi})_{\pi} = \epsilon_{i, \pi} \text{ for all } i \in I.
     \]
 
-    Finally, we consider the case \(\pi = p\), which we deduced from the previous cases using the product formula, \emph{viz.,}
+    Finally, we consider the case \(\pi = p\), which we deduced from the
+    previous cases using the product formula, \emph{viz.,}
     \[
         (x_i, \lambda)_p = \prod_{v \neq p} (x_i, \lambda)_v = \prod_{v \neq p} \epsilon_{i, v} = \epsilon_{i, p}.
     \]
-    This concludes the proof of the theorem in the case \(S \cap T = \emptyset\).
+    This concludes the proof of the theorem in the case \(S \cap T =
+    \emptyset\).
 
-    \item Now we shall prove the general case. The squares of \(\Rationals_v^{\times}\) form an open subgroup of \(\Rationals_v^{\times}\) (cf. \cite[p.~18]{serre2012course}). By the approximation lemma above, there exists \(\lambda' \in \Rationals^{\times}\) such that \(\lambda' / \lambda_v\) is a square in \(\Rationals_v^{\times}\) for all \(v \in S\). In particular, \((x_i, \lambda')_v = (x_i, \lambda_v)_v = \epsilon_{i, v}\) for all \(v\) in \(S\). Define \(\eta_{i, v} = \epsilon_{i, v} (x_i, \lambda')_v\); the family \(\{\eta_{i, v}\}\) satisfies the conditions of the theorem and moreover, \(\eta_{i, v} = 1\) for all \(v \in S\). By the first case in this proof (\(S \cap T = \emptyset\)), there exists \(\zeta \in \Rationals^{\times}\) such that \((x_i, \zeta)_v = \eta_{i, v}\) for all \(i \in I\) and \(v \in \Places\). Setting \(\lambda = \lambda' \zeta\) we obtain the desired result. {\scshape q.e.d.}
+    \item Now we shall prove the general case. The squares of
+    \(\Rationals_v^{\times}\) form an open subgroup of \(\Rationals_v^{\times}\)
+    (cf. \cite[p.~18]{serre2012course}). By the approximation lemma above, there
+    exists \(\lambda' \in \Rationals^{\times}\) such that \(\lambda' /
+    \lambda_v\) is a square in \(\Rationals_v^{\times}\) for all \(v \in S\). In
+    particular, \((x_i, \lambda')_v = (x_i, \lambda_v)_v = \epsilon_{i, v}\) for
+    all \(v\) in \(S\). Define \(\eta_{i, v} = \epsilon_{i, v} (x_i,
+    \lambda')_v\); the family \(\{\eta_{i, v}\}\) satisfies the conditions of
+    the theorem and moreover, \(\eta_{i, v} = 1\) for all \(v \in S\). By the
+    first case in this proof (\(S \cap T = \emptyset\)), there exists \(\zeta
+    \in \Rationals^{\times}\) such that \((x_i, \zeta)_v = \eta_{i, v}\) for all
+    \(i \in I\) and \(v \in \Places\). Setting \(\lambda = \lambda' \zeta\) we
+    obtain the desired result. {\scshape q.e.d.}
 \end{enumerate}
 
 \section{Quadratic forms over \(\FiniteHead_q\) and \(\RationalsHead_p\)}
 
-\subsection{Some results from Witt.}~In \S\,\ref{sec:mat-equiv} we have established that the forms \(xy\) and \(x^2 - y^2\) are equivalent over \(\Rationals\). As it turns out, these forms relate to more general forms over \(\Rationals\) and over \(\Rationals_p\) and are thus particularly useful in understanding quadratic forms over these fields, as has been demonstrated by the German mathematician Ernst Witt in his seminal paper from 1937 \cite{witt1937theorie}. We refer the reader to \cite{lam1973quadratic} for a more detailed treatment of Witt's decomposition and cancellation theorems, but we shall state here the results we need.\label{sec:results-from-witt}
+\subsection{Some results from Witt.}~In \S\,\ref{sec:mat-equiv} we have
+established that the forms \(xy\) and \(x^2 - y^2\) are equivalent over
+\(\Rationals\). As it turns out, these forms relate to more general forms over
+\(\Rationals\) and over \(\Rationals_p\) and are thus particularly useful in
+understanding quadratic forms over these fields, as has been demonstrated by the
+German mathematician Ernst Witt in his seminal paper from 1937
+\cite{witt1937theorie}. We refer the reader to \cite{lam1973quadratic} for a
+more detailed treatment of Witt's decomposition and cancellation theorems, but
+we shall state here the results we need.\label{sec:results-from-witt}
 
-We say that an element \(x\) of the quadratic space \((V,B)\) is \emph{isotropic} if it represents zero, i.e., if there exists a nonzero vector \(x \in V\) such that \(q(x) = 0\), where \(q\) is the associated quadratic form. We say that the whole space is isotropic if it contains an isotropic vector. If two isotropic elements \(x\) and \(y\) of \((V,B)\) satisfying \(B(x,y) \neq 0\) forms a basis of \(V\), then we call \((V, B)\) the hyperbolic plane. If \((V,B)\) is the hyperbolic plane then \(B\) is isomorphic to the orthogonal sum \(n\langle 1 \rangle \perp n \langle -1 \rangle\), where again \(\langle \lambda \rangle\) denotes the quadratic space of rank \(1\) with discriminant \(\lambda\), i.e., the isometry class of \(\lambda\). We can summarize these results in the following theorem.
+We say that an element \(x\) of the quadratic space \((V,B)\) is
+\emph{isotropic} if it represents zero, i.e., if there exists a nonzero vector
+\(x \in V\) such that \(q(x) = 0\), where \(q\) is the associated quadratic
+form. We say that the whole space is isotropic if it contains an isotropic
+vector. If two isotropic elements \(x\) and \(y\) of \((V,B)\) satisfying
+\(B(x,y) \neq 0\) forms a basis of \(V\), then we call \((V, B)\) the hyperbolic
+plane. If \((V,B)\) is the hyperbolic plane then \(B\) is isomorphic to the
+orthogonal sum \(n\langle 1 \rangle \perp n \langle -1 \rangle\), where again
+\(\langle \lambda \rangle\) denotes the quadratic space of rank \(1\) with
+discriminant \(\lambda\), i.e., the isometry class of \(\lambda\). We can
+summarize these results in the following theorem.
 
-\begin{theoremx}\label{thm:regular-witt}
-    Let \((V, B)\) be a quadratic space over \(\Rationals\) of rank \(2\). Then the following statements are equivalent:
+\begin{theoremx}\label{thm:regular-witt} Let \((V, B)\) be a quadratic space
+    over \(\Rationals\) of rank \(2\). Then the following statements are
+    equivalent:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item \((V, B)\) is regular and isotropic.
-        \item \(B \cong \langle 1, -1 \rangle \cong \langle 1 \rangle \perp \langle -1 \rangle\).
+        \item \(B \cong \langle 1, -1 \rangle \cong \langle 1 \rangle \perp
+        \langle -1 \rangle\).
         \item \(B\) is regular and \(\discr B \in -1 \cdot \SquareClass\).
         \item \(B\) is isomorphic to the equivalence class of the form \(xy\).
     \end{enumerate}
 \end{theoremx}
 
-\emph{Proof.} The results are immediate but cf. \cite[pp.~12--13]{lam1973quadratic}.
+\emph{Proof.} The results are immediate but cf.
+\cite[pp.~12--13]{lam1973quadratic}.
 
-\begin{theoremx}\label{thm:hyperbolic-decomp}
-    Let \((V,B)\) be a regular quadratic space and let \(x \neq 0\) be an isotropic element of \(V\). Then there exists a subspace \(W\) of \(V\) such that \(W\) contains \(x\) and is hyperbolic.
+\begin{theoremx}\label{thm:hyperbolic-decomp} Let \((V,B)\) be a regular
+    quadratic space and let \(x \neq 0\) be an isotropic element of \(V\). Then
+    there exists a subspace \(W\) of \(V\) such that \(W\) contains \(x\) and is
+    hyperbolic.
 \end{theoremx}
 
 \begin{proof}
-    See also \cite[p.~13]{clarkquadratic} or \cite[p.~29]{serre2012course}. Since \((V,B)\) is regular, there exists a vector \(z \in V\) such that \(B(x,z) \neq 0\); we can assume without loss of generality that \(B(x,z) = 1\). We claim that there exists a \(\lambda \in \field\) such that \(q(\lambda x + z) = 0\) where \(q\) is the associated quadratic form. Indeed we have
+    See also \cite[p.~13]{clarkquadratic} or \cite[p.~29]{serre2012course}.
+    Since \((V,B)\) is regular, there exists a vector \(z \in V\) such that
+    \(B(x,z) \neq 0\); we can assume without loss of generality that \(B(x,z) =
+    1\). We claim that there exists a \(\lambda \in \field\) such that
+    \(q(\lambda x + z) = 0\) where \(q\) is the associated quadratic form.
+    Indeed we have
     \[
         q(\lambda x + z) = \lambda^2q(x) + 2\lambda B(x,z) + q(z) = 2\lambda + q(z).     
     \]
-    Let \(\lambda = -q(z)/2\). Then if \(y = \lambda x + z\), we have \(q(x) = q(y) = 0\) and
+    Let \(\lambda = -q(z)/2\). Then if \(y = \lambda x + z\), we have \(q(x) =
+    q(y) = 0\) and
     \[
         B(x,y) = B(x, \lambda x + z) = \lambda q(x) + B(x,z) = 1.
     \]
@@ -660,66 +1233,105 @@ We say that an element \(x\) of the quadratic space \((V,B)\) is \emph{isotropic
 \medskip
 
 
-We say that a quadratic space \((V,B)\) is \emph{universal} if it represents every element of \(\fieldU\), i.e., \(D(B) = \fieldU\).  We can deduce the following corollary.
+We say that a quadratic space \((V,B)\) is \emph{universal} if it represents
+every element of \(\fieldU\), i.e., \(D(B) = \fieldU\).  We can deduce the
+following corollary.
 
-\begin{corollaryx}\label{cor:regular-isotropic}
-    Every regular isotropic quadratic space is universal.
+\begin{corollaryx}\label{cor:regular-isotropic} Every regular isotropic
+    quadratic space is universal.
 \end{corollaryx}
 
 The following corollary can also be deduced from the above theorem.
 
-\begin{corollaryx}[First representation theorem]\label{cor:rep-theorem-1}
-    Let \(q\) be a nondegenerate quadratic form and let \(\lambda \in \fieldU\). Then \(\lambda \in D(q)\) if and only if \(q \perp \langle -\lambda \rangle\) is isotropic.
+\begin{corollaryx}[First representation theorem]\label{cor:rep-theorem-1} Let
+    \(q\) be a nondegenerate quadratic form and let \(\lambda \in \fieldU\).
+    Then \(\lambda \in D(q)\) if and only if \(q \perp \langle -\lambda
+    \rangle\) is isotropic.
 \end{corollaryx}
 
 \begin{proof}
-    See \cite[pp.~14--15]{lam1973quadratic}. We can assume without loss of generality that \(q\) is a diagonal form. Now suppose \(\lambda \in D(q)\). Then \(\lambda = \sum \lambda_i x_i^2\) for some \(x_i \in \field\), so that \(\left(\sum \lambda_ix_i^2 + (-\lambda) \cdot 1^2 \right) = 0\) and hence \(q \perp \langle -\lambda \rangle\) is isotropic. Conversely, if \(q \perp \langle -\lambda \rangle\) is isotropic, then there exists a vector \(x = (x_1, \dots, x_{n+1})\) such that \(q(x) = 0\). If \(x_{n+1} \neq 0\), then
+    See \cite[pp.~14--15]{lam1973quadratic}. We can assume without loss of
+    generality that \(q\) is a diagonal form. Now suppose \(\lambda \in D(q)\).
+    Then \(\lambda = \sum \lambda_i x_i^2\) for some \(x_i \in \field\), so that
+    \(\left(\sum \lambda_ix_i^2 + (-\lambda) \cdot 1^2 \right) = 0\) and hence
+    \(q \perp \langle -\lambda \rangle\) is isotropic. Conversely, if \(q \perp
+    \langle -\lambda \rangle\) is isotropic, then there exists a vector \(x =
+    (x_1, \dots, x_{n+1})\) such that \(q(x) = 0\). If \(x_{n+1} \neq 0\), then
     \[
         \lambda = \sum \lambda_i\left(\frac{x_i}{x_{n+1}}\right)^2 \in D(q).
     \]
-    Otherwise, if \(x_{n+1} = 0\), then \(x' = (x_1, \dots, x_n) \neq 0\) is an isotropic vector of \(q\), whence \(D(q) = \fieldU\) and \(\lambda \in D(q)\).
+    Otherwise, if \(x_{n+1} = 0\), then \(x' = (x_1, \dots, x_n) \neq 0\) is an
+    isotropic vector of \(q\), whence \(D(q) = \fieldU\) and \(\lambda \in
+    D(q)\).
 \end{proof}
 
-We now ``translate'' Theorem \ref{thm:hyperbolic-decomp} and its corollaries in the language of quadratic forms. To simplify things, we shall again abuse notation and write \(q + r\) for the orthogonal sum of quadratic forms \(q\) and \(r\) of rank \(n\) and \(m\) respectively, i.e.,
-\[q + r = f(x_1, \dots, x_n) + g(x_{n+1}, \dots, x_{n+m}).\]
-Similarly, we put \(q - r\) for \(q + (-r)\). Moreover, we say that \(q\) is hyperbolic if
+We now ``translate'' Theorem \ref{thm:hyperbolic-decomp} and its corollaries in
+the language of quadratic forms. To simplify things, we shall again abuse
+notation and write \(q + r\) for the orthogonal sum of quadratic forms \(q\) and
+\(r\) of rank \(n\) and \(m\) respectively, i.e.,
+\[q + r = f(x_1, \dots, x_n) + g(x_{n+1}, \dots, x_{n+m}).\] Similarly, we put
+\(q - r\) for \(q + (-r)\). Moreover, we say that \(q\) is hyperbolic if
 \[
     q \sim xy \sim x^2 - y^2.
 \]
-The following theorem is therefore a restatement of Theorem \ref{thm:hyperbolic-decomp} and Corollary \ref{cor:regular-isotropic} above:
+The following theorem is therefore a restatement of Theorem
+\ref{thm:hyperbolic-decomp} and Corollary \ref{cor:regular-isotropic} above:
 
-\begin{theoremx}\label{thm:hyperbolic-decomp-2}
-    Let \(q\) be a nondegenerate quadratic form representing zero. Then \(q\) is equivalent to the form \(q' + r\) where \(q'\) is hyperbolic and \(r\) is of rank \(n - 2\). Moreover, \(q\) is universal.
+\begin{theoremx}\label{thm:hyperbolic-decomp-2} Let \(q\) be a nondegenerate
+    quadratic form representing zero. Then \(q\) is equivalent to the form \(q'
+    + r\) where \(q'\) is hyperbolic and \(r\) is of rank \(n - 2\). Moreover,
+    \(q\) is universal.
 \end{theoremx}
 
 \begin{corollary}
-    Let \(q\) be a nondegenerate quadratic form in \(n - 1\) variables and let \(\lambda \in \fieldU\). Then the following statements are equivalent:
+    Let \(q\) be a nondegenerate quadratic form in \(n - 1\) variables and let
+    \(\lambda \in \fieldU\). Then the following statements are equivalent:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item The form \(q\) represents \(\lambda\).
-        \item If \(r\) is a quadratic form in \(n - 2\) variables, then \(q \sim r + \lambda z^2\) for some variable \(z\).
+        \item If \(r\) is a quadratic form in \(n - 2\) variables, then \(q \sim
+        r + \lambda z^2\) for some variable \(z\).
         \item The form \(s = q - \lambda z^2\) represents zero.
     \end{enumerate}
 \end{corollary}
 
 \begin{proof}
-    The equivalence (a) \(\iff\) (c) is Corollary \ref{cor:rep-theorem-1} (the first representation theorem) of Theorem \ref{thm:hyperbolic-decomp} above. The implication (b) \(\implies\) (a) is trivial. For the converse, suppose \(q\) represents \(\lambda\); then there exists a vector \(x\) such that \(q(x) = \lambda\). Let \(H\) be the orthogonal complement of \(x\) so that \(V = H \perp \langle \lambda \rangle.\) If \(r\) is the quadratic form associated with \(H\), then \(q \sim r + \lambda z^2\) for some variable \(z\).
+    The equivalence (a) \(\iff\) (c) is Corollary \ref{cor:rep-theorem-1} (the
+    first representation theorem) of Theorem \ref{thm:hyperbolic-decomp} above.
+    The implication (b) \(\implies\) (a) is trivial. For the converse, suppose
+    \(q\) represents \(\lambda\); then there exists a vector \(x\) such that
+    \(q(x) = \lambda\). Let \(H\) be the orthogonal complement of \(x\) so that
+    \(V = H \perp \langle \lambda \rangle.\) If \(r\) is the quadratic form
+    associated with \(H\), then \(q \sim r + \lambda z^2\) for some variable
+    \(z\).
 \end{proof}
 
-\subsection{Quadratic forms over \(\FiniteField_q\).}~We first look at quadratic forms over a finite field \(\FiniteField_q\) with \(q\) elements where \(q\) is a power of an odd prime \(p\). The two theorems in this section show us that quadratic forms over \(\FiniteField_q\) are completely determined, up to equivalence, by their rank and discriminant. The results in this section are not needed in the sequel.\label{sec:quadratic-forms-fq}
+\subsection{Quadratic forms over \(\FiniteField_q\).}~We first look at quadratic
+forms over a finite field \(\FiniteField_q\) with \(q\) elements where \(q\) is
+a power of an odd prime \(p\). The two theorems in this section show us that
+quadratic forms over \(\FiniteField_q\) are completely determined, up to
+equivalence, by their rank and discriminant. The results in this section are not
+needed in the sequel.\label{sec:quadratic-forms-fq}
 
-\begin{theoremx}{\normalfont\cite[p.~34]{serre2012course}}
-    A quadratic form over \(\FiniteField_q\) of rank \(r \geq 2\) (resp. \(r \geq 3\)) is universal in \(\FiniteField_q^\times\) (resp. \(\FiniteField_q\)).\label{thm:universal-forms-in-fq}
+\begin{theoremx}{\normalfont\cite[p.~34]{serre2012course}} A quadratic form over
+    \(\FiniteField_q\) of rank \(r \geq 2\) (resp. \(r \geq 3\)) is universal in
+    \(\FiniteField_q^\times\) (resp.
+    \(\FiniteField_q\)).\label{thm:universal-forms-in-fq}
 \end{theoremx}
 
 \begin{proof}
-    Following the corollary of Theorem \ref{thm:hyperbolic-decomp-2} of the preceding section, it suffices to show that all quadratic forms in \(3\) variables represent \(0\). This fact is a consequence of the Chevalley-Warning theorem, which we have not taken up in this paper. See also the proof of Lemma \ref{lem:hilbert-odd-units} in \S\,\ref{sec:computing-hilbert-symbol}. 
+    Following the corollary of Theorem \ref{thm:hyperbolic-decomp-2} of the
+    preceding section, it suffices to show that all quadratic forms in \(3\)
+    variables represent \(0\). This fact is a consequence of the
+    Chevalley-Warning theorem, which we have not taken up in this paper. See
+    also the proof of Lemma \ref{lem:hilbert-odd-units} in
+    \S\,\ref{sec:computing-hilbert-symbol}. 
 \end{proof}
 
-\begin{theoremx}\label{thm:quadratic-forms-fq-rank-n}
-    Every nondegenerate form over \(\FiniteField_q\) of rank \(n\) is equivalent to the form
+\begin{theoremx}\label{thm:quadratic-forms-fq-rank-n} Every nondegenerate form
+    over \(\FiniteField_q\) of rank \(n\) is equivalent to the form
     \[
         x_1^2 + \cdots + x_{n-1}^2 + x_n^2.
     \]
@@ -727,31 +1339,61 @@ The following theorem is therefore a restatement of Theorem \ref{thm:hyperbolic-
     \[
         x_1^2 + \cdots + x_{n-1}^2 + \lambda x_n^2
     \]
-    where \(\lambda\) is a nonsquare element of \(\FiniteField_q\), depending on whether its discriminant is a square or not.
+    where \(\lambda\) is a nonsquare element of \(\FiniteField_q\), depending on
+    whether its discriminant is a square or not.
 \end{theoremx}
 
 \begin{proof}
-    We proceed by induction. Let \(q\) be a quadratic form of rank \(n\) in \(\FiniteField_q\). For \(n = 1\), every quadratic form is of the form \(x^2\) or \(ax^2\) since the group \(\FiniteField_q^{\times} / \FiniteField_q^{\times2}\) has order \(2\). If \(n \geq 2\) then by Theorem \ref{thm:universal-forms-in-fq} \(q\), being universal, represents \(1\); thus \(q \sim x^2 + r\) for some quadratic form \(r\) of rank \(n - 1\) and by induction, we are done.
+    We proceed by induction. Let \(q\) be a quadratic form of rank \(n\) in
+    \(\FiniteField_q\). For \(n = 1\), every quadratic form is of the form
+    \(x^2\) or \(ax^2\) since the group \(\FiniteField_q^{\times} /
+    \FiniteField_q^{\times2}\) has order \(2\). If \(n \geq 2\) then by Theorem
+    \ref{thm:universal-forms-in-fq} \(q\), being universal, represents \(1\);
+    thus \(q \sim x^2 + r\) for some quadratic form \(r\) of rank \(n - 1\) and
+    by induction, we are done.
 \end{proof}
 
-\subsection{The Hasse-Minkowski invariant.}~Let \(\field\) be \(\Rationals_p\) or \(\Reals\) (we shall maintain this assumption until the end of the next section). Let \((V, B)\) be a quadratic space over \(\field\) with \(q\) as its associated quadratic form and let \(\discr q\) be its discriminant. We have established in \S\,\ref{sec:square-classes} that \(\discr B\) is an element of the square class \(\SquareClass\). Now if \(\Basis = \{b_1, \dots, b_n\}\) is an orthogonal basis of \(V\) and we write \(a_{i} = B(b_i, b_i)\), then we have\label{sec:hasse-invariant}
+\subsection{The Hasse-Minkowski invariant.}~Let \(\field\) be \(\Rationals_p\)
+or \(\Reals\) (we shall maintain this assumption until the end of the next
+section). Let \((V, B)\) be a quadratic space over \(\field\) with \(q\) as its
+associated quadratic form and let \(\discr q\) be its discriminant. We have
+established in \S\,\ref{sec:square-classes} that \(\discr B\) is an element of
+the square class \(\SquareClass\). Now if \(\Basis = \{b_1, \dots, b_n\}\) is an
+orthogonal basis of \(V\) and we write \(a_{i} = B(b_i, b_i)\), then we
+have\label{sec:hasse-invariant}
 \[
     \discr q = a_1 \cdots a_n.  
 \]
-Recall now that we have defined the Hilbert symbol \((a, b)\) for elements \(a, b \in \fieldU\). We then define
+Recall now that we have defined the Hilbert symbol \((a, b)\) for elements \(a,
+b \in \fieldU\). We then define
 \[
     \epsilon(\Basis) = \prod_{i < j} (a_i, a_j)
 \]
-so that \(\epsilon := \epsilon(\Basis) = \pm 1\). We now have the following theorem.
+so that \(\epsilon := \epsilon(\Basis) = \pm 1\). We now have the following
+theorem.
 
-\begin{theorem}{\normalfont\cite[pp.~35--36]{serre2012course}}
-    The number \(\epsilon\) does not depend on the choice of the orthogonal basis \(\Basis\) of \(V\).
+\begin{theorem}{\normalfont\cite[pp.~35--36]{serre2012course}} The number
+    \(\epsilon\) does not depend on the choice of the orthogonal basis
+    \(\Basis\) of \(V\).
 \end{theorem}
 
 \begin{proof}
-    We prove the theorem by induction on the rank of \(V\). If \(n = 1\), we have \(\epsilon = 1\) as the product is trivial. If \(n = 2\), then \(\epsilon = 1\) if and only if \(z^2 - ax^2 - by^2\) has a nontrivial solution in \(\field^3\), which is true, by the corollary of Theorem \ref{thm:hyperbolic-decomp-2} of the preceding section, if and only if \(ax^2 + by^2\) represents \(1\). But this last statement implies that there exists a vector \(v \in V\) such that \(q(x) = 1\); this vector exists independent of the choice of basis.
+    We prove the theorem by induction on the rank of \(V\). If \(n = 1\), we
+    have \(\epsilon = 1\) as the product is trivial. If \(n = 2\), then
+    \(\epsilon = 1\) if and only if \(z^2 - ax^2 - by^2\) has a nontrivial
+    solution in \(\field^3\), which is true, by the corollary of Theorem
+    \ref{thm:hyperbolic-decomp-2} of the preceding section, if and only if
+    \(ax^2 + by^2\) represents \(1\). But this last statement implies that there
+    exists a vector \(v \in V\) such that \(q(x) = 1\); this vector exists
+    independent of the choice of basis.
 
-    For \(n \geq 3\), we proceed by induction on \(n\). By the theorem of \S\,\ref{sec:contiguous-bases}, it suffices to show that \(\epsilon(\Basis) = \epsilon(\Basis')\) whenever \(\Basis\) and \(\Basis'\) are contiguous bases of \(V\). Moreover, because the Hilbert symbol is symmetric, \(\epsilon(\Basis)\) does not change no matter how we permute the elements of \(\Basis\). Thus we can assume without loss of generality that \(b_1 = b'_1\) and hence \(a_1 = a'_1\). We then have
+    For \(n \geq 3\), we proceed by induction on \(n\). By the theorem of
+    \S\,\ref{sec:contiguous-bases}, it suffices to show that \(\epsilon(\Basis)
+    = \epsilon(\Basis')\) whenever \(\Basis\) and \(\Basis'\) are contiguous
+    bases of \(V\). Moreover, because the Hilbert symbol is symmetric,
+    \(\epsilon(\Basis)\) does not change no matter how we permute the elements
+    of \(\Basis\). Thus we can assume without loss of generality that \(b_1 =
+    b'_1\) and hence \(a_1 = a'_1\). We then have
     \begin{align*}
         \epsilon(\Basis)  &= (a_1, a_2 \cdots a_n) \prod_{2 \leq i <j} (a_i, a_j) \\
                                 &= (a_1, \discr B a_1) \prod_{2 \leq i <j} (a_i, a_j)
@@ -760,19 +1402,31 @@ so that \(\epsilon := \epsilon(\Basis) = \pm 1\). We now have the following theo
     \[
         \epsilon(\mathfrak{B'}) = (a_1, \discr B a_1) \prod_{2 \leq i <j} (a'_i, a'_j).
     \]
-    But applying the inductive hypothesis to the orthogonal complement of \(b_1\) gives us
+    But applying the inductive hypothesis to the orthogonal complement of
+    \(b_1\) gives us
     \[
         \prod_{2 \leq i <j} (a_i, a_j) = \prod_{2 \leq i <j} (a'_i, a'_j),  
     \]
     which completes the proof.
 \end{proof}
 
-In view of the above theorem we shall call \(\epsilon\) the \emph{Hasse-Minkowski invariant}\index{Hasse-Minkowski invariant} of the quadratic space \((V, B)\). We shall also sometimes write \(\epsilon(B)\) or \(\epsilon(q)\) (where \(q\) is the form associated with \(B\)) to emphasize the dependence of \(\epsilon\) on \(B\) or \(q\).\footnote{The notation \(c_p(q)\) for the Hasse-Minkowski invariant of the form \(q\) also appears in the literature, as in, e.g., \cite{jones1950arithmetic,cassels2008rational}.}
+In view of the above theorem we shall call \(\epsilon\) the
+\emph{Hasse-Minkowski invariant}\index{Hasse-Minkowski invariant} of the
+quadratic space \((V, B)\). We shall also sometimes write \(\epsilon(B)\) or
+\(\epsilon(q)\) (where \(q\) is the form associated with \(B\)) to emphasize the
+dependence of \(\epsilon\) on \(B\) or \(q\).\footnote{The notation \(c_p(q)\)
+for the Hasse-Minkowski invariant of the form \(q\) also appears in the
+literature, as in, e.g., \cite{jones1950arithmetic,cassels2008rational}.}
 
-\subsection{Representation in \(\Rationals_p\).}~In this section we provide the necessary and sufficient conditions for any form over \(\Rationals_p\) to represent zero.\label{sec:representation-in-qp-sec}
+\subsection{Representation in \(\Rationals_p\).}~In this section we provide the
+necessary and sufficient conditions for any form over \(\Rationals_p\) to
+represent zero.\label{sec:representation-in-qp-sec}
 
-\begin{theoremx}\label{thm:rep-in-rationals-p}
-    Let \(q\) be a nondegenerate quadratic form over \(\Rationals_p\) of rank \(n\) and let \(\discr q\) and \(\epsilon\) be its discriminant and Hasse-Minkowski invariant respectively. Then for \(q\) to represent \(0\) in \(\Rationals_p\) it is necessary and sufficient that:
+\begin{theoremx}\label{thm:rep-in-rationals-p} Let \(q\) be a nondegenerate
+    quadratic form over \(\Rationals_p\) of rank \(n\) and let \(\discr q\) and
+    \(\epsilon\) be its discriminant and Hasse-Minkowski invariant respectively.
+    Then for \(q\) to represent \(0\) in \(\Rationals_p\) it is necessary and
+    sufficient that:
 
     \smallskip
 
@@ -785,29 +1439,50 @@ In view of the above theorem we shall call \(\epsilon\) the \emph{Hasse-Minkowsk
     That is, all forms of rank \(n \geq 5\) represent \(0\) in \(\Rationals_p\).
 \end{theoremx}
 
-We shall not prove this theorem in this paper but the reader may refer to \cite[pp.~36--39]{serre2012course} for a proof. Now note that if \(\lambda \in \SquareClass\) and \(q_{\lambda}\) is the form \(q - \lambda z^2\), then we know by the results in \S\,\ref{sec:results-from-witt} that \(q_{\lambda}\) represents \(0\) in \(\Rationals_p\) if and only if \(q\) represents \(\lambda\). Noting also the fact that \(\discr q_{\lambda} = -\lambda \discr q\) (cf. Theorem \ref{thm:regular-witt} of \S\,\ref{sec:results-from-witt}) and \(\epsilon(q_\lambda) = (-\lambda, \discr q)\epsilon\), we can deduce the following corollary, which provides necessary and sufficient conditions for a form \(q\) to represent any \(\lambda \in \SquareClass\), not just \(0\).
+We shall not prove this theorem in this paper but the reader may refer to
+\cite[pp.~36--39]{serre2012course} for a proof. Now note that if \(\lambda \in
+\SquareClass\) and \(q_{\lambda}\) is the form \(q - \lambda z^2\), then we know
+by the results in \S\,\ref{sec:results-from-witt} that \(q_{\lambda}\)
+represents \(0\) in \(\Rationals_p\) if and only if \(q\) represents
+\(\lambda\). Noting also the fact that \(\discr q_{\lambda} = -\lambda \discr
+q\) (cf. Theorem \ref{thm:regular-witt} of \S\,\ref{sec:results-from-witt}) and
+\(\epsilon(q_\lambda) = (-\lambda, \discr q)\epsilon\), we can deduce the
+following corollary, which provides necessary and sufficient conditions for a
+form \(q\) to represent any \(\lambda \in \SquareClass\), not just \(0\).
 
 \begin{corollary}
-    Let \(\lambda \in \SquareClass\) and let \(q\), \(\discr q\) and \(\epsilon\) be as above. Then for \(q\) to represent \(\lambda\) in \(\Rationals_p\) it is necessary and sufficient that:
+    Let \(\lambda \in \SquareClass\) and let \(q\), \(\discr q\) and
+    \(\epsilon\) be as above. Then for \(q\) to represent \(\lambda\) in
+    \(\Rationals_p\) it is necessary and sufficient that:
 
     \smallskip
 
     \begin{enumerate}[nosep, label=(\alph*)]
         \item \(n = 1\) and \(\lambda = \discr q\);
         \item \(n = 2\) and \((\lambda, -\discr q) = \epsilon\);
-        \item \(n = 3\) and \(\lambda = \pm \discr q\) and \(\epsilon = (-1, \discr q)\); or
+        \item \(n = 3\) and \(\lambda = \pm \discr q\) and \(\epsilon = (-1,
+        \discr q)\); or
         \item \(n \geq 4\).
     \end{enumerate}
 \end{corollary}
 
-With these results, we are now able to classify, up to equivalence, all quadratic forms over \(\Rationals_p\). We summarize the results in the following theorem.
+With these results, we are now able to classify, up to equivalence, all
+quadratic forms over \(\Rationals_p\). We summarize the results in the following
+theorem.
 
-\begin{theoremx}{\normalfont\cite[p.~39]{serre2012course}}
-    Two quadratic forms over \(\field = \Rationals_p\) or \(\Reals\) are equivalent if and only if they have the same rank, discriminant and Hasse-Minkowski invariant.
+\begin{theoremx}{\normalfont\cite[p.~39]{serre2012course}} Two quadratic forms
+    over \(\field = \Rationals_p\) or \(\Reals\) are equivalent if and only if
+    they have the same rank, discriminant and Hasse-Minkowski invariant.
 \end{theoremx}
 
 \begin{proof}
-    The forward implication follows directly from the definition of equivalence. We shall prove the converse by induction on the rank \(n\) of two  forms \(q\) and \(r\). We also write \(\Delta\) and \(\epsilon\) for the discriminant \(\Delta q = \Delta r\) and the Hasse-Minkowski invariant \(\epsilon(q) = \epsilon(r)\). The case \(n = 0\) is trivial. By the corollary of Theorem\,\ref{thm:rep-in-rationals-p} of this section, \(q\) and \(r\) represent the same element \(\lambda \in \fieldU\). We then have
+    The forward implication follows directly from the definition of equivalence.
+    We shall prove the converse by induction on the rank \(n\) of two  forms
+    \(q\) and \(r\). We also write \(\Delta\) and \(\epsilon\) for the
+    discriminant \(\Delta q = \Delta r\) and the Hasse-Minkowski invariant
+    \(\epsilon(q) = \epsilon(r)\). The case \(n = 0\) is trivial. By the
+    corollary of Theorem\,\ref{thm:rep-in-rationals-p} of this section, \(q\)
+    and \(r\) represent the same element \(\lambda \in \fieldU\). We then have
     \[
         q \sim \langle \lambda \rangle \perp q' \quad \text{and} \quad r \sim \langle \lambda \rangle \perp r'
     \]
@@ -819,28 +1494,55 @@ With these results, we are now able to classify, up to equivalence, all quadrati
     \[
         \epsilon(q') = (-\lambda, \discr q')\epsilon = (-\lambda, \discr r')\epsilon = \epsilon(r'),
     \]
-    and thus \(q'\) and \(r'\) have the same rank, discriminant and Hasse-Minkowski invariant. By the inductive hypothesis, \(q'\) and \(r'\) are equivalent, and hence \(q\) and \(r\) are equivalent.
+    and thus \(q'\) and \(r'\) have the same rank, discriminant and
+    Hasse-Minkowski invariant. By the inductive hypothesis, \(q'\) and \(r'\)
+    are equivalent, and hence \(q\) and \(r\) are equivalent.
 \end{proof}
 
-We conclude this section by exploring in a bit more detail quadratic forms over the field \(\Reals\) of real numbers. These results are again from \cite{serre2012course}, but shall not be needed in the sequel. We know from \S\,\ref{sec:results-from-witt} that if \(q\) is a quadratic form over \(\Reals\) of rank \(n\), then \(q\) is equivalent to the form
+We conclude this section by exploring in a bit more detail quadratic forms over
+the field \(\Reals\) of real numbers. These results are again from
+\cite{serre2012course}, but shall not be needed in the sequel. We know from
+\S\,\ref{sec:results-from-witt} that if \(q\) is a quadratic form over
+\(\Reals\) of rank \(n\), then \(q\) is equivalent to the form
 \[
     x_1^2 + \cdots + x_{r}^2 - y_1^2 - \cdots - y_{s}^2
 \]
-where \(r\) and \(s\) are positive integers satisfying \(r + s = n\). We shall now show that the integers \(r\) and \(s\) depend only on the form \(q\) and is thus an invariant of \(q\) over \(\Reals\). We shall call the pair \((r,s)\) the \emph{signature}\index{signature} of \(q\). We say that \(q\) is \emph{positive definite} if \(r = n\) and \emph{negative definite} if \(s = n\). We say that \(q\) is \emph{indefinite} if \(r\) and \(s\) are both positive. If we let \(\epsilon\) and \(\discr q\) be the Hasse-Minkowski invariant and discriminant of \(q\) respectively, then, because \((-1, -1) = -1\),
+where \(r\) and \(s\) are positive integers satisfying \(r + s = n\). We shall
+now show that the integers \(r\) and \(s\) depend only on the form \(q\) and is
+thus an invariant of \(q\) over \(\Reals\). We shall call the pair \((r,s)\) the
+\emph{signature}\index{signature} of \(q\). We say that \(q\) is \emph{positive
+definite} if \(r = n\) and \emph{negative definite} if \(s = n\). We say that
+\(q\) is \emph{indefinite} if \(r\) and \(s\) are both positive. If we let
+\(\epsilon\) and \(\discr q\) be the Hasse-Minkowski invariant and discriminant
+of \(q\) respectively, then, because \((-1, -1) = -1\),
 \[
     \epsilon = (-1)^{s(s-1)/2} \quad \text{and} \quad \discr q = (-1)^{s}.
 \]
-This result is Sylvester's law of inertia from linear algebra. See also \cite[pp.~83--84]{szymiczek2017bilinear}.
+This result is Sylvester's law of inertia from linear algebra. See also
+\cite[pp.~83--84]{szymiczek2017bilinear}.
 
 \section{The Hasse-Minkowski theorem.}
 
-\subsection{The Hasse-Minkowski theorem.}~We are now ready to prove the main result of this chapter, the Hasse-Minkowski theorem. As in \S\,\ref{sec:hilbert-reciprocity}, we shall write \(\mathfrak{V}\) for the union of the set of prime numbers and the symbol \(\infty\), so that writing \(\Rationals_v\) for the \(v\)-adic field is well-defined for all \(v \in \mathfrak{V}\), with \(\Rationals_{\infty} = \Reals\) by definition. As before, we shall write \(\quadform{a_1, \dots, a_n}\) for the quadratic form \(q \sim a_1x_1^2 + \cdots + a_nx_n^2\) over \(\Rationals\); we then associate with \(q\):\label{sec:hasse-minkowski} 
+\subsection{The Hasse-Minkowski theorem.}~We are now ready to prove the main
+result of this chapter, the Hasse-Minkowski theorem. As in
+\S\,\ref{sec:hilbert-reciprocity}, we shall write \(\mathfrak{V}\) for the union
+of the set of prime numbers and the symbol \(\infty\), so that writing
+\(\Rationals_v\) for the \(v\)-adic field is well-defined for all \(v \in
+\mathfrak{V}\), with \(\Rationals_{\infty} = \Reals\) by definition. As before,
+we shall write \(\quadform{a_1, \dots, a_n}\) for the quadratic form \(q \sim
+a_1x_1^2 + \cdots + a_nx_n^2\) over \(\Rationals\); we then associate with
+\(q\):\label{sec:hasse-minkowski} 
 
 \smallskip
 
 \begin{enumerate}[nosep, label=(\alph*)]
-    \item a discriminant \(\Delta q\) in \(\Rationals^{\times} / \Rationals^{\times 2}\) equal to \(a_1 \cdots a_n\);
-    \item for any \(v \in \Places\) we define the injection \(q_v : \Rationals \hookrightarrow \Rationals_v\) so that \(q_v\) denotes the quadratic form \(q\) over \(\Rationals_v\), such that \(\discr_v q\) is the image of \(\discr q\) by \(\Rationals^{\times} / \Rationals^{\times 2} \to \Rationals_v^{\times} / \Rationals_v^{\times2}\) and
+    \item a discriminant \(\Delta q\) in \(\Rationals^{\times} /
+    \Rationals^{\times 2}\) equal to \(a_1 \cdots a_n\);
+    \item for any \(v \in \Places\) we define the injection \(q_v : \Rationals
+    \hookrightarrow \Rationals_v\) so that \(q_v\) denotes the quadratic form
+    \(q\) over \(\Rationals_v\), such that \(\discr_v q\) is the image of
+    \(\discr q\) by \(\Rationals^{\times} / \Rationals^{\times 2} \to
+    \Rationals_v^{\times} / \Rationals_v^{\times2}\) and
     \[
       \epsilon_v (q) = \prod_{i < j} (a_i, a_j)_v,  
     \]
@@ -848,111 +1550,242 @@ This result is Sylvester's law of inertia from linear algebra. See also \cite[pp
     \item a signature \((r,s)\) as defined in the preceding section.
 \end{enumerate}
 
-The numbers \(\discr_v q\), \(\epsilon_v(q)\) and \((r, s)\) all called the \emph{local invariants} of \(q\) with respect to the place \(v\). With our notation fixed, we can now state the Hasse-Minkowski theorem.
+The numbers \(\discr_v q\), \(\epsilon_v(q)\) and \((r, s)\) all called the
+\emph{local invariants} of \(q\) with respect to the place \(v\). With our
+notation fixed, we can now state the Hasse-Minkowski theorem.
 
-\begin{theoremx}\label{thm:hasse-minkowski}
-    In order that a quadratic form over \(\Rationals\) represent zero, it is necessary and sufficient that for every place \(v\) of \(\Rationals\) the form \(q_v\) represents \(0\).
+\begin{theoremx}\label{thm:hasse-minkowski} In order that a quadratic form over
+    \(\Rationals\) represent zero, it is necessary and sufficient that for every
+    place \(v\) of \(\Rationals\) the form \(q_v\) represents \(0\).
 \end{theoremx}
 
-Before proceeding with the proof, recall that in \S\,\ref{sec:polynomials-over-zp} we have remarked that, while the polynomial \(x^2 - 2\) has a solution in \(\Rationals_7\), we know for a fact that it does not have a solution in \(\Rationals\). We see that this is the case because, as the Hasse-Minkowski theorem tells us, a quadratic form has a solution in \(\Rationals\) if and only if it has a solution in \(\Rationals_v\) for all \(v \in \Places\). Indeed we see by routine verification that \(x^2 - 2\) has no solutions in \(\Rationals_3\).
+Before proceeding with the proof, recall that in
+\S\,\ref{sec:polynomials-over-zp} we have remarked that, while the polynomial
+\(x^2 - 2\) has a solution in \(\Rationals_7\), we know for a fact that it does
+not have a solution in \(\Rationals\). We see that this is the case because, as
+the Hasse-Minkowski theorem tells us, a quadratic form has a solution in
+\(\Rationals\) if and only if it has a solution in \(\Rationals_v\) for all \(v
+\in \Places\). Indeed we see by routine verification that \(x^2 - 2\) has no
+solutions in \(\Rationals_3\).
 
 
-\emph{Proof.} The necessity is clear since \(\Rationals \subset \Rationals_p\) for all \(p\) so we are going to prove sufficiency. Write the form \(q\) as its equivalent diagonal form \(\quadform{a_1, \dots, a_n}\) where each \(a_i \in \fieldU\). Replacing \(q\) with \(a_1 q\), we can assume, without loss of generality, that \(a_1 = 1\). We shall then again follow \cite[pp.~41--44]{serre2012course} and \cite[pp.~102--104]{gerstein2008basic} and prove the theorem for \(n = 2, 3, 4\) and \(n \geq 5.\)
+\emph{Proof.} The necessity is clear since \(\Rationals \subset \Rationals_p\)
+for all \(p\) so we are going to prove sufficiency. Write the form \(q\) as its
+equivalent diagonal form \(\quadform{a_1, \dots, a_n}\) where each \(a_i \in
+\fieldU\). Replacing \(q\) with \(a_1 q\), we can assume, without loss of
+generality, that \(a_1 = 1\). We shall then again follow
+\cite[pp.~41--44]{serre2012course} and \cite[pp.~102--104]{gerstein2008basic}
+and prove the theorem for \(n = 2, 3, 4\) and \(n \geq 5.\)
 
 \begin{enumerate}[wide, nosep, label=(\alph*)]
-    \item \textbf{Case 1,} \(n = 2\). Suppose \(q \cong \quadform{1, a}\). Then for \(q\) to represent \(0\) in \(\Rationals\), \(q\) must represent \(0\) in all the places \(v\) of \(\Rationals\); in particular, \(q\) must represent \(0\) in \(\Rationals_{\infty} = \Reals\). It therefore follows that \(a < 0\) and thus we only need to consider the form \(q \cong \quadform{1, -a}\), with \(0 < a \in \Rationals\), so that \(q\) represents \(0\) in \(\Rationals\) if and only if it is a square in \(\Rationals\). Since \(q\) represents \(0\) in all \(\Rationals_p\),  \(a\) is a square in \(\Rationals_p\). Thus writing \(a\) as the product \(\prod_p p^{\nu_p(a)}\), we have that \(\nu_p(a)\) is even and therefore, \(a\) is a square in \(\Rationals\) and hence \(q\) represents \(0\) in \(\Rationals\).
+    \item \textbf{Case 1,} \(n = 2\). Suppose \(q \cong \quadform{1, a}\). Then
+    for \(q\) to represent \(0\) in \(\Rationals\), \(q\) must represent \(0\)
+    in all the places \(v\) of \(\Rationals\); in particular, \(q\) must
+    represent \(0\) in \(\Rationals_{\infty} = \Reals\). It therefore follows
+    that \(a < 0\) and thus we only need to consider the form \(q \cong
+    \quadform{1, -a}\), with \(0 < a \in \Rationals\), so that \(q\) represents
+    \(0\) in \(\Rationals\) if and only if it is a square in \(\Rationals\).
+    Since \(q\) represents \(0\) in all \(\Rationals_p\),  \(a\) is a square in
+    \(\Rationals_p\). Thus writing \(a\) as the product \(\prod_p
+    p^{\nu_p(a)}\), we have that \(\nu_p(a)\) is even and therefore, \(a\) is a
+    square in \(\Rationals\) and hence \(q\) represents \(0\) in \(\Rationals\).
     
-    \item \textbf{Case 2,} \(n = 3\). We can assume, without loss of generality, that \(q \cong \quadform{1, -a, -b}\) where \(a\) and \(b\) are squarefree integers (i.e. \(\nu_p(a)\) and \(\nu_p(b)\) are equal to \(0\) or \(1\) for all prime \(p\)) and \(|a| \leq |b|\). We shall prove this by induction on the integer \(m = |a| + |b|\). If \(m = 2\), then \(q \cong \quadform{1, \pm 1, \pm 1}\), but since \(q\) is represents 0 in \(\Rationals_\infty = \Reals\), then \(q \not\cong \quadform{1, 1, 1}\) and hence \(q \cong \quadform{1, -1, -1}\).
+    \item \textbf{Case 2,} \(n = 3\). We can assume, without loss of generality,
+    that \(q \cong \quadform{1, -a, -b}\) where \(a\) and \(b\) are squarefree
+    integers (i.e. \(\nu_p(a)\) and \(\nu_p(b)\) are equal to \(0\) or \(1\) for
+    all prime \(p\)) and \(|a| \leq |b|\). We shall prove this by induction on
+    the integer \(m = |a| + |b|\). If \(m = 2\), then \(q \cong \quadform{1, \pm
+    1, \pm 1}\), but since \(q\) is represents 0 in \(\Rationals_\infty =
+    \Reals\), then \(q \not\cong \quadform{1, 1, 1}\) and hence \(q \cong
+    \quadform{1, -1, -1}\).
     
-    Now if \(m > 2\). Recall that we are assuming \(|a| \leq |b|\) so that \(|b| \geq 2\) and write \(b = \pm p_1 \cdots p_r\) where \(p_i\) are distinct primes (noting also our assumption that \(b\) is squarefree). We then use the following lemma:
+    Now if \(m > 2\). Recall that we are assuming \(|a| \leq |b|\) so that \(|b|
+    \geq 2\) and write \(b = \pm p_1 \cdots p_r\) where \(p_i\) are distinct
+    primes (noting also our assumption that \(b\) is squarefree). We then use
+    the following lemma:
 
     \begin{lemma}
-        Let \(a\) and \(b\) be as above and let \(p\) be a prime number. Then {\normalfont (i)} \(a\) is a square modulo \(p\); and {\normalfont (ii)} \(a\) is a square modulo \(b\).
+        Let \(a\) and \(b\) be as above and let \(p\) be a prime number. Then
+        {\normalfont (i)} \(a\) is a square modulo \(p\); and {\normalfont (ii)}
+        \(a\) is a square modulo \(b\).
     \end{lemma}
 
-    We shall not prove this lemma but see \cite[p.~42]{serre2012course} for a proof. Here (ii) is a corollary of (i). Now since \(a\) is a square modulo \(b\), there exists integers \(t\) and \(b'\) such that \(t^2 = a + b'b\) such that \(0 \leq |t| \leq |b|/2\). We then have
-    \[ b'b = N(t + \sqrt{a})\]
-    where \(N: \field(\sqrt{a})/\field \to \field\) is the norm mapping of the extension \(\field(\sqrt{a})/\field\) of \(\field\) where \(k\) is \(\Rationals\) or \(\Rationals_v\) (cf. \cite[p.940]{rotman2010advanced}, \cite[p.~289]{hungerford2012algebra}). We can then conclude that \(q\) represents \(0\) in \(\field\) if and only if the form \(q' \cong \quadform{1, -a, -b'}\) does. And since \(|b| \geq 2\), it follows that
+    We shall not prove this lemma but see \cite[p.~42]{serre2012course} for a
+    proof. Here (ii) is a corollary of (i). Now since \(a\) is a square modulo
+    \(b\), there exists integers \(t\) and \(b'\) such that \(t^2 = a + b'b\)
+    such that \(0 \leq |t| \leq |b|/2\). We then have
+    \[ b'b = N(t + \sqrt{a})\] where \(N: \field(\sqrt{a})/\field \to \field\)
+    is the norm mapping of the extension \(\field(\sqrt{a})/\field\) of
+    \(\field\) where \(k\) is \(\Rationals\) or \(\Rationals_v\) (cf.
+    \cite[p.940]{rotman2010advanced}, \cite[p.~289]{hungerford2012algebra}). We
+    can then conclude that \(q\) represents \(0\) in \(\field\) if and only if
+    the form \(q' \cong \quadform{1, -a, -b'}\) does. And since \(|b| \geq 2\),
+    it follows that
     \[
         |b'| = \left|\frac{t^2-a}{b}\right| \leq \frac{|b|}{4} + 1 \leq |b|
     \]
-    Again write \(b'\) as \(b''u^2\) for some squarefree integer \(b''\) and some integer \(u\). It follows \emph{a fortiori} that \(|b''| < |b|\) and thus the form \(q'' \cong \quadform{1, -a, -b''}\) represents \(0\) in \(\Rationals\) by the inductive hypothesis, whence \(q\) represents \(0\) in \(\Rationals\), as desired.
+    Again write \(b'\) as \(b''u^2\) for some squarefree integer \(b''\) and
+    some integer \(u\). It follows \emph{a fortiori} that \(|b''| < |b|\) and
+    thus the form \(q'' \cong \quadform{1, -a, -b''}\) represents \(0\) in
+    \(\Rationals\) by the inductive hypothesis, whence \(q\) represents \(0\) in
+    \(\Rationals\), as desired.
 
-    \item \textbf{Case 3,} \(n = 4\). Let \(q \cong \quadform{a, b, -c, -d}\). By Theorem\,\ref{thm:hyperbolic-decomp-2}, it suffices to show that there exists some \(\lambda \in \fieldU\) (where again \(\field\) is either \(\Rationals\) or \(\Rationals_v\)) represented by both \(\quadform{a, b}\) and \(\quadform{-c, -d}\). Suppose \(\quadform{a, b, -c, -d}\) represents \(0\) in each \(\Rationals_v\); then \(\quadform{a, b}\) and \(\quadform{c, d}\) represent the same element, say \(\lambda_v\), in \(\Rationals_v\). Over \(\Rationals_v\), it follows that \(\quadform{a, b}\) represents \(\lambda_v\) if and only if \(\quadform{a, b, -\lambda_v}\) represents \(0\) if and only if \(\quadform{1, ab, -a\lambda_v}\) is isotropic. This is true if and only if \((-ab, a\lambda_v)_v = 1\), which is true if and only if \((a, b)_v = (-ab, \lambda_v)_v = 1\). Similarly, we have \((c,d)_v = (-cd, \lambda_v)_v = 1\).
+    \item \textbf{Case 3,} \(n = 4\). Let \(q \cong \quadform{a, b, -c, -d}\).
+    By Theorem\,\ref{thm:hyperbolic-decomp-2}, it suffices to show that there
+    exists some \(\lambda \in \fieldU\) (where again \(\field\) is either
+    \(\Rationals\) or \(\Rationals_v\)) represented by both \(\quadform{a, b}\)
+    and \(\quadform{-c, -d}\). Suppose \(\quadform{a, b, -c, -d}\) represents
+    \(0\) in each \(\Rationals_v\); then \(\quadform{a, b}\) and \(\quadform{c,
+    d}\) represent the same element, say \(\lambda_v\), in \(\Rationals_v\).
+    Over \(\Rationals_v\), it follows that \(\quadform{a, b}\) represents
+    \(\lambda_v\) if and only if \(\quadform{a, b, -\lambda_v}\) represents
+    \(0\) if and only if \(\quadform{1, ab, -a\lambda_v}\) is isotropic. This is
+    true if and only if \((-ab, a\lambda_v)_v = 1\), which is true if and only
+    if \((a, b)_v = (-ab, \lambda_v)_v = 1\). Similarly, we have \((c,d)_v =
+    (-cd, \lambda_v)_v = 1\).
     
     Using the product formula of \S\,\ref{sec:hilbert-reciprocity}, we have 
     \[
         \prod_{v \in \Places} (a, b)_v = \prod_{v \in \Places} (c, d)_v = 1,
     \]
-    and thus by Theorem\,\ref{thm:global-properties-hs} of \S\,\ref{sec:hilbert-reciprocity} we can find a \(\lambda \in \Rationals^{\times}\) satisfying
+    and thus by Theorem\,\ref{thm:global-properties-hs} of
+    \S\,\ref{sec:hilbert-reciprocity} we can find a \(\lambda \in
+    \Rationals^{\times}\) satisfying
     \[
         (a, b)_v = (-ab, \lambda)_v \quad \text{and} \quad (c, d)_v = (-cd, \lambda)_v,
     \]
-    and thus the forms \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in each \(\Rationals_v\). By our proof in the case \(n = 3\) above, it follows that \(\quadform{a, b, \lambda}\) and \(\quadform{c, d, \lambda}\) are isotropic in \(\Rationals\) and thus both \(\quadform{a,b}\) and \(\quadform{c,d}\) represent \(\lambda\) in \(\Rationals\). Thus \(\quadform{a, b, -c, -d}\) represents \(0\) in \(\Rationals\) and the result follows.\label{hm-case:4}
+    and thus the forms \(\quadform{a, b, \lambda}\) and \(\quadform{c, d,
+    \lambda}\) are isotropic in each \(\Rationals_v\). By our proof in the case
+    \(n = 3\) above, it follows that \(\quadform{a, b, \lambda}\) and
+    \(\quadform{c, d, \lambda}\) are isotropic in \(\Rationals\) and thus both
+    \(\quadform{a,b}\) and \(\quadform{c,d}\) represent \(\lambda\) in
+    \(\Rationals\). Thus \(\quadform{a, b, -c, -d}\) represents \(0\) in
+    \(\Rationals\) and the result follows.\label{hm-case:4}
     
-    \item \textbf{Case 4,} \(n \geq 5\). Let \(q = \quadform{a_1, \dots, a_n}\) be a quadratic form of rank \(n \geq 5\). Let \(r = \quadform{a_1, a_2}\) and \(s = \quadform{-a_3, \dots, -a_n}\), so that \(q \cong r \perp s\), i.e., \(q = r - s\) by the notation we introduced in \S\,\ref{sec:results-from-witt}. Suppose that \(q\) represents zero over every \(\Rationals_v\). As in Case \ref{hm-case:4} above, ther exists \(\lambda_v \in \Rationals_v^{\times}\) such that \(r\) and \(s\) represent \(\lambda_v\) in \(\Rationals_v\). 
+    \item \textbf{Case 4,} \(n \geq 5\). Let \(q = \quadform{a_1, \dots, a_n}\)
+    be a quadratic form of rank \(n \geq 5\). Let \(r = \quadform{a_1, a_2}\)
+    and \(s = \quadform{-a_3, \dots, -a_n}\), so that \(q \cong r \perp s\),
+    i.e., \(q = r - s\) by the notation we introduced in
+    \S\,\ref{sec:results-from-witt}. Suppose that \(q\) represents zero over
+    every \(\Rationals_v\). As in Case \ref{hm-case:4} above, ther exists
+    \(\lambda_v \in \Rationals_v^{\times}\) such that \(r\) and \(s\) represent
+    \(\lambda_v\) in \(\Rationals_v\). 
 \end{enumerate}
 
 \medskip
 
-We can deduce the following corollary, which is a straightforward application of the above theorem to the form \(\quadform{\lambda} - q\).
+We can deduce the following corollary, which is a straightforward application of
+the above theorem to the form \(\quadform{\lambda} - q\).
 
 \begin{corollary}
     % \label{cor:hasse-minkowski-representation}
-    For a quadratic form \(q\) to represent \(\lambda \in \Rationals^{\times}\), it is necessary and sufficient that the form \(q_v\) represents \(\lambda\) in \(\Rationals_v\) for all \(v \in \Places\).
+    For a quadratic form \(q\) to represent \(\lambda \in \Rationals^{\times}\),
+    it is necessary and sufficient that the form \(q_v\) represents \(\lambda\)
+    in \(\Rationals_v\) for all \(v \in \Places\).
 \end{corollary}
 
-The next theorem relates the Hasse-Minkowski theorem with our notion of equivalence.\footnote{One may sometimes find Theorem\,\ref{thm:hasse-minkowski-equivalence}, and not Theorem\,\ref{thm:hasse-minkowski}, referred to as the Hasse-Minkowski theorem in the literature.}
+The next theorem relates the Hasse-Minkowski theorem with our notion of
+equivalence.\footnote{One may sometimes find
+Theorem\,\ref{thm:hasse-minkowski-equivalence}, and not
+Theorem\,\ref{thm:hasse-minkowski}, referred to as the Hasse-Minkowski theorem
+in the literature.}
 
-\begin{theoremx}\label{thm:hasse-minkowski-equivalence}
-    Two quadratic forms over \(\Rationals\) are equivalent if and only if they are equivalent over \(\Rationals_v\) for all \(v \in \Places\).
+\begin{theoremx}\label{thm:hasse-minkowski-equivalence} Two quadratic forms over
+    \(\Rationals\) are equivalent if and only if they are equivalent over
+    \(\Rationals_v\) for all \(v \in \Places\).
 \end{theoremx}
 
 \begin{proof}
-    Let \(q\) and \(r\) be equivalent quadratic forms over \(\Rationals\). Necessity follows directly from the definitions. We prove sufficiency by induction on the rank \(n\) of \(q\) and \(r\). The case \(n = 0\) is trivial. We thus suppose \(n > 0\), and by the corollary of Theorem\,\ref{thm:hasse-minkowski} above, we can assume that \(q\) and \(r\) represent the same element \(\lambda \in \Rationals^{\times}\). By the representation criterion of \S\,\ref{sec:diagonalization-of-forms}, \(q \sim \quadform{\lambda} \perp q'\) and \(r \sim \quadform{\lambda} \perp r'\) where \(q'\) and \(r'\) are quadratic forms of rank \(n - 1\) over \(\Rationals\). This implies \(r \sim r'\) over \(\Rationals_v\) since \(q \sim q'\) and \(\quadform{\lambda} \sim \quadform{\lambda}\) for every \(\Rationals_v\). From our induction hypothesis \(r \sim r'\) over \(\Rationals\) and hence, similarly, \(q \sim q'\) over \(\Rationals\).
+    Let \(q\) and \(r\) be equivalent quadratic forms over \(\Rationals\).
+    Necessity follows directly from the definitions. We prove sufficiency by
+    induction on the rank \(n\) of \(q\) and \(r\). The case \(n = 0\) is
+    trivial. We thus suppose \(n > 0\), and by the corollary of
+    Theorem\,\ref{thm:hasse-minkowski} above, we can assume that \(q\) and \(r\)
+    represent the same element \(\lambda \in \Rationals^{\times}\). By the
+    representation criterion of \S\,\ref{sec:diagonalization-of-forms}, \(q \sim
+    \quadform{\lambda} \perp q'\) and \(r \sim \quadform{\lambda} \perp r'\)
+    where \(q'\) and \(r'\) are quadratic forms of rank \(n - 1\) over
+    \(\Rationals\). This implies \(r \sim r'\) over \(\Rationals_v\) since \(q
+    \sim q'\) and \(\quadform{\lambda} \sim \quadform{\lambda}\) for every
+    \(\Rationals_v\). From our induction hypothesis \(r \sim r'\) over
+    \(\Rationals\) and hence, similarly, \(q \sim q'\) over \(\Rationals\).
 \end{proof}
 
 \section{Appendix: some classical results}
 
-\subsection{Sum of squares.}~We now begin to move from the rational theory of quadratic forms towards an initial result involving integral results, which we shall have more time to study in detail in the next chapter. We now use the results of this chapter to prove some classical results, due to Gauss, Lagrange and Legendre, on the representation of integers as sums of squares. We follow the treatment in \cite[pp.~45--47]{serre2012course} and \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
+\subsection{Sum of squares.}~We now begin to move from the rational theory of
+quadratic forms towards an initial result involving integral results, which we
+shall have more time to study in detail in the next chapter. We now use the
+results of this chapter to prove some classical results, due to Gauss, Lagrange
+and Legendre, on the representation of integers as sums of squares. We follow
+the treatment in \cite[pp.~45--47]{serre2012course} and
+\cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
 
-\begin{lemmax}\label{lem:sum-of-three-squares-q2}
-    {\normalfont \cite[pp.\,45--46]{serre2012course}}
-    If \(\lambda \in \Rationals^{\times}\), then \(\lambda\) is a sum of three rational squares if and only if \(\lambda > 0\) and \(-\lambda\) is not a square in \(\Rationals_2\).
+\begin{lemmax}\label{lem:sum-of-three-squares-q2} {\normalfont
+    \cite[pp.\,45--46]{serre2012course}} If \(\lambda \in \Rationals^{\times}\),
+    then \(\lambda\) is a sum of three rational squares if and only if \(\lambda
+    > 0\) and \(-\lambda\) is not a square in \(\Rationals_2\).
 \end{lemmax}
 
 \begin{proof}
-    By the corollary to the Hasse-Minkowski theorem, we need to show that \(\lambda\) is represented in \(\Rationals_{\infty} = \Reals\) and in \(\Rationals_p\) for all prime \(p\). The case of \(\Reals\) gives the positivity condition. On the other hand, for each \(p\) the local invariants \(\discr_p\) and \(\epsilon_p\) are both equal to \(1\). If \(p \neq 2\), then
+    By the corollary to the Hasse-Minkowski theorem, we need to show that
+    \(\lambda\) is represented in \(\Rationals_{\infty} = \Reals\) and in
+    \(\Rationals_p\) for all prime \(p\). The case of \(\Reals\) gives the
+    positivity condition. On the other hand, for each \(p\) the local invariants
+    \(\discr_p\) and \(\epsilon_p\) are both equal to \(1\). If \(p \neq 2\),
+    then
     \[
         (-1, -\discr_p)_p = (-1, -1)_p = 1 = \epsilon_p
     \]
-    and thus by the corollary of Theorem\,\ref{thm:rep-in-rationals-p} of \S\,\ref{sec:representation-in-qp-sec}, \(\lambda\) is represented in \(\Rationals_p\). If \(p = 2\), we have
+    and thus by the corollary of Theorem\,\ref{thm:rep-in-rationals-p} of
+    \S\,\ref{sec:representation-in-qp-sec}, \(\lambda\) is represented in
+    \(\Rationals_p\). If \(p = 2\), we have
     \[
         (-1, -\discr_2)_2 = (-1, -1)_2 = -1 \neq 1 = \epsilon_2.
     \]
-    Thus by the same corollary, \(\lambda\) is represented in \(\Rationals_2\) if and only if \(\lambda\) is different from \(-1\) in \(\Rationals^*_2 / \Rationals^{*2}_2\), i.e., if and only if \(-\lambda\) is not a square in \(\Rationals_2\).
+    Thus by the same corollary, \(\lambda\) is represented in \(\Rationals_2\)
+    if and only if \(\lambda\) is different from \(-1\) in \(\Rationals^*_2 /
+    \Rationals^{*2}_2\), i.e., if and only if \(-\lambda\) is not a square in
+    \(\Rationals_2\).
 \end{proof}
 
 \begin{lemmax}[Davenport-Cassels]\label{lem:sum-of-three-squares-davenport-cassels}
-    {\normalfont \cite[p.\,46]{serre2012course}}
-    Let \(q\) be a quadratic form over \(\Rationals\) of rank \(n\) with integer coefficients, and let \(A = (a_{ij})\) be its associated matrix. Suppose further that for every \(x = (x_1, \dots, x_n) \in \Rationals^n \setminus \Integers^n\) there exists some \(y = (y_1, \dots, y_n) \in \Integers^n\) such that \(q(x - y) < 1\). Then if \(q\) represents \(\lambda\) in \(\Rationals\), \(q\) also represents \(\lambda\) in \(\Integers\).
+    {\normalfont \cite[p.\,46]{serre2012course}} Let \(q\) be a quadratic form
+    over \(\Rationals\) of rank \(n\) with integer coefficients, and let \(A =
+    (a_{ij})\) be its associated matrix. Suppose further that for every \(x =
+    (x_1, \dots, x_n) \in \Rationals^n \setminus \Integers^n\) there exists some
+    \(y = (y_1, \dots, y_n) \in \Integers^n\) such that \(q(x - y) < 1\). Then
+    if \(q\) represents \(\lambda\) in \(\Rationals\), \(q\) also represents
+    \(\lambda\) in \(\Integers\).
 \end{lemmax}
 
 \begin{proof}
-    We follow the proof in \cite[p.\,2]{clark2011representation}, which itself follows the proof by Serre with some variation (cf. p.\,3, \emph{loc. cit.}). For all \(x, y \in \Rationals^n\) define
+    We follow the proof in \cite[p.\,2]{clark2011representation}, which itself
+    follows the proof by Serre with some variation (cf. p.\,3, \emph{loc.
+    cit.}). For all \(x, y \in \Rationals^n\) define
     \[
         x \cdot y = \frac{1}{2} \left( q(x + y) - q(x) - q(y) \right).
     \]
-    Then the map \((x, y) \mapsto x \cdot y\) is a bilinear form and \(x \cdot x = q(x)\). Note that for all \(x, y \in \Integers^n\), it does not necessarily follow that \(x \cdot y \in \Integers^n\) but \(2(x \cdot y) \in \Integers^n\).
+    Then the map \((x, y) \mapsto x \cdot y\) is a bilinear form and \(x \cdot x
+    = q(x)\). Note that for all \(x, y \in \Integers^n\), it does not
+    necessarily follow that \(x \cdot y \in \Integers^n\) but \(2(x \cdot y) \in
+    \Integers^n\).
 
-    Let \(\lambda\) be an integer and suppose that there exists some \(x \in \Integers^n\) such that \(q(x) = \lambda\). Equivalently, there exists some \(t \in \Integers\) and \(x' \in \Integers^n\) such that \(q(x') = t^2 \lambda\). Choose \(x'\) and \(t\) such that \(|t|\) is minimal, so that we need only show that \(|t| = 1\).
+    Let \(\lambda\) be an integer and suppose that there exists some \(x \in
+    \Integers^n\) such that \(q(x) = \lambda\). Equivalently, there exists some
+    \(t \in \Integers\) and \(x' \in \Integers^n\) such that \(q(x') = t^2
+    \lambda\). Choose \(x'\) and \(t\) such that \(|t|\) is minimal, so that we
+    need only show that \(|t| = 1\).
     
-    By the hypothesis on \(x = x'/\lambda\), there exists an integer vector \(y\) such that \(q(x - y) < 1\). Now write
+    By the hypothesis on \(x = x'/\lambda\), there exists an integer vector
+    \(y\) such that \(q(x - y) < 1\). Now write
     \begin{align*}
         a &= y \cdot y - \lambda \qquad &b &= 2(\lambda t - x \cdot y) \\
         \tau &= at + b\qquad &\xi &= ax' + by.
     \end{align*}
-    Then \(a\), \(b\), and \(\tau\) are integers and \(\xi\) an integer vector. We now prove two claims: first, that \(q(\xi) = \tau^2\lambda\) and second, that \(\tau = tq(x - y)\).
+    Then \(a\), \(b\), and \(\tau\) are integers and \(\xi\) an integer vector.
+    We now prove two claims: first, that \(q(\xi) = \tau^2\lambda\) and second,
+    that \(\tau = tq(x - y)\).
     
     For the first claim we have
     \begin{align*}
@@ -965,31 +1798,51 @@ The next theorem relates the Hasse-Minkowski theorem with our notion of equivale
         t\tau &= t(at + b) = at^2 + bt = t^2 (y \cdot y) - \lambda t^2 + 2\lambda t^2 - t(2x' \cdot y)\\
         &= t^2(y \cdot y) - t(2x' \cdot y) + x' \cdot x' = (ty-x') \cdot (ty-x') = t^2 q(x - y),
     \end{align*}
-    and thus \(\tau = tq(x - y)\). Since \(|q(x - y)| < 1\), we have \(|\tau| < |t|\), condradicting the minimality of \(|t|\).
+    and thus \(\tau = tq(x - y)\). Since \(|q(x - y)| < 1\), we have \(|\tau| <
+    |t|\), condradicting the minimality of \(|t|\).
 \end{proof}
 
-We now arrive to the main result of this section, which is due to Gauss and Legendre.
+We now arrive to the main result of this section, which is due to Gauss and
+Legendre.
 
 \begin{theorem}
-    {\normalfont \cite[pp.\,46--47]{serre2012course}}
-    A positive integer \(\lambda\) is a sum of three squares if and only if \(\lambda\) is not of the form \(4^\nu k\) for some integer \(\nu\), where \(k \equiv 7 \pmod{8}\).
+    {\normalfont \cite[pp.\,46--47]{serre2012course}} A positive integer
+    \(\lambda\) is a sum of three squares if and only if \(\lambda\) is not of
+    the form \(4^\nu k\) for some integer \(\nu\), where \(k \equiv 7
+    \pmod{8}\).
 \end{theorem}
 
 \begin{proof}
-    We may suppose without loss of generality that \(\lambda\) is nonzero. Then the condition that \(\lambda\) be of the form \(4^\nu k\) where \(k \equiv 7 \pmod{8}\) is equivalent to saying that \(-\lambda\) is not a square in \(\Rationals_2\). By Lemma\,\ref{lem:sum-of-three-squares-q2}, this implies that \(\lambda\) is represented by a sum of three squares in \(\Rationals\). Let \(q = x_1^2 + x_2^2 + x_3^2\) be this form. By Lemma\,\ref{lem:sum-of-three-squares-davenport-cassels}, we need to check that the form \(q\) satisfies the condition that for every rational vector \(x = (x_1, x_2, x_3)\) there exists some integer vector \(y = (y_1, y_2, y_3)\) such that \(q(x - y) < 1\). Now if \(x\) is a rational vector, we can choose \(y\) satisfying \(|y_i - x_i| \leq 1/2\) for all \(i\). Then
+    We may suppose without loss of generality that \(\lambda\) is nonzero. Then
+    the condition that \(\lambda\) be of the form \(4^\nu k\) where \(k \equiv 7
+    \pmod{8}\) is equivalent to saying that \(-\lambda\) is not a square in
+    \(\Rationals_2\). By Lemma\,\ref{lem:sum-of-three-squares-q2}, this implies
+    that \(\lambda\) is represented by a sum of three squares in \(\Rationals\).
+    Let \(q = x_1^2 + x_2^2 + x_3^2\) be this form. By
+    Lemma\,\ref{lem:sum-of-three-squares-davenport-cassels}, we need to check
+    that the form \(q\) satisfies the condition that for every rational vector
+    \(x = (x_1, x_2, x_3)\) there exists some integer vector \(y = (y_1, y_2,
+    y_3)\) such that \(q(x - y) < 1\). Now if \(x\) is a rational vector, we can
+    choose \(y\) satisfying \(|y_i - x_i| \leq 1/2\) for all \(i\). Then
     \[
         \sum(x_i - y_i)^2 \leq \sum \left(\frac{1}{2}\right)^2 = \frac{3}{4} < 1,
     \]
     as desired. Therefore \(q\) represents \(\lambda\) in \(\Integers\).
 \end{proof}
 
-We can deduce the following corollary, due to Lagrange and commonly known as the four-square theorem, as mentioned in the Preface.
+We can deduce the following corollary, due to Lagrange and commonly known as the
+four-square theorem, as mentioned in the Preface.
 
 \begin{corollary}
     Every positive integer is a sum of four squares.
 \end{corollary}
 
 \begin{proof}
-    Let \(\lambda > 0\) be an integer. Write \(\lambda\) in the form \(4^{\nu}m\) where \(m\) is an integer not divisible by \(4\). If \(m \equiv 1, 2, 3, 5, 6 \pmod{8}\) then \(m\) is a sum of three squares and so is \(\lambda\). Otherwise if \(m \equiv 7 \equiv -1 \pmod{8}\) then \(m-1\) is the sum of three squares. Hence \(m\) is the sum of four squares and so is \(\lambda\).
+    Let \(\lambda > 0\) be an integer. Write \(\lambda\) in the form
+    \(4^{\nu}m\) where \(m\) is an integer not divisible by \(4\). If \(m \equiv
+    1, 2, 3, 5, 6 \pmod{8}\) then \(m\) is a sum of three squares and so is
+    \(\lambda\). Otherwise if \(m \equiv 7 \equiv -1 \pmod{8}\) then \(m-1\) is
+    the sum of three squares. Hence \(m\) is the sum of four squares and so is
+    \(\lambda\).
 \end{proof}
 
