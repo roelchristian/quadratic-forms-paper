@@ -55,7 +55,8 @@ of \S\,\ref{sec:minimum} and the more general results of
     x^2 + 2xy + y^2 \sim x^2 - 2xy + y^2 \sim x^2 + y^2,
 \]  
 and thus we need only consider the two non-isometric binary escalator lattices
-\[
+\begin{equation}
+    \label{eqn:binary-escalators}
     \begin{pmatrix}
         1 & 0 \\
         0 & 2
@@ -64,7 +65,7 @@ and thus we need only consider the two non-isometric binary escalator lattices
         1 & 0 \\
         0 & 1
     \end{pmatrix},
-\]
+\end{equation}
 corresponding to the forms \(x^2 + 2y^2\) and \(x^2 + y^2\), respectively.
 Continuing in the same vein, we can escalate both lattices and obtain nine
 non-isometric ternary escalator lattices, whose Minkowski-reduced forms are
@@ -207,7 +208,7 @@ represents all integers less than \(4 \cdot 28 = 112\). It follows that any
 escalator arising from \(\Lattice_3\) for which \(m \not\equiv 0 \pmod{8}\) is
 universal.
 
-If \(m\) is a multiple of \(8\), then the lattice \(\Lattice_3\) is called
+If \(m\) is a multiple of \(8\), then we shall call the lattice \(\Lattice_3\)
 ``exceptional.'' Out of the \(26\) escalations of \(\Lattice_3\), it turns out
 that exactly two are exceptional. For each of these lattices, we find new
 three-dimensional sublattices \(\Lattice_3'\) which are unique in their genus
@@ -255,8 +256,59 @@ Exceptional lattices arise only from the lattices with Gram matrices
         0 & 0 & 4
     \end{pmatrix}.
 \]
-Each can be handled in the same way as above, thus proving the universality of
-all but six of the \(207\) escalator lattices.
+The resulting exceptional lattices reduce to five in total and can be found in
+\cite[Table~2]{bhargava2000conway}. Each can be handled in the same way as
+above, thus proving the universality of all but six of the \(207\) escalator
+lattices.
 
 
 \section{Universal escalators and the fifteen theorem}
+
+\subsection{}~Out of the \(207\) escalator lattices, we have shown that \(201\)
+are universal. Of the remaining six, we escalate each of them another time and
+apply the same argument as in the preceding section. These six escalators are
+shown  in italics in \cite[Table~3]{bhargava2000conway}, which we reproduce as
+Fig.~\ref{fig:appx:ternary-escalators} of the Appendix. The final check for each
+case reveals that these escalators represent all integers except a single
+integer, as shown in \cite[Table~4]{bhargava2000conway}. The largest of these
+integers is \(15\). Thus the five-dimensional lattices escalated from these six
+escalators are universal and by explicit computation, we obtain \(1630\)
+five-dimensional universal escalators. \cite{moon2008universal} To summarize,
+there are only a finite number of escalators for quadratic forms having integer
+matrices: 1 of dimension zero (the zero lattice), 1 of dimension one (the
+lattice \((1)\)), 2 of dimension two (the lattices in
+\eqref{eqn:binary-escalators}), 9 of dimension three, 207 of dimension four, and
+1630 of dimension five, for a total of 1850. We thus obtain a sequence of
+inclusion
+\[
+    0 = \Lattice_0 \subset \dots \subset \Lattice_5 \subset \dots
+\]
+(where \(0\) denotes the zero lattice with some abuse of notation) and since the
+lattices \(\Lattice_5\) are universal, the analysis we have performed up to this
+point brings us the following theorem:
+
+\begin{theorem}
+    Any universal lattice \(\Lattice\) contains a universal sublattice of
+    dimension at most \(5\).
+\end{theorem}
+
+One of the constraints in the statement of the fifteen theorem is the
+consideration of matrix-integral forms. The question naturally arises whether
+the fifteen theorem can be generalized for the alternative definition of
+``integral'' forms we have given in \S\,\ref{sec:integral-forms-def},
+\emph{viz.,} that of integer-valued quadratic forms, i.e., forms whose
+coefficients are integers. This exact result has been proved by Bhargava and
+Hanke in \cite{bhargava2005universal} as well as analogous criteria for
+for a quadratic form with integral matrix to represent all primes using the set
+\[\{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 67, 73\} \]
+(\cite{bhargava2005universal} as cited in \cite{kim2004recent}) and for such a
+quadratic form to represent all positive odd integers (the set \(\{1, 3, 5, 7,
+11, 15, 33\}\)) \cite{hahn2008quadratic}.
+
+The proof of the \(290\) theorem relies on a similar version of the
+escalation of lattices we have introduced in this essay and uses arithmetic
+methods (genus, class number), analytic methods (Tartakowsky's Theorem, modular
+forms, Eisenstein series) and computational methods (Magma, C++), with the
+result that \(6402\) out of the \(6560\) four-dimensional escalator represent
+all positive integers. Each of the remaining lattices are escalated again for at
+most three more times, culminating each time in an escalator that is universal.
