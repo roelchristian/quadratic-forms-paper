@@ -29,6 +29,7 @@ letterpaper
 \date{November 2023}
 
 \input{../pkgs.tex}
+\input{../macros.tex}
 \addbibresource{../ref.bib}
 
 \renewcommand{\thechapter}{\Roman{chapter}}
@@ -116,7 +117,10 @@ letterpaper
 \include{chapters/03}
 \include{chapters/04}
 
+\appendix
+\include{chapters/appx}
 
+\backmatter
 
 \chapter*{Bibliography.}
 \nocite{*}
