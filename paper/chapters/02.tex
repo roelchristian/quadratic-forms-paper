@@ -227,7 +227,7 @@ has been mainly algebraic, but we shall now introduce some results from analysis
 to achieve our aim. Nevertheless, the exposition in this section shall be
 cursory, as we shall not need the full strength of the results we shall prove
 here. We refer the reader to Chapters 2--3 of \cite{gouvea1997p} for a more
-detailed treatment.
+detailed treatment.\label{sec:completions}
 
 We first recall the following definitions from analysis; the reader may consult
 \cite{rudin1976principles} for a more detailed treatment. For these definitions,
@@ -1554,9 +1554,10 @@ The numbers \(\discr_v q\), \(\epsilon_v(q)\) and \((r, s)\) all called the
 \emph{local invariants} of \(q\) with respect to the place \(v\). With our
 notation fixed, we can now state the Hasse-Minkowski theorem.
 
-\begin{theoremx}\label{thm:hasse-minkowski} In order that a quadratic form over
-    \(\Rationals\) represent zero, it is necessary and sufficient that for every
-    place \(v\) of \(\Rationals\) the form \(q_v\) represents \(0\).
+\begin{theoremx}\label{thm:hasse-minkowski}
+    {\normalfont\cite[pp.~41--45]{serre2012course}} In order that a quadratic
+    form over \(\Rationals\) represent zero, it is necessary and sufficient that
+    for every place \(v\) of \(\Rationals\) the form \(q_v\) represents \(0\).
 \end{theoremx}
 
 Before proceeding with the proof, recall that in
@@ -1669,7 +1670,7 @@ and prove the theorem for \(n = 2, 3, 4\) and \(n \geq 5.\)
     \S\,\ref{sec:results-from-witt}. Suppose that \(q\) represents zero over
     every \(\Rationals_v\). As in Case \ref{hm-case:4} above, ther exists
     \(\lambda_v \in \Rationals_v^{\times}\) such that \(r\) and \(s\) represent
-    \(\lambda_v\) in \(\Rationals_v\). 
+    \(\lambda_v\) in \(\Rationals_v\). We can use the same arguments as in above to arrive at a proof for this case. See \cite[p.~43]{serre2012course} for the complete exposition. 
 \end{enumerate}
 
 \medskip
@@ -1720,6 +1721,7 @@ results of this chapter to prove some classical results, due to Gauss, Lagrange
 and Legendre, on the representation of integers as sums of squares. We follow
 the treatment in \cite[pp.~45--47]{serre2012course} and
 \cite[pp.~109--111]{gerstein2008basic}. We begin with a couple of lemmas.
+\label{sec:sum-of-squares}
 
 \begin{lemmax}\label{lem:sum-of-three-squares-q2} {\normalfont
     \cite[pp.\,45--46]{serre2012course}} If \(\lambda \in \Rationals^{\times}\),
